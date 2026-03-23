@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets & Missions | Mwindjou</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: ['class','[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        'tech-bg':     'var(--bg-color)',
+                        'tech-card':   'var(--card-color)',
+                        'tech-text':   'var(--text-main)',
+                        'tech-dim':    'var(--text-dim)',
+                        'tech-accent': 'var(--accent)',
+                        'tech-border': 'var(--border-color)',
+                    },
+                    fontFamily: {
+                        sans:    ['DM Sans','system-ui','sans-serif'],
+                        display: ['Syne','sans-serif'],
+                        mono:    ['JetBrains Mono','monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-tech-bg text-tech-text font-sans antialiased">
+
+<div id="nav-placeholder"></div>
+
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<section class="pt-32 pb-12 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[.03]" style="background-image:radial-gradient(var(--text-dim) 1px,transparent 1px);background-size:24px 24px"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <h1 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--text-main);margin-bottom:1rem">
+            Projets &amp; <span style="color:var(--accent)">Missions</span>
+        </h1>
+        <p style="font-size:1rem;color:var(--text-dim);max-width:480px;margin:0 auto;line-height:1.75">
+            Présentation détaillée des entreprises d'accueil et accès aux rapports de missions.
+        </p>
+    </div>
+</section>
+
+<!-- ── FILTRES ────────────────────────────────────────────── -->
+<div class="sticky top-[62px] z-40 border-b py-3"
+     style="background:var(--bg-color);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-color:var(--border-color)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-2 flex-wrap">
+            <span class="hidden sm:block" style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-right:.25rem">Filtrer :</span>
+            <button data-filter="all"        onclick="filterSection('all')"        class="filter-pill active"><i class="fa-solid fa-layer-group"    style="font-size:.7rem"></i> Tout voir</button>
+            <button data-filter="alternance" onclick="filterSection('alternance')" class="filter-pill"       ><i class="fa-solid fa-briefcase"      style="font-size:.7rem"></i> Alternance</button>
+            <button data-filter="stage"      onclick="filterSection('stage')"      class="filter-pill"       ><i class="fa-solid fa-graduation-cap" style="font-size:.7rem"></i> Stage</button>
+            <button data-filter="formation"  onclick="filterSection('formation')"  class="filter-pill"       ><i class="fa-solid fa-school"         style="font-size:.7rem"></i> Formation</button>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     BLOC 1 — ALTERNANCE · REDVISE
+════════════════════════════════════════════════════════ -->
+<section id="alternance" data-cat="alternance" class="project-section py-16 border-b" style="border-color:var(--border-color)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- En-tête -->
+        <div class="flex items-center gap-4 mb-8">
+            <div style="padding:.75rem;border-radius:10px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.2)">
+                <i class="fa-solid fa-briefcase" style="color:#c084fc;font-size:1.4rem"></i>
+            </div>
+            <div>
+                <h2 style="font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:700;color:var(--text-main)">Alternance chez REDVISE</h2>
+                <p style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim)">Administrateur Système &amp; Réseau Junior</p>
+            </div>
+        </div>
+
+        <!-- Carte entreprise -->
+        <div class="glass rounded-2xl p-6 md:p-8 mb-10" style="transition:box-shadow .4s" onmouseenter="this.style.boxShadow='0 20px 60px rgba(192,132,252,.08)'" onmouseleave="this.style.boxShadow=''">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                <!-- Gauche : logo + infos -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div style="height:192px;background:#fff;border-radius:12px;border:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;padding:1rem;overflow:hidden">
+                        <img src="img/logo_redvise.png"
+                             onerror="this.src='https://placehold.co/600x300/ffffff/1e293b?text=REDVISE'"
+                             alt="Logo REDVISE"
+                             style="max-width:100%;max-height:100%;object-fit:contain;transition:transform .3s"
+                             onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform=''">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:8px;padding:.75rem">
+                            <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-bottom:.25rem">Secteur</span>
+                            <span style="font-size:.82rem;font-weight:600;color:var(--text-main)">Conseil &amp; Services IT</span>
+                        </div>
+                        <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:8px;padding:.75rem">
+                            <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-bottom:.25rem">Effectif</span>
+                            <span style="font-size:.82rem;font-weight:600;color:var(--text-main)">~50 collaborateurs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Droite : description + organigramme -->
+                <div class="lg:col-span-7 flex flex-col justify-between gap-6">
+                    <div>
+                        <h3 style="font-size:1rem;font-weight:700;color:var(--text-main);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem">
+                            <i class="fa-regular fa-building" style="color:#c084fc"></i> L'Entreprise
+                        </h3>
+                        <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                            REDVISE est une entreprise spécialisée dans l'accompagnement numérique des PME. Elle propose des solutions d'infogérance, de cybersécurité et de déploiement d'infrastructures cloud.
+                        </p>
+                        <h4 style="font-size:.82rem;font-weight:600;color:var(--text-main);margin-bottom:.35rem">Mon rôle :</h4>
+                        <p style="font-size:.875rem;color:var(--text-dim);line-height:1.72">
+                            Intégré au pôle "Infra &amp; Sécurité", je participe au maintien en condition opérationnelle (MCO) des serveurs clients et aux projets de migration.
+                        </p>
+                    </div>
+
+                    <!-- Organigramme -->
+                    <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:12px;padding:1rem">
+                        <h3 style="font-size:.8rem;font-weight:700;color:var(--text-main);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+                            <i class="fa-solid fa-sitemap" style="color:#c084fc"></i> Organigramme du service
+                        </h3>
+                        <div style="display:flex;flex-direction:column;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;gap:0">
+                            <div style="background:var(--card-color);border:1px solid rgba(192,132,252,.3);color:#c084fc;padding:6px 16px;border-radius:6px">DSI (Directeur Technique)</div>
+                            <div style="width:1px;height:14px;background:var(--border-color)"></div>
+                            <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;justify-content:center">
+                                <div style="background:var(--card-color);border:1px solid var(--border-color);color:var(--text-dim);padding:5px 12px;border-radius:6px">Resp. Support</div>
+                                <div style="display:flex;flex-direction:column;align-items:center">
+                                    <div style="background:var(--card-color);border:1px solid rgba(192,132,252,.4);color:var(--text-main);padding:5px 12px;border-radius:6px;font-weight:700">Admin Sys &amp; Réseaux (Tuteur)</div>
+                                    <div style="width:1px;height:12px;background:var(--border-color)"></div>
+                                    <div style="background:rgba(192,132,252,.15);border:1px solid #c084fc;color:#c084fc;padding:5px 12px;border-radius:6px;box-shadow:0 0 10px rgba(192,132,252,.2)">Moi (Alternant)</div>
+                                </div>
+                                <div style="background:var(--card-color);border:1px solid var(--border-color);color:var(--text-dim);padding:5px 12px;border-radius:6px">Lead Dev</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center">
+            <a href="details.html?id=redvise"
+               class="btn-primary"
+               style="display:inline-flex;text-decoration:none;background:rgba(192,132,252,.12);color:#c084fc;border:1px solid #c084fc;padding:12px 32px;border-radius:100px;font-weight:700"
+               onmouseenter="this.style.background='#c084fc';this.style.color='#fff';this.style.boxShadow='0 8px 28px rgba(192,132,252,.3)'"
+               onmouseleave="this.style.background='rgba(192,132,252,.12)';this.style.color='#c084fc';this.style.boxShadow=''">
+                <i class="fa-solid fa-folder-open"></i>
+                Voir les missions &amp; détails techniques
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     BLOC 2 — STAGE · ITIC PARIS
+════════════════════════════════════════════════════════ -->
+<section id="stage" data-cat="stage" class="project-section py-16 border-b" style="background:rgba(255,255,255,.012);border-color:var(--border-color)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex items-center gap-4 mb-8">
+            <div style="padding:.75rem;border-radius:10px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2)">
+                <i class="fa-solid fa-graduation-cap" style="color:#4ade80;font-size:1.4rem"></i>
+            </div>
+            <div>
+                <h2 style="font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:700;color:var(--text-main)">Stage chez ITIC Paris</h2>
+                <p style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim)">Technicien Support &amp; Réseau</p>
+            </div>
+        </div>
+
+        <div class="glass rounded-2xl p-6 md:p-8 mb-10" style="transition:box-shadow .4s" onmouseenter="this.style.boxShadow='0 20px 60px rgba(74,222,128,.08)'" onmouseleave="this.style.boxShadow=''">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                <div class="lg:col-span-5 space-y-4">
+                    <div style="height:192px;background:#fff;border-radius:12px;border:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;padding:1rem;overflow:hidden">
+                        <img src="img/logo_itic.png"
+                             onerror="this.src='https://placehold.co/600x300/ffffff/1e293b?text=ITIC+Paris'"
+                             alt="Logo ITIC Paris"
+                             style="max-width:100%;max-height:100%;object-fit:contain;transition:transform .3s"
+                             onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform=''">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:8px;padding:.75rem">
+                            <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-bottom:.25rem">Type</span>
+                            <span style="font-size:.82rem;font-weight:600;color:var(--text-main)">Établissement d'Enseignement</span>
+                        </div>
+                        <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:8px;padding:.75rem">
+                            <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-bottom:.25rem">Parc</span>
+                            <span style="font-size:.82rem;font-weight:600;color:var(--text-main)">+200 postes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 flex flex-col justify-between gap-6">
+                    <div>
+                        <h3 style="font-size:1rem;font-weight:700;color:var(--text-main);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem">
+                            <i class="fa-regular fa-building" style="color:#4ade80"></i> L'Organisation
+                        </h3>
+                        <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                            L'ITIC Paris est une école informatique et commerce. Le service informatique gère le parc pédagogique (salles de cours), le parc administratif et l'infrastructure réseau du campus (Wi-Fi, serveurs de fichiers).
+                        </p>
+                        <h4 style="font-size:.82rem;font-weight:600;color:var(--text-main);margin-bottom:.35rem">Mon rôle :</h4>
+                        <p style="font-size:.875rem;color:var(--text-dim);line-height:1.72">
+                            Assurer le support de niveau 1 pour les étudiants et professeurs, et participer à la maintenance préventive du matériel pendant les inter-semestres.
+                        </p>
+                    </div>
+
+                    <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:12px;padding:1rem">
+                        <h3 style="font-size:.8rem;font-weight:700;color:var(--text-main);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+                            <i class="fa-solid fa-sitemap" style="color:#4ade80"></i> Organigramme IT
+                        </h3>
+                        <div style="display:flex;flex-direction:column;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;gap:0">
+                            <div style="background:var(--card-color);border:1px solid rgba(74,222,128,.3);color:#4ade80;padding:6px 16px;border-radius:6px">Responsable Pédagogique</div>
+                            <div style="width:1px;height:14px;background:var(--border-color)"></div>
+                            <div style="display:flex;flex-direction:column;align-items:center">
+                                <div style="background:var(--card-color);border:1px solid rgba(74,222,128,.4);color:var(--text-main);padding:5px 12px;border-radius:6px;font-weight:700">Responsable Parc Informatique</div>
+                                <div style="width:1px;height:12px;background:var(--border-color)"></div>
+                                <div style="display:flex;gap:10px">
+                                    <div style="background:rgba(74,222,128,.15);border:1px solid #4ade80;color:#4ade80;padding:5px 12px;border-radius:6px;box-shadow:0 0 10px rgba(74,222,128,.2)">Moi (Stagiaire)</div>
+                                    <div style="background:var(--card-color);border:1px solid var(--border-color);color:var(--text-dim);padding:5px 12px;border-radius:6px">Autres Stagiaires</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="details.html?id=itic"
+               class="btn-primary"
+               style="display:inline-flex;text-decoration:none;background:rgba(74,222,128,.1);color:#4ade80;border:1px solid #4ade80;padding:12px 32px;border-radius:100px;font-weight:700"
+               onmouseenter="this.style.background='#4ade80';this.style.color='#000';this.style.boxShadow='0 8px 28px rgba(74,222,128,.3)'"
+               onmouseleave="this.style.background='rgba(74,222,128,.1)';this.style.color='#4ade80';this.style.boxShadow=''">
+                <i class="fa-solid fa-folder-open"></i>
+                Voir les missions &amp; détails techniques
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     BLOC 3 — FORMATION · BTS SIO
+════════════════════════════════════════════════════════ -->
+<section id="formation" data-cat="formation" class="project-section py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex items-center gap-4 mb-10">
+            <div style="padding:.75rem;border-radius:10px;background:var(--accent-soft);border:1px solid rgba(var(--accent-rgb),.2)">
+                <i class="fa-solid fa-school" style="color:var(--accent);font-size:1.4rem"></i>
+            </div>
+            <div>
+                <h2 style="font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:700;color:var(--text-main)">Formation</h2>
+                <p style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim)">Parcours de formation durant les deux années de BTS</p>
+            </div>
+        </div>
+
+        <!-- Ateliers Systèmes & Réseaux -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+
+            <!-- Ateliers Systèmes -->
+            <div class="glass rounded-xl p-6 group relative overflow-hidden"
+                 style="transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(96,165,250,.4)'" onmouseleave="this.style.borderColor=''">
+                <div style="position:absolute;top:0;right:0;padding:1rem;opacity:.04;pointer-events:none" class="group-hover:opacity-10 transition-opacity">
+                    <i class="fa-brands fa-linux" style="font-size:6rem"></i>
+                </div>
+                <div style="position:relative;z-index:1">
+                    <div style="width:46px;height:46px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+                        <i class="fa-solid fa-server" style="color:#60a5fa;font-size:1.1rem"></i>
+                    </div>
+                    <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Ateliers Systèmes</h3>
+                    <p style="font-size:.875rem;color:var(--text-dim);line-height:1.72;margin-bottom:1.25rem">
+                        Administration Windows Server, Linux (Debian/Ubuntu), Scripting Bash/PowerShell et services associés.
+                    </p>
+                    <a href="details.html?id=sio_sys"
+                       style="font-size:.875rem;font-weight:700;color:#60a5fa;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:color .15s"
+                       onmouseenter="this.style.color='#93c5fd'" onmouseleave="this.style.color='#60a5fa'">
+                        Voir les ateliers <i class="fa-solid fa-arrow-right" style="font-size:.7rem"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ateliers Réseaux -->
+            <div class="glass rounded-xl p-6 group relative overflow-hidden"
+                 style="transition:border-color .2s" onmouseenter="this.style.borderColor='rgba(251,146,60,.4)'" onmouseleave="this.style.borderColor=''">
+                <div style="position:absolute;top:0;right:0;padding:1rem;opacity:.04;pointer-events:none" class="group-hover:opacity-10 transition-opacity">
+                    <i class="fa-solid fa-network-wired" style="font-size:6rem"></i>
+                </div>
+                <div style="position:relative;z-index:1">
+                    <div style="width:46px;height:46px;background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+                        <i class="fa-solid fa-route" style="color:#fb923c;font-size:1.1rem"></i>
+                    </div>
+                    <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Ateliers Réseaux</h3>
+                    <p style="font-size:.875rem;color:var(--text-dim);line-height:1.72;margin-bottom:1.25rem">
+                        Architecture Mikrotik (Switching/Routing), VLANs, Firewalling et protocoles réseaux.
+                    </p>
+                    <a href="details.html?id=sio_net"
+                       style="font-size:.875rem;font-weight:700;color:#fb923c;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:color .15s"
+                       onmouseenter="this.style.color='#fdba74'" onmouseleave="this.style.color='#fb923c'">
+                        Voir les ateliers <i class="fa-solid fa-arrow-right" style="font-size:.7rem"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Examens BTS -->
+        <div class="glass rounded-2xl p-8 md:p-10 group relative overflow-hidden"
+             style="border-color:rgba(var(--accent-rgb),.25)">
+            <div style="position:absolute;right:-2rem;bottom:-2rem;opacity:.04;pointer-events:none" class="group-hover:opacity-10 transition-opacity">
+                <i class="fa-solid fa-file-signature" style="font-size:8rem"></i>
+            </div>
+            <div style="position:relative;z-index:1" class="flex flex-col md:flex-row items-center gap-8">
+                <div class="flex-1 text-center md:text-left">
+                    <h3 style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text-main);margin-bottom:.75rem;display:flex;align-items:center;justify-content:center;gap:.6rem" class="md:justify-start">
+                        <i class="fa-solid fa-medal" style="color:#facc15"></i> Projets d'Examen (E4 / E6)
+                    </h3>
+                    <p style="font-size:.95rem;color:var(--text-dim);line-height:1.75">
+                        Dossiers techniques officiels présentés au jury du BTS SIO. Comprend les contextes, les réalisations et les documentations finales.
+                    </p>
+                </div>
+                <div class="flex-shrink-0">
+                    <a href="details.html?id=bts_exam" class="btn-primary" style="text-decoration:none;padding:14px 32px;border-radius:100px">
+                        <i class="fa-solid fa-folder-open"></i>
+                        Accéder aux dossiers
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="components.js"></script>
+<script>
+function filterSection(cat) {
+    document.querySelectorAll('.filter-pill').forEach(b =>
+        b.classList.toggle('active', b.dataset.filter === cat)
+    );
+    document.querySelectorAll('.project-section').forEach(s => {
+        const show = cat === 'all' || s.dataset.cat === cat;
+        s.style.display    = show ? '' : 'none';
+        s.style.animation  = show ? 'fadeIn .3s ease' : '';
+    });
+}
+</script>
+
+<style>
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+
+</body>
+</html>

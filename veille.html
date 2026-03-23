@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique | Mwindjou</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: ['class','[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        'tech-bg':     'var(--bg-color)',
+                        'tech-card':   'var(--card-color)',
+                        'tech-text':   'var(--text-main)',
+                        'tech-dim':    'var(--text-dim)',
+                        'tech-accent': 'var(--accent)',
+                        'tech-border': 'var(--border-color)',
+                    },
+                    fontFamily: {
+                        sans:    ['DM Sans','system-ui','sans-serif'],
+                        display: ['Syne','sans-serif'],
+                        mono:    ['JetBrains Mono','monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-tech-bg text-tech-text font-sans antialiased">
+
+<div id="nav-placeholder"></div>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="pt-32 pb-12 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[.03]" style="background-image:radial-gradient(var(--text-dim) 1px,transparent 1px);background-size:24px 24px"></div>
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+                <span class="section-label">Veille</span>
+                <h1 class="section-title">Veille <span style="color:var(--accent)">Technologique</span></h1>
+                <p style="color:var(--text-dim);margin-top:.75rem;max-width:540px;font-size:.95rem;line-height:1.78">
+                    Suivi des actualités IT, cybersécurité et infrastructure. Articles, outils et tendances que je lis et applique au quotidien.
+                </p>
+            </div>
+            <!-- Stats -->
+            <div class="flex gap-3 flex-shrink-0">
+                <div class="glass rounded-xl px-5 py-3 text-center">
+                    <p id="stat-articles" style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--accent)">0</p>
+                    <p style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-top:.2rem">Articles</p>
+                </div>
+                <div class="glass rounded-xl px-5 py-3 text-center">
+                    <p id="stat-cats" style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--accent)">0</p>
+                    <p style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-top:.2rem">Catégories</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     SOURCES / MÉTHODE
+════════════════════════════════════════════ -->
+<section class="py-6 border-y" style="background:rgba(255,255,255,.015);border-color:var(--border-color)">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+        <div class="flex flex-wrap items-center gap-3">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0">Sources :</span>
+            <?php
+            $sources = [
+                ['name'=>'The Hacker News',  'icon'=>'fa-solid fa-newspaper',      'url'=>'https://thehackernews.com'],
+                ['name'=>'Bleeping Computer','icon'=>'fa-solid fa-shield-halved',   'url'=>'https://www.bleepingcomputer.com'],
+                ['name'=>'Reddit r/sysadmin','icon'=>'fa-brands fa-reddit',         'url'=>'https://reddit.com/r/sysadmin'],
+                ['name'=>'Netgate Docs',     'icon'=>'fa-solid fa-book',            'url'=>'https://docs.netgate.com'],
+                ['name'=>'Microsoft Learn',  'icon'=>'fa-brands fa-microsoft',      'url'=>'https://learn.microsoft.com'],
+                ['name'=>'Linux Foundation', 'icon'=>'fa-brands fa-linux',          'url'=>'https://www.linuxfoundation.org'],
+            ];
+            ?>
+            <div id="sources-list" class="flex flex-wrap gap-2"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FILTRES
+════════════════════════════════════════════ -->
+<div class="sticky top-[62px] z-40 border-b py-3" style="background:var(--bg-color);backdrop-filter:blur(20px);border-color:var(--border-color)">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+        <div class="flex items-center gap-2 flex-wrap">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-right:.25rem" class="hidden sm:block">Filtrer :</span>
+            <div id="filter-buttons" class="flex flex-wrap gap-2"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     GRILLE ARTICLES
+════════════════════════════════════════════ -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
+        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+        <div id="empty-state" style="display:none;text-align:center;padding:4rem 0">
+            <i class="fa-solid fa-magnifying-glass" style="font-size:2rem;color:var(--text-dim);margin-bottom:1rem"></i>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--text-dim)">Aucun article dans cette catégorie.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     MODALE ARTICLE
+════════════════════════════════════════════ -->
+<div id="article-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-md" onclick="closeModal()"></div>
+    <div id="modal-box" class="modal-glass modal-animate relative w-full max-w-xl p-8 z-10 shadow-2xl" style="max-height:85vh;overflow-y:auto">
+        <button onclick="closeModal()"
+                style="position:absolute;top:1rem;right:1rem;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border-color);color:var(--text-dim);background:transparent;cursor:pointer;transition:all .15s;z-index:10"
+                onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div id="modal-content"></div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="components.js"></script>
+<script>
+/* ════════════════════════════════════════════════════════════
+   DONNÉES ARTICLES
+   ════════════════════════════════════════════════════════════ */
+const ARTICLES = [
+    {
+        id: 1,
+        title: "Zero Trust Network Access : principes et mise en œuvre",
+        category: "Cybersécurité",
+        date: "Mars 2026",
+        source: "The Hacker News",
+        sourceUrl: "https://thehackernews.com",
+        tags: ["Zero Trust", "ZTNA", "IAM", "Sécurité réseau"],
+        excerpt: "Le modèle Zero Trust remet en cause la notion de périmètre de sécurité traditionnel. Dans un contexte de télétravail généralisé, comprendre ses fondamentaux devient indispensable.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Zero Trust : ne jamais faire confiance, toujours vérifier</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                Le modèle Zero Trust repose sur un principe fondamental : aucun utilisateur, appareil ou flux réseau ne doit être considéré comme fiable par défaut, qu'il soit à l'intérieur ou à l'extérieur du réseau.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Principes clés</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Vérification systématique de l'identité (MFA, certificats)</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Accès au moindre privilège (least privilege access)</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Micro-segmentation des ressources</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Journalisation et surveillance continue</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Application concrète</p>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78">
+                Chez REDVISE, ce modèle s'applique notamment via la mise en place de politiques FortiGate strictes et l'authentification à deux facteurs pour tous les accès VPN. La segmentation VLAN par service est une première étape vers une architecture Zero Trust.
+            </p>
+        `,
+    },
+    {
+        id: 2,
+        title: "Ransomware 2025 : nouvelles tactiques et défenses",
+        category: "Cybersécurité",
+        date: "Février 2026",
+        source: "Bleeping Computer",
+        sourceUrl: "https://www.bleepingcomputer.com",
+        tags: ["Ransomware", "Backup", "EDR", "Incident Response"],
+        excerpt: "Les groupes ransomware évoluent vers la double et triple extorsion. Analyse des vecteurs d'attaque actuels et des contre-mesures recommandées pour les PME.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">L'évolution des attaques ransomware</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                Les attaques ransomware ne se limitent plus au simple chiffrement des données. La double extorsion (chiffrement + menace de publication des données) est désormais la norme, et certains groupes ajoutent une troisième couche en ciblant les clients de la victime.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Vecteurs d'entrée principaux en 2025</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Phishing ciblé (spear phishing) via emails professionnels</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Exploitation de VPN mal configurés ou non patchés</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Credentials volés sur des services exposés (RDP, SSH)</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Contre-mesures essentielles</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Règle de sauvegarde 3-2-1 avec copies hors ligne</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> EDR (Endpoint Detection & Response) sur tous les postes</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Segmentation réseau pour limiter la propagation latérale</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Plan de réponse aux incidents testé régulièrement</li>
+            </ul>
+        `,
+    },
+    {
+        id: 3,
+        title: "Windows Server 2025 : nouveautés pour les admins",
+        category: "Systèmes",
+        date: "Janvier 2026",
+        source: "Microsoft Learn",
+        sourceUrl: "https://learn.microsoft.com",
+        tags: ["Windows Server 2025", "Active Directory", "SMB", "Hyper-V"],
+        excerpt: "Windows Server 2025 apporte des améliorations significatives pour la sécurité AD, les performances SMB et la gestion des conteneurs. Tour d'horizon des changements concrets.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Ce qui change avec Windows Server 2025</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                Microsoft a publié Windows Server 2025 avec des améliorations notables dans trois domaines principaux : la sécurité Active Directory, les protocoles réseau, et la conteneurisation.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Sécurité renforcée</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> SMB over QUIC : chiffrement du trafic partage de fichiers sans VPN</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Credential Guard activé par défaut sur les jointures de domaine</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> LDAP channel binding et signing requis par défaut</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Point d'attention pratique</p>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78">
+                Le LDAP signing activé par défaut peut casser les intégrations existantes (GLPI, applications métier). J'ai été confronté à ce problème lors d'une intégration pfSense — la solution passe par une GPO ou une modification du registre côté DC. Un test en lab avant migration est indispensable.
+            </p>
+        `,
+    },
+    {
+        id: 4,
+        title: "Mikrotik RouterOS 7 : les fonctionnalités à maîtriser",
+        category: "Réseaux",
+        date: "Décembre 2025",
+        source: "Reddit r/sysadmin",
+        sourceUrl: "https://reddit.com/r/networking",
+        tags: ["Mikrotik", "RouterOS 7", "VLAN", "Firewall"],
+        excerpt: "RouterOS 7 introduit une refonte complète de la gestion des VLANs et du firewall. Ce qu'il faut savoir avant de migrer depuis la version 6.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">RouterOS 7 : les changements importants</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                La migration de RouterOS 6 vers 7 n'est pas transparente. Plusieurs concepts clés ont été refondus, notamment la gestion des bridges et des VLANs.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Changements majeurs</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> VLAN filtering directement dans le bridge (plus de configuration sur les interfaces physiques)</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Nouveau moteur firewall avec nftables en dessous</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> WireGuard intégré nativement</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> OpenFlow et support MPLS amélioré</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Conseil pratique</p>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78">
+                Ne pas migrer en production directement. La configuration des VLANs via bridge VLAN filtering est puissante mais demande de la pratique. J'ai utilisé GNS3 pour reproduire nos topologies d'ateliers et tester avant d'appliquer en lab physique.
+            </p>
+        `,
+    },
+    {
+        id: 5,
+        title: "Docker en production : bonnes pratiques de sécurité",
+        category: "DevOps",
+        date: "Novembre 2025",
+        source: "Linux Foundation",
+        sourceUrl: "https://www.linuxfoundation.org",
+        tags: ["Docker", "Conteneurs", "Sécurité", "DevSecOps"],
+        excerpt: "Utiliser Docker sans précautions expose à des risques importants. Revue des erreurs courantes et des configurations à adopter avant tout déploiement en production.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Sécuriser ses conteneurs Docker</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                Docker est devenu incontournable, mais beaucoup de déploiements sont faits sans considérations de sécurité. Voici les points critiques à adresser.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Erreurs fréquentes</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Faire tourner les conteneurs en root (utiliser USER dans le Dockerfile)</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Exposer le socket Docker daemon sans authentification</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Utiliser des images latest sans épingler les versions</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Stocker des secrets en clair dans les variables d'environnement</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Bonnes pratiques</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Scanner les images avec Trivy ou Grype avant déploiement</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Utiliser des réseaux Docker dédiés et isolés</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Limiter les capabilities avec --cap-drop ALL</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Utiliser Docker Secrets pour les données sensibles</li>
+            </ul>
+        `,
+    },
+    {
+        id: 6,
+        title: "OSPF vs BGP : quand utiliser l'un ou l'autre",
+        category: "Réseaux",
+        date: "Octobre 2025",
+        source: "Reddit r/sysadmin",
+        sourceUrl: "https://reddit.com/r/networking",
+        tags: ["OSPF", "BGP", "Routage dynamique", "IGP", "EGP"],
+        excerpt: "OSPF et BGP sont les deux protocoles de routage dynamique les plus répandus. Comprendre leurs cas d'usage distincts est essentiel pour concevoir une infrastructure réseau correcte.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">OSPF et BGP : deux outils différents</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                OSPF est un IGP (Interior Gateway Protocol) conçu pour les réseaux internes d'une organisation. BGP est un EGP (Exterior Gateway Protocol) utilisé pour le routage entre systèmes autonomes (AS) sur Internet.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Quand utiliser OSPF</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Réseau interne multi-sites avec besoin de convergence rapide</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Topologies complexes où le routage statique devient ingérable</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Environnements Cisco, Mikrotik, pfSense</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Quand utiliser BGP</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Multi-homing : connexion à plusieurs FAI pour la redondance</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Grandes entreprises avec leur propre numéro AS</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Interconnexion de datacenters géographiquement distants</li>
+            </ul>
+        `,
+    },
+    {
+        id: 7,
+        title: "Centreon vs Zabbix : comparatif pour les PME",
+        category: "Systèmes",
+        date: "Octobre 2025",
+        source: "Bleeping Computer",
+        sourceUrl: "https://www.bleepingcomputer.com",
+        tags: ["Centreon", "Zabbix", "Monitoring", "SNMP", "NMS"],
+        excerpt: "Deux solutions de supervision open-source majeures face à face. Comparatif des fonctionnalités, de la complexité d'installation et de la pertinence selon la taille de l'infrastructure.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Centreon vs Zabbix : mon retour d'expérience</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                J'ai eu l'occasion de déployer Centreon en alternance chez REDVISE. Voici une comparaison honnête des deux outils.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Centreon OSS</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Interface Web claire et bien pensée</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Plugin packs prêts à l'emploi (Windows, Linux, Cisco...)</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">—</span> Installation initiale plus lourde (Debian recommandé)</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">—</span> Certaines fonctions avancées réservées à la version commerciale</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Zabbix</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> 100% open-source sans limitation de fonctionnalités</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Très flexible et scriptable</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">—</span> Courbe d'apprentissage plus raide</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">—</span> Interface moins intuitive pour les débutants</li>
+            </ul>
+        `,
+    },
+    {
+        id: 8,
+        title: "L'IA dans le SOC : augmentation ou remplacement ?",
+        category: "IA & IT",
+        date: "Septembre 2025",
+        source: "The Hacker News",
+        sourceUrl: "https://thehackernews.com",
+        tags: ["IA", "SOC", "SIEM", "Threat Intelligence", "Automatisation"],
+        excerpt: "Les outils IA s'intègrent progressivement dans les Security Operations Centers. Analyse de leur impact réel sur le travail des analystes et les limites actuelles.",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">L'IA au service des équipes sécurité</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                L'intégration de l'IA dans les SOC ne remplace pas les analystes — elle les augmente. Les cas d'usage concrets se concentrent sur la réduction du bruit et la priorisation des alertes.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Cas d'usage réels</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Corrélation automatique d'événements SIEM pour réduire les faux positifs</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Enrichissement automatique des IOC via threat intelligence</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Génération automatique de playbooks de réponse aux incidents</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">›</span> Analyse comportementale (UEBA) pour détecter les anomalies</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">Mes usages quotidiens</p>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78">
+                J'utilise Claude et ChatGPT pour analyser des logs complexes, générer des scripts de configuration, et comprendre rapidement des vulnérabilités CVE. Ces outils multiplient ma productivité sur les tâches répétitives et me permettent de me concentrer sur l'analyse critique.
+            </p>
+        `,
+    },
+    {
+        id: 9,
+        title: "pfSense vs OPNsense : lequel choisir en 2026",
+        category: "Réseaux",
+        date: "Août 2025",
+        source: "Netgate Docs",
+        sourceUrl: "https://docs.netgate.com",
+        tags: ["pfSense", "OPNsense", "Firewall", "BSD", "Open Source"],
+        excerpt: "Après la controverse autour de pfSense CE et la montée en puissance d'OPNsense, quel outil choisir pour son lab ou son infrastructure d'entreprise ?",
+        content: `
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">pfSense vs OPNsense en 2026</h3>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
+                La guerre froide entre pfSense CE et OPNsense a évolué. OPNsense a considérablement rattrapé son retard fonctionnel et propose aujourd'hui une alternative crédible.
+            </p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">pfSense CE</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Documentation massive et communauté très active</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Base installée importante (beaucoup d'entreprises)</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">—</span> Mises à jour moins fréquentes sur la version communautaire</li>
+            </ul>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em">OPNsense</p>
+            <ul style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem">
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Mises à jour hebdomadaires, sécurité proactive</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Interface plus moderne et intuitive</li>
+                <li style="font-size:.875rem;color:var(--text-dim);line-height:1.6;display:flex;gap:.5rem"><span style="color:var(--accent)">+</span> Zenarmor (NGFW) intégré gratuitement</li>
+            </ul>
+            <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78">
+                Mon choix pour un nouveau déploiement en 2026 : OPNsense pour sa cadence de mise à jour et son interface. pfSense reste pertinent si l'équipe connaît bien la solution.
+            </p>
+        `,
+    },
+];
+
+/* ════════════════════════════════════════════════════════════
+   CONFIG CATÉGORIES
+   ════════════════════════════════════════════════════════════ */
+const CATEGORIES = {
+    'Tout voir':    { icon: 'fa-solid fa-layer-group', color: 'var(--accent)',  rgb: 'var(--accent-rgb)',     bg: 'var(--accent-soft)' },
+    'Cybersécurité':{ icon: 'fa-solid fa-shield-halved',color:'#f472b6',        rgb: '244,114,182',           bg: 'rgba(244,114,182,.1)' },
+    'Systèmes':     { icon: 'fa-brands fa-windows',     color:'#60a5fa',        rgb: '96,165,250',            bg: 'rgba(96,165,250,.1)' },
+    'Réseaux':      { icon: 'fa-solid fa-network-wired',color:'#4ade80',        rgb: '74,222,128',            bg: 'rgba(74,222,128,.1)' },
+    'DevOps':       { icon: 'fa-brands fa-docker',      color:'#fb923c',        rgb: '251,146,60',            bg: 'rgba(251,146,60,.1)' },
+    'IA & IT':      { icon: 'fa-solid fa-brain',        color:'#c084fc',        rgb: '192,132,252',           bg: 'rgba(192,132,252,.1)' },
+};
+
+const SOURCES = [
+    { name:'The Hacker News',   icon:'fa-solid fa-newspaper',    url:'https://thehackernews.com' },
+    { name:'Bleeping Computer', icon:'fa-solid fa-shield-halved', url:'https://www.bleepingcomputer.com' },
+    { name:'Reddit r/sysadmin', icon:'fa-brands fa-reddit',       url:'https://reddit.com/r/sysadmin' },
+    { name:'Netgate Docs',      icon:'fa-solid fa-book',          url:'https://docs.netgate.com' },
+    { name:'Microsoft Learn',   icon:'fa-brands fa-microsoft',    url:'https://learn.microsoft.com' },
+    { name:'Linux Foundation',  icon:'fa-brands fa-linux',        url:'https://www.linuxfoundation.org' },
+];
+
+let currentFilter = 'Tout voir';
+
+/* ── Rendu sources ── */
+document.getElementById('sources-list').innerHTML = SOURCES.map(s =>
+    `<a href="${s.url}" target="_blank"
+        style="font-family:'JetBrains Mono',monospace;font-size:.68rem;display:inline-flex;align-items:center;gap:.4rem;padding:3px 10px;border-radius:6px;background:var(--card-color);border:1px solid var(--border-color);color:var(--text-dim);text-decoration:none;transition:all .15s"
+        onmouseenter="this.style.color='var(--accent)';this.style.borderColor='rgba(var(--accent-rgb),.3)'"
+        onmouseleave="this.style.color='var(--text-dim)';this.style.borderColor='var(--border-color)'">
+        <i class="${s.icon}" style="font-size:.65rem"></i>${s.name}
+    </a>`
+).join('');
+
+/* ── Stats ── */
+const allCats = [...new Set(ARTICLES.map(a => a.category))];
+document.getElementById('stat-articles').textContent = ARTICLES.length;
+document.getElementById('stat-cats').textContent     = allCats.length;
+
+/* ── Filtres ── */
+const cats = ['Tout voir', ...allCats];
+document.getElementById('filter-buttons').innerHTML = cats.map(cat => {
+    const cfg = CATEGORIES[cat] || CATEGORIES['Tout voir'];
+    return `<button onclick="setFilter('${cat}')" data-cat="${cat}" class="filter-pill ${cat === 'Tout voir' ? 'active' : ''}">
+        <i class="${cfg.icon}" style="font-size:.7rem"></i> ${cat}
+    </button>`;
+}).join('');
+
+/* ── Rendu articles ── */
+function renderArticles(filter) {
+    const filtered = filter === 'Tout voir' ? ARTICLES : ARTICLES.filter(a => a.category === filter);
+    const grid     = document.getElementById('articles-grid');
+    const empty    = document.getElementById('empty-state');
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+
+    grid.innerHTML = filtered.map((a, i) => {
+        const cfg = CATEGORIES[a.category] || CATEGORIES['Tout voir'];
+        return `
+        <div class="glass rounded-2xl p-6 reveal group cursor-pointer" style="transition-delay:${i * 0.04}s"
+             onclick="openModal(${a.id})">
+            <!-- Header -->
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-bottom:1rem">
+                <div style="width:40px;height:40px;border-radius:10px;background:${cfg.bg};border:1px solid rgba(${cfg.rgb},.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <i class="${cfg.icon}" style="color:${cfg.color};font-size:.9rem"></i>
+                </div>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--text-dim)">${a.date}</span>
+            </div>
+
+            <!-- Catégorie -->
+            <div style="margin-bottom:.6rem">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:2px 8px;border-radius:100px;background:${cfg.bg};color:${cfg.color};border:1px solid rgba(${cfg.rgb},.2)">${a.category}</span>
+            </div>
+
+            <!-- Titre -->
+            <h3 style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--text-main);line-height:1.3;margin-bottom:.6rem;transition:color .15s" class="group-hover:text-accent"
+                onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-main)'">${a.title}</h3>
+
+            <!-- Excerpt -->
+            <p style="font-size:.82rem;color:var(--text-dim);line-height:1.72;margin-bottom:1rem">${a.excerpt}</p>
+
+            <!-- Footer -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;border-top:1px solid var(--border-color)">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--text-dim);display:flex;align-items:center;gap:.3rem">
+                    <i class="fa-solid fa-rss" style="color:${cfg.color};font-size:.55rem"></i>${a.source}
+                </span>
+                <span style="font-size:.78rem;font-weight:500;color:${cfg.color};display:flex;align-items:center;gap:.3rem;transition:gap .15s" class="group-hover:gap-1.5">
+                    Lire <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i>
+                </span>
+            </div>
+        </div>`;
+    }).join('');
+
+    // Reveal
+    setTimeout(() => {
+        if (typeof initReveal === 'function') initReveal();
+        else {
+            document.querySelectorAll('.reveal').forEach(el => {
+                const io = new IntersectionObserver(entries => {
+                    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+                }, { threshold: 0.08 });
+                io.observe(el);
+            });
+        }
+    }, 30);
+}
+
+function setFilter(cat) {
+    currentFilter = cat;
+    document.querySelectorAll('#filter-buttons .filter-pill').forEach(b => {
+        b.classList.toggle('active', b.dataset.cat === cat);
+    });
+    renderArticles(cat);
+}
+
+/* ── Modale ── */
+function openModal(id) {
+    const a   = ARTICLES.find(x => x.id === id);
+    const cfg = CATEGORIES[a.category] || CATEGORIES['Tout voir'];
+
+    document.getElementById('modal-content').innerHTML = `
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 8px;border-radius:100px;background:${cfg.bg};color:${cfg.color};border:1px solid rgba(${cfg.rgb},.2)">${a.category}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim)">${a.date}</span>
+        </div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text-main);line-height:1.25;margin-bottom:.5rem">${a.title}</h2>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text-dim);margin-bottom:1.25rem;display:flex;align-items:center;gap:.35rem">
+            <i class="fa-solid fa-rss" style="color:${cfg.color}"></i>${a.source}
+        </p>
+        <div style="border-top:1px solid var(--border-color);padding-top:1.25rem;margin-bottom:1.25rem">
+            ${a.content}
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;padding-top:.75rem;border-top:1px solid var(--border-color);margin-bottom:1.25rem">
+            ${a.tags.map(t => `<span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 8px;border-radius:6px;background:${cfg.bg};color:${cfg.color};border:1px solid rgba(${cfg.rgb},.2)">${t}</span>`).join('')}
+        </div>
+        <a href="${a.sourceUrl}" target="_blank" class="btn-ghost" style="text-decoration:none;font-size:.8rem;padding:8px 16px">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Lire sur ${a.source}
+        </a>`;
+
+    const box = document.getElementById('modal-box');
+    box.style.animation = 'none'; box.offsetHeight; box.style.animation = '';
+    document.getElementById('article-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('article-modal').classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* Init */
+document.addEventListener('DOMContentLoaded', () => renderArticles('Tout voir'));
+</script>
+
+</body>
+</html>
