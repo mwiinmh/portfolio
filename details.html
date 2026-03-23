@@ -37,12 +37,10 @@
 
 <div id="nav-placeholder"></div>
 
-<!-- Contenu injecté par JS -->
 <div id="page-content">
-    <!-- État de chargement -->
-    <div class="pt-40 flex flex-col items-center justify-center gap-4" style="min-height:60vh">
-        <div style="width:36px;height:36px;border-radius:50%;border:2px solid var(--border-color);border-top-color:var(--accent);animation:spin .7s linear infinite"></div>
-        <p style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim)">Chargement...</p>
+    <div style="min-height:80vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">
+        <div style="width:32px;height:32px;border-radius:50%;border:2px solid var(--border-color);border-top-color:var(--accent);animation:spin .7s linear infinite"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text-dim)">Chargement...</p>
     </div>
 </div>
 
@@ -50,73 +48,35 @@
 
 <script src="components.js"></script>
 <script>
-/* ════════════════════════════════════════════════════════════
-   DONNÉES — toutes les expériences
-   ════════════════════════════════════════════════════════════ */
-const DETAILS_DATA = {
+const DATA = {
 
     redvise: {
         title:    'Alternance chez REDVISE',
-        subtitle: 'Administrateur Système & Réseau Junior',
-        color:    'purple',
-        hex:      '#c084fc',
-        bghex:    'rgba(192,132,252,.1)',
-        category: 'Alternance',
-        period:   'Septembre 2025 — Juin 2026',
-        status:   'En cours',
+        subtitle: 'Administrateur Système & Réseau',
+        color:    { text:'#c084fc', bg:'rgba(192,132,252,.1)', border:'rgba(192,132,252,.2)', glow:'rgba(192,132,252,.12)' },
         website:  'https://www.redvi.se',
-        pdf:      'pdf/rapport_redvise.pdf',
-        desc:     "REDVISE est une ESN spécialisée dans l'accompagnement numérique des PME. En tant qu'alternant au sein du pôle Infra & Sécurité, j'interviens sur le maintien en condition opérationnelle de plusieurs clients et sur des projets de migration.",
+        desc:     "REDVISE est une société de conseil et services IT. Durant mon alternance, j'ai eu la charge de maintenir l'infrastructure interne et celle de plusieurs clients PME.",
         missions: [
             {
-                title:   'Sécurisation Firewall Fortinet',
-                date:    'Octobre 2025',
-                context: "Un client PME exposait son réseau via des règles trop permissives sur son pare-feu Fortinet 60F. L'objectif était de durcir la configuration et de déployer un accès VPN pour les télétravailleurs.",
-                actions: [
-                    "Audit des règles de filtrage existantes et identification des flux non conformes",
-                    "Rédaction d'une politique de sécurité réseau adaptée au contexte client",
-                    "Configuration des règles de pare-feu (deny-all par défaut, whitelist applicative)",
-                    "Déploiement et test du VPN SSL FortiClient pour 12 utilisateurs distants",
-                ],
-                result:  "Réduction de la surface d'attaque de 40% mesurée par scan post-configuration. Zéro incident de connexion VPN lors du déploiement.",
-                tags:    ['Fortinet','VPN SSL','Firewall','Sécurité réseau'],
-                icon:    'fa-solid fa-shield-halved',
-                pdf:     'pdf/mission_fortinet.pdf',
-                blocs:   ['B2.3','B1.2'],
+                title: 'Sécurisation Firewall Fortinet',
+                icon:  'fa-solid fa-shield-halved',
+                desc:  "Mise en place de règles de filtrage strictes et configuration d'un VPN SSL pour les télétravailleurs.",
+                tags:  ['Fortinet','VPN SSL','Sécurité'],
+                pdf:   null
             },
             {
-                title:   'Migration AD Windows Server 2019',
-                date:    'Novembre 2025',
-                context: "Le contrôleur de domaine principal d'un client tournait encore sous Windows Server 2012 R2, en fin de support étendu. Une migration vers 2019 était urgente pour des raisons de sécurité.",
-                actions: [
-                    "Inventaire des objets Active Directory (UO, GPO, comptes, groupes)",
-                    "Déploiement d'un nouveau DC Windows Server 2019 en parallèle",
-                    "Réplication AD et transfert progressif des rôles FSMO (PDC, RID, Infrastructure)",
-                    "Tests de connexion et validation auprès des utilisateurs clés avant bascule finale",
-                    "Décommissionnement de l'ancien serveur après période de surveillance 48h",
-                ],
-                result:  "Migration réalisée sans interruption de service en heure creuse. 87 comptes et 23 GPO migrés avec succès.",
-                tags:    ['Windows Server 2019','Active Directory','Migration','FSMO','GPO'],
-                icon:    'fa-brands fa-windows',
-                pdf:     'pdf/mission_ad_migration.pdf',
-                blocs:   ['B2.1','B2.2','B1.2'],
+                title: 'Migration AD Windows 2019',
+                icon:  'fa-brands fa-windows',
+                desc:  "Migration d'un contrôleur de domaine 2012 R2 vers 2019. Transfert des rôles FSMO sans interruption.",
+                tags:  ['Windows Server','Active Directory','Migration'],
+                pdf:   null
             },
             {
-                title:   'Supervision Centreon',
-                date:    'Janvier 2026',
-                context: "Mise en place d'une solution de monitoring pour surveiller les serveurs critiques d'un client sans outil de supervision existant. Les pannes n'étaient détectées qu'après signalement utilisateur.",
-                actions: [
-                    "Installation de Centreon OSS sur serveur Debian 12 dédié",
-                    "Déploiement des agents SNMP sur les équipements Windows et Linux cibles",
-                    "Création de seuils d'alerte (CPU, RAM, espace disque, état des services)",
-                    "Configuration des notifications email et SMS pour les astreintes",
-                    "Rédaction du guide d'exploitation pour l'équipe client",
-                ],
-                result:  "Détection proactive de 3 incidents en moins de 2 semaines. MTTR réduit de 4h à 25min en moyenne.",
-                tags:    ['Centreon','Monitoring','SNMP','Linux','Debian'],
-                icon:    'fa-solid fa-chart-line',
-                pdf:     null,
-                blocs:   ['B1.1','B1.2'],
+                title: 'Supervision Centreon',
+                icon:  'fa-solid fa-chart-line',
+                desc:  "Déploiement de sondes pour surveiller l'état des serveurs critiques et alerter en cas de panne.",
+                tags:  ['Monitoring','Centreon','Linux'],
+                pdf:   null
             },
         ],
     },
@@ -124,47 +84,23 @@ const DETAILS_DATA = {
     itic: {
         title:    'Stage chez ITIC Paris',
         subtitle: 'Technicien Support & Réseau',
-        color:    'green',
-        hex:      '#4ade80',
-        bghex:    'rgba(74,222,128,.1)',
-        category: 'Stage',
-        period:   'Mai 2025 — Juillet 2025',
-        status:   'Terminé',
+        color:    { text:'#4ade80', bg:'rgba(74,222,128,.1)', border:'rgba(74,222,128,.2)', glow:'rgba(74,222,128,.12)' },
         website:  'https://www.iticparis.com',
-        pdf:      'pdf/rapport_itic.pdf',
-        desc:     "L'ITIC Paris est un établissement d'enseignement supérieur. Le service IT gère un parc de plus de 200 machines réparties entre le parc pédagogique et le parc administratif.",
+        desc:     "L'ITIC Paris est un établissement d'enseignement supérieur. Le service informatique gère un parc de plus de 200 machines pour la pédagogie et l'administration.",
         missions: [
             {
-                title:   'Support Utilisateur Niveau 1',
-                date:    'Mai — Juin 2025',
-                context: "En période de fin d'année, l'afflux de tickets liés aux examens nécessitait une prise en charge rapide pour ne pas impacter les épreuves.",
-                actions: [
-                    "Prise en charge des tickets via GLPI : qualification, priorisation et résolution",
-                    "Diagnostic des incidents de connexion Wi-Fi dans les salles de cours",
-                    "Réinstallation et mise à jour de postes défaillants via image WDS",
-                    "Assistance téléphonique et en présentiel pour les enseignants",
-                ],
-                result:  "Taux de résolution N1 de 82% sans escalade. 47 tickets traités sur la période.",
-                tags:    ['GLPI','Support N1','Windows 10','WDS','Wi-Fi'],
-                icon:    'fa-solid fa-headset',
-                pdf:     'pdf/mission_support.pdf',
-                blocs:   ['B1.1'],
+                title: 'Support Utilisateur N1',
+                icon:  'fa-solid fa-headset',
+                desc:  "Assistance aux étudiants et professeurs. Résolution des problèmes de connexion et d'impression via système de ticketing.",
+                tags:  ['Ticketing','Hardware','Support'],
+                pdf:   null
             },
             {
-                title:   'Gestion du Parc Imprimantes',
-                date:    'Juillet 2025',
-                context: "Le déploiement des pilotes d'imprimantes était manuel et chronophage. Avec 14 imprimantes sur le réseau, les techniciens passaient plusieurs heures à configurer chaque nouveau poste.",
-                actions: [
-                    "Recensement de l'ensemble des imprimantes réseau (marque, IP, pilotes)",
-                    "Centralisation sur un Print Server Windows 2019",
-                    "Création et déploiement d'une GPO d'attribution automatique des imprimantes par OU",
-                    "Tests de déploiement sur 10 postes pilotes avant généralisation",
-                ],
-                result:  "Temps de configuration d'un nouveau poste réduit de 35 min à 3 min. Déploiement validé sur l'ensemble du parc.",
-                tags:    ['Print Server','GPO','Windows Server','Active Directory'],
-                icon:    'fa-solid fa-print',
-                pdf:     null,
-                blocs:   ['B2.1','B2.2'],
+                title: 'Gestion Parc Imprimantes',
+                icon:  'fa-solid fa-print',
+                desc:  "Configuration du serveur d'impression et déploiement des pilotes via GPO sur le parc pédagogique.",
+                tags:  ['Print Server','GPO','Windows'],
+                pdf:   null
             },
         ],
     },
@@ -172,81 +108,37 @@ const DETAILS_DATA = {
     sio_sys: {
         title:    'Ateliers Systèmes',
         subtitle: 'Administration Windows Server & Linux',
-        color:    'blue',
-        hex:      '#60a5fa',
-        bghex:    'rgba(96,165,250,.1)',
-        category: 'Formation',
-        period:   '2024 — 2026',
-        status:   'En cours',
-        website:  '#',
-        pdf:      'pdf/ateliers_sys.pdf',
-        desc:     "Ateliers de professionnalisation portant sur l'administration système : Windows Server, Linux Debian/Ubuntu, scripting et services réseaux associés.",
+        color:    { text:'#60a5fa', bg:'rgba(96,165,250,.1)', border:'rgba(96,165,250,.2)', glow:'rgba(96,165,250,.12)' },
+        website:  null,
+        desc:     "Ateliers de professionnalisation portant sur l'administration système : Windows Server, Linux Debian/Ubuntu, scripting et services associés.",
         missions: [
             {
-                title:   'Active Directory & GPO',
-                date:    '1ère année',
-                context: "Mise en place d'une infrastructure d'entreprise simulée avec domaine Windows pour comprendre la gestion centralisée des ressources et des politiques de sécurité.",
-                actions: [
-                    "Installation de Windows Server 2019 en machine virtuelle sous VirtualBox",
-                    "Création du domaine AD et des Unités d'Organisation (UO)",
-                    "Création de comptes utilisateurs et groupes de sécurité",
-                    "Déploiement de GPO : politique de mot de passe, fond d'écran, restrictions logicielles",
-                    "Jonction de postes clients Windows 10 au domaine et tests de connexion",
-                ],
-                result:  "Infrastructure AD fonctionnelle avec 3 UO, 10 comptes et 5 GPO déployées.",
-                tags:    ['Windows Server 2019','Active Directory','GPO','DNS','DHCP'],
-                icon:    'fa-brands fa-windows',
-                pdf:     'pdf/tp_ad_gpo.pdf',
-                blocs:   ['B2.1','B2.2'],
+                title: 'Active Directory & GPO',
+                icon:  'fa-brands fa-windows',
+                desc:  "Mise en place d'un domaine Windows Server 2019, création d'UO, comptes utilisateurs et déploiement de GPO de sécurité.",
+                tags:  ['Windows Server','Active Directory','GPO'],
+                pdf:   null
             },
             {
-                title:   'Serveur DHCP/DNS sous Debian',
-                date:    '1ère année',
-                context: "Déploiement des services réseau fondamentaux sur un serveur Linux pour maîtriser la résolution de noms et l'attribution automatique d'adresses IP.",
-                actions: [
-                    "Installation de Debian 12 Server en CLI (sans interface graphique)",
-                    "Configuration et test du service isc-dhcp-server avec plages et réservations",
-                    "Installation et configuration de BIND9 avec zones directe et inverse",
-                    "Tests de résolution DNS depuis clients Windows et Linux",
-                ],
-                result:  "Services DHCP et DNS opérationnels, résolution fonctionnelle pour le domaine lab.local.",
-                tags:    ['Debian 12','isc-dhcp-server','BIND9','DNS','Linux'],
-                icon:    'fa-solid fa-server',
-                pdf:     'pdf/tp_dhcp_dns.pdf',
-                blocs:   ['B2.1'],
+                title: 'Serveur DHCP/DNS sous Debian',
+                icon:  'fa-solid fa-server',
+                desc:  "Installation et configuration des services DHCP (isc-dhcp-server) et DNS (BIND9) sur Debian 12.",
+                tags:  ['Linux','DHCP','DNS'],
+                pdf:   null
             },
             {
-                title:   'Scripting Bash',
-                date:    '2ème année',
-                context: "Automatisation de tâches répétitives d'administration système pour gagner en efficacité et réduire les erreurs humaines.",
-                actions: [
-                    "Script de sauvegarde incrémentale avec rotation des archives (tar + cron)",
-                    "Script de création de comptes utilisateurs en masse depuis un fichier CSV",
-                    "Script de monitoring basique : alerte si CPU > 80% ou espace disque < 10%",
-                    "Mise en place de logs horodatés pour chaque exécution",
-                ],
-                result:  "3 scripts fonctionnels. Réduction du temps de création de comptes de 2h à 5 min pour 50 utilisateurs.",
-                tags:    ['Bash','Cron','Linux','Automatisation','Shell'],
-                icon:    'fa-solid fa-terminal',
-                pdf:     null,
-                blocs:   ['B2.2','B3.1'],
+                title: 'Scripting Bash',
+                icon:  'fa-solid fa-terminal',
+                desc:  "Automatisation de tâches d'administration : sauvegarde, création de comptes utilisateurs en masse, monitoring basique.",
+                tags:  ['Bash','Automatisation','Linux'],
+                pdf:   null
             },
             {
-                title:   'Déploiement GLPI',
-                date:    '2ème année',
-                context: "Mise en place d'une solution ITSM complète pour gérer le parc informatique et les tickets d'une organisation simulée, avec intégration de l'annuaire LDAP.",
-                actions: [
-                    "Installation de la stack LAMP sur Debian 12 (Apache, MariaDB, PHP)",
-                    "Déploiement de GLPI 10 et configuration initiale",
-                    "Intégration LDAP pour synchronisation des comptes utilisateurs AD",
-                    "Configuration des catégories de tickets et des SLA",
-                    "Formation fictive des utilisateurs via documentation rédigée",
-                ],
-                result:  "GLPI opérationnel avec 3 profils utilisateurs, intégration LDAP fonctionnelle et 2 SLA configurés.",
-                tags:    ['GLPI','LAMP','Linux','ITIL','LDAP','MariaDB'],
-                icon:    'fa-solid fa-ticket',
-                pdf:     'pdf/tp_glpi.pdf',
-                blocs:   ['B3.1','B1.1'],
+                title: 'Solution GLPI',
+                icon:  'fa-solid fa-ticket',
+                desc:  "Déploiement complet d'une solution ITSM/ticketing et d'inventaire sur serveur Debian avec intégration LDAP.",
+                tags:  ['GLPI','ITIL','Linux'],
+                pdf:   null
             },
         ],
     },
@@ -254,79 +146,37 @@ const DETAILS_DATA = {
     sio_net: {
         title:    'Ateliers Réseaux',
         subtitle: 'Architecture Mikrotik, VLANs & Firewalling',
-        color:    'orange',
-        hex:      '#fb923c',
-        bghex:    'rgba(251,146,60,.1)',
-        category: 'Formation',
-        period:   '2024 — 2026',
-        status:   'En cours',
-        website:  '#',
-        pdf:      'pdf/ateliers_net.pdf',
-        desc:     "Ateliers portant sur la conception et l'administration d'architectures réseau : switching, routing, VLANs, sécurité périmétrique et protocoles de routage dynamique.",
+        color:    { text:'#fb923c', bg:'rgba(251,146,60,.1)', border:'rgba(251,146,60,.2)', glow:'rgba(251,146,60,.12)' },
+        website:  null,
+        desc:     "Ateliers de professionnalisation portant sur la conception et l'administration d'architectures réseau : switching, routing, VLANs et sécurité périmétrique.",
         missions: [
             {
-                title:   'Segmentation VLAN Mikrotik',
-                date:    '1ère année',
-                context: "Conception d'une architecture réseau segmentée pour une PME simulée afin d'isoler les flux entre départements et limiter les risques de propagation latérale.",
-                actions: [
-                    "Conception du plan d'adressage IP et des VLANs (Admin, Guest, VoIP, Serveurs)",
-                    "Configuration des VLANs sur switch Mikrotik CSS326",
-                    "Routage inter-VLAN sur le routeur Mikrotik CHR",
-                    "Tests d'isolation par ping et capture Wireshark",
-                ],
-                result:  "4 VLANs isolés et fonctionnels. Isolation vérifiée : les hôtes Guest ne peuvent pas atteindre le réseau Admin.",
-                tags:    ['Mikrotik','VLAN','Switching','Routage','Wireshark'],
-                icon:    'fa-solid fa-network-wired',
-                pdf:     'pdf/tp_vlan.pdf',
-                blocs:   ['B2.1','B2.2'],
+                title: 'Segmentation VLAN Mikrotik',
+                icon:  'fa-solid fa-network-wired',
+                desc:  "Création d'une architecture segmentée (Admin, Guest, VoIP) avec routage inter-VLAN sur switch Mikrotik CSS.",
+                tags:  ['Mikrotik','VLAN','Switching'],
+                pdf:   null
             },
             {
-                title:   'Firewall & Filtrage',
-                date:    '1ère année',
-                context: "Mise en place de règles de sécurité périmétrique pour contrôler les flux entre les VLANs et vers Internet selon une politique de sécurité définie.",
-                actions: [
-                    "Définition de la politique de sécurité : matrice de flux inter-VLAN",
-                    "Configuration des Filter Rules Mikrotik (chain forward, input)",
-                    "Implémentation du filtrage par liste d'adresses (address-list)",
-                    "Test et validation de la politique par scénarios d'attaque simulés",
-                ],
-                result:  "Politique de filtrage opérationnelle. 100% des flux non autorisés bloqués lors des tests.",
-                tags:    ['Mikrotik','Firewall','Filter Rules','Sécurité'],
-                icon:    'fa-solid fa-shield-halved',
-                pdf:     null,
-                blocs:   ['B2.3','B2.2'],
+                title: 'Firewall & Filtrage',
+                icon:  'fa-solid fa-shield-halved',
+                desc:  "Configuration de règles de pare-feu (iptables / Mikrotik Filter Rules) pour sécuriser les flux entre VLANs.",
+                tags:  ['Firewall','Sécurité','Mikrotik'],
+                pdf:   null
             },
             {
-                title:   'VPN Site-à-Site IPsec',
-                date:    '2ème année',
-                context: "Interconnexion sécurisée de deux sites distants simulés via un tunnel IPsec pour permettre aux collaborateurs d'accéder aux ressources de chaque site de manière transparente.",
-                actions: [
-                    "Configuration des paramètres IKE Phase 1 et 2 sur les deux routeurs Mikrotik",
-                    "Mise en place des règles de bypass NAT pour le trafic VPN",
-                    "Tests de connectivité et de débit entre les deux réseaux",
-                    "Dépannage des problèmes de négociation SA",
-                ],
-                result:  "Tunnel IPsec stable avec chiffrement AES-256. Latence supplémentaire de 2ms seulement.",
-                tags:    ['VPN IPsec','Mikrotik','IKE','Chiffrement','Site-à-site'],
-                icon:    'fa-solid fa-lock',
-                pdf:     'pdf/tp_vpn_ipsec.pdf',
-                blocs:   ['B2.3','B2.2'],
+                title: 'VPN Site-à-Site',
+                icon:  'fa-solid fa-lock',
+                desc:  "Mise en place d'un tunnel VPN IPsec entre deux sites simulés sous GNS3.",
+                tags:  ['VPN','IPsec','GNS3'],
+                pdf:   null
             },
             {
-                title:   'Routage Dynamique OSPF',
-                date:    '2ème année',
-                context: "Mise en place d'une infrastructure de routage dynamique avec convergence automatique pour simuler un réseau d'entreprise multi-sites tolérant aux pannes.",
-                actions: [
-                    "Topologie multi-routeurs dans GNS3 (4 routeurs, 3 zones OSPF)",
-                    "Configuration d'OSPF sur chaque routeur avec authentification MD5",
-                    "Simulation de pannes de liens et observation de la convergence",
-                    "Analyse de la table de routage et des métriques OSPF",
-                ],
-                result:  "Convergence OSPF en moins de 10 secondes après rupture de lien. Toutes les routes alternatives fonctionnelles.",
-                tags:    ['OSPF','Routage dynamique','GNS3','Cisco IOS','Convergence'],
-                icon:    'fa-solid fa-route',
-                pdf:     null,
-                blocs:   ['B2.2'],
+                title: 'Routage Dynamique OSPF',
+                icon:  'fa-solid fa-route',
+                desc:  "Configuration du protocole OSPF sur topologie multi-routeurs pour assurer la convergence automatique des routes.",
+                tags:  ['OSPF','Routage','GNS3'],
+                pdf:   null
             },
         ],
     },
@@ -334,256 +184,124 @@ const DETAILS_DATA = {
     bts_exam: {
         title:    "Projets d'Examen (E4 / E6)",
         subtitle: 'Dossiers techniques officiels BTS SIO SISR',
-        color:    'yellow',
-        hex:      '#facc15',
-        bghex:    'rgba(250,204,21,.1)',
-        category: 'Formation',
-        period:   '2025 — 2026',
-        status:   'En cours',
-        website:  '#',
-        pdf:      'pdf/dossiers_exam.pdf',
+        color:    { text:'#facc15', bg:'rgba(250,204,21,.1)', border:'rgba(250,204,21,.2)', glow:'rgba(250,204,21,.12)' },
+        website:  null,
         desc:     "Dossiers techniques présentés au jury lors des épreuves E4 (support et mise à disposition de services) et E6 (cybersécurité des services informatiques) du BTS SIO SISR.",
         missions: [
             {
-                title:   'E4 — Déploiement GLPI',
-                date:    'Épreuve E4',
-                context: "Déploiement d'une solution de gestion de parc et de ticketing pour une organisation nécessitant de structurer son support informatique.",
-                actions: [
-                    "Installation de la stack LAMP sur Debian 12",
-                    "Déploiement et configuration de GLPI 10",
-                    "Intégration LDAP Active Directory",
-                    "Configuration des workflows et SLA",
-                    "Rédaction du dossier technique E4 (contexte, réalisation, tests)",
-                ],
-                result:  "Dossier E4 validé. Solution opérationnelle présentée devant jury.",
-                tags:    ['GLPI','Linux','ITIL','LDAP','E4'],
-                icon:    'fa-solid fa-ticket',
-                pdf:     'pdf/dossier_e4_glpi.pdf',
-                blocs:   ['B3.1','B1.1'],
+                title: 'E6 — RADIUS & Portail Captif',
+                icon:  'fa-solid fa-wifi',
+                desc:  "Mise en place d'une solution d'authentification réseau RADIUS couplée à un portail captif pour la Maison des Ligues de Lorraine. Différenciation des accès collaborateurs / visiteurs, journalisation des connexions.",
+                tags:  ['RADIUS','Portail Captif','pfSense','Active Directory','E6'],
+                pdf:   'pdf/fiche_e6_radius.pdf'
             },
             {
-                title:   'E4 — Conteneurisation Docker',
-                date:    'Épreuve E4',
-                context: "Mise en conteneur d'une application web pour une association souhaitant simplifier son déploiement et sa portabilité.",
-                actions: [
-                    "Rédaction du Dockerfile et docker-compose.yml (Apache + PHP + MySQL)",
-                    "Configuration des volumes persistants pour la base de données",
-                    "Tests de montée en charge basique",
-                    "Rédaction du dossier technique E4",
-                ],
-                result:  "Application web conteneurisée et déployable en 1 commande. Dossier E4 présenté.",
-                tags:    ['Docker','Docker Compose','Apache','MySQL','E4'],
-                icon:    'fa-brands fa-docker',
-                pdf:     'pdf/dossier_e4_docker.pdf',
-                blocs:   ['B3.1','B2.1'],
-            },
-            {
-                title:   'E6 — Audit de Sécurité Nessus',
-                date:    'Épreuve E6',
-                context: "Réalisation d'un audit de sécurité d'un système d'information simulé pour identifier les vulnérabilités et proposer un plan de remédiation.",
-                actions: [
-                    "Mise en place de l'environnement d'audit (Nessus Essentials)",
-                    "Scan de vulnérabilités sur périmètre défini (serveurs + postes)",
-                    "Analyse et classification des failles (CVSS) : critiques, élevées, moyennes",
-                    "Rédaction du rapport d'audit et du plan de remédiation priorisé",
-                    "Présentation des résultats et recommandations devant jury",
-                ],
-                result:  "12 vulnérabilités identifiées dont 3 critiques. Plan de remédiation présenté avec ROI estimé.",
-                tags:    ['Nessus','Audit sécurité','CVSS','Cybersécurité','E6'],
-                icon:    'fa-solid fa-magnifying-glass-chart',
-                pdf:     'pdf/dossier_e6_audit.pdf',
-                blocs:   ['B2.3'],
+                title: 'E6 — Serveur iVentoy',
+                icon:  'fa-solid fa-server',
+                desc:  "Déploiement automatisé de Windows 10 sur les postes clients via un serveur iVentoy sous Proxmox, pour standardiser et accélérer les installations du parc informatique de la M2L.",
+                tags:  ['iVentoy','Proxmox','pfSense','Déploiement','E6'],
+                pdf:   'pdf/fiche_e6_iventoy.pdf'
             },
         ],
     },
+
 };
 
-const BTS_LABELS = {
-    'B1.1': "Fourniture d'un service aux utilisateurs",
-    'B1.2': "Maintien en condition opérationnelle",
-    'B2.1': "Installation et configuration",
-    'B2.2': "Administration systèmes et réseaux",
-    'B2.3': "Cybersécurité des services",
-    'B3.1': "Mise en production d'un service",
-    'B3.2': "Développement professionnel",
-};
-
-/* ════════════════════════════════════════════════════════════
-   RENDU DE LA PAGE
-   ════════════════════════════════════════════════════════════ */
+/* ── RENDU ─────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(location.search);
-    const id     = params.get('id');
-    const c      = DETAILS_DATA[id];
+    const id = new URLSearchParams(location.search).get('id');
+    const c  = DATA[id];
 
     if (!c) {
         document.getElementById('page-content').innerHTML = `
-        <div class="pt-40 flex flex-col items-center justify-center gap-5 text-center px-4" style="min-height:60vh">
-            <i class="fa-solid fa-triangle-exclamation" style="font-size:2.5rem;color:var(--accent)"></i>
-            <p style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;color:var(--text-main)">Expérience introuvable</p>
-            <a href="projects.html" class="btn-ghost" style="text-decoration:none">
-                <i class="fa-solid fa-arrow-left"></i> Retour aux projets
-            </a>
+        <div style="min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;text-align:center;padding:2rem">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size:2rem;color:var(--accent)"></i>
+            <p style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text-main)">Expérience introuvable.</p>
+            <a href="projects.html" class="btn-ghost" style="text-decoration:none"><i class="fa-solid fa-arrow-left"></i> Retour aux projets</a>
         </div>`;
         return;
     }
-
-    // Nombre de blocs BTS uniques couverts
-    const allBlocs = [...new Set(c.missions.flatMap(m => m.blocs))];
-    const pdfCount = c.missions.filter(m => m.pdf).length;
 
     document.title = `${c.title} | Mwindjou`;
 
     document.getElementById('page-content').innerHTML = `
 
-    <!-- ── EN-TÊTE ─────────────────────────────────────────── -->
-    <section class="pt-32 pb-12 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-[.03]" style="background-image:radial-gradient(var(--text-dim) 1px,transparent 1px);background-size:24px 24px"></div>
-        <div class="max-w-5xl mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
+    <!-- EN-TÊTE -->
+    <section class="pt-32 pb-12 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!-- Breadcrumb -->
-            <a href="projects.html" style="display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--text-dim);text-decoration:none;margin-bottom:2rem;transition:color .15s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-dim)'">
+            <a href="projects.html"
+               style="display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--text-dim);text-decoration:none;margin-bottom:2rem;transition:color .15s"
+               onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-dim)'">
                 <i class="fa-solid fa-arrow-left"></i> Retour aux projets
             </a>
 
-            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                <div class="flex-1">
-                    <!-- Badges -->
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:4px 12px;border-radius:100px;background:${c.bghex};color:${c.hex};border:1px solid ${c.hex}30">${c.category}</span>
-                        <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:4px 12px;border-radius:100px;background:var(--card-color);color:var(--text-dim);border:1px solid var(--border-color)">
-                            <i class="fa-regular fa-calendar" style="margin-right:.3rem"></i>${c.period}
-                        </span>
-                        <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:4px 12px;border-radius:100px;background:rgba(74,222,128,.08);color:#4ade80;border:1px solid rgba(74,222,128,.2)">${c.status}</span>
-                    </div>
+            <h1 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,5vw,2.75rem);font-weight:800;letter-spacing:-.03em;color:var(--text-main);margin-bottom:.4rem">
+                ${c.title}
+            </h1>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:${c.color.text};margin-bottom:1.25rem">
+                ${c.subtitle}
+            </p>
+            <p style="font-size:.95rem;color:var(--text-dim);line-height:1.78;max-width:640px;margin-bottom:1.75rem">
+                ${c.desc}
+            </p>
 
-                    <h1 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;letter-spacing:-.03em;color:var(--text-main);line-height:1.1;margin-bottom:.5rem">${c.title}</h1>
-                    <p style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:${c.hex};margin-bottom:1.25rem">${c.subtitle}</p>
-                    <p style="font-size:.9rem;color:var(--text-dim);line-height:1.78;max-width:600px">${c.desc}</p>
-
-                    <!-- CTA -->
-                    <div class="flex flex-wrap gap-3 mt-6">
-                        ${c.website !== '#' ? `<a href="${c.website}" target="_blank" class="btn-ghost" style="text-decoration:none;font-size:.82rem;padding:8px 18px"><i class="fa-solid fa-arrow-up-right-from-square"></i> Site officiel</a>` : ''}
-                        ${c.pdf ? `<a href="${c.pdf}" download class="btn-ghost" style="text-decoration:none;font-size:.82rem;padding:8px 18px"><i class="fa-solid fa-file-arrow-down"></i> Rapport PDF</a>` : ''}
-                    </div>
-                </div>
-
-                <!-- Stats -->
-                <div class="flex gap-3 flex-shrink-0">
-                    <div class="glass rounded-xl px-5 py-4 text-center">
-                        <p style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:${c.hex}">${c.missions.length}</p>
-                        <p style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-top:.2rem">Missions</p>
-                    </div>
-                    <div class="glass rounded-xl px-5 py-4 text-center">
-                        <p style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:${c.hex}">${allBlocs.length}</p>
-                        <p style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-top:.2rem">Blocs BTS</p>
-                    </div>
-                    ${pdfCount > 0 ? `<div class="glass rounded-xl px-5 py-4 text-center">
-                        <p style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:${c.hex}">${pdfCount}</p>
-                        <p style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text-dim);margin-top:.2rem">PDFs</p>
-                    </div>` : ''}
-                </div>
-            </div>
+            ${c.website ? `
+            <a href="${c.website}" target="_blank" class="btn-ghost" style="text-decoration:none">
+                <i class="fa-solid fa-globe"></i> Visiter le site officiel
+            </a>` : ''}
         </div>
     </section>
 
-    <!-- ── TIMELINE MISSIONS ──────────────────────────────── -->
-    <section class="pb-24">
-        <div class="max-w-5xl mx-auto px-6 sm:px-10 lg:px-14">
+    <!-- GRILLE MISSIONS -->
+    <section class="py-16 border-t" style="background:rgba(255,255,255,.012);border-color:var(--border-color)">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="mb-10">
-                <span class="section-label">Missions réalisées</span>
-                <h2 class="section-title">Timeline</h2>
-            </div>
+            <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin-bottom:2rem;padding-left:1rem;border-left:3px solid var(--accent)">
+                Détail des Missions Réalisées
+            </h2>
 
-            <div class="relative" style="padding-left:3rem;border-left:1px solid var(--border-color)">
-                ${c.missions.map((m, i) => `
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                ${c.missions.map(m => `
+                <div class="glass rounded-xl overflow-hidden group"
+                     style="transition:box-shadow .3s;display:flex;flex-direction:column"
+                     onmouseenter="this.style.boxShadow='0 16px 48px ${c.color.glow}'"
+                     onmouseleave="this.style.boxShadow=''">
 
-                <div class="relative mb-14 reveal" style="transition-delay:${i * 0.08}s">
-
-                    <!-- Dot -->
-                    <div style="position:absolute;left:-3.65rem;top:0;width:44px;height:44px;border-radius:12px;background:${c.bghex};border:1px solid ${c.hex}40;display:flex;align-items:center;justify-content:center;color:${c.hex};font-size:1rem;backdrop-filter:blur(8px)">
-                        <i class="${m.icon}"></i>
+                    <!-- Bandeau icône -->
+                    <div style="height:140px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <i class="${m.icon}"
+                           style="font-size:2.8rem;color:var(--border-color);transition:all .35s"
+                           onmouseenter="this.style.transform='scale(1.12)';this.style.color='${c.color.text}'"
+                           onmouseleave="this.style.transform='';this.style.color='var(--border-color)'"></i>
                     </div>
 
-                    <!-- Card -->
-                    <div class="glass rounded-2xl p-6 md:p-7">
+                    <!-- Contenu -->
+                    <div style="padding:1.25rem;display:flex;flex-direction:column;flex:1">
+                        <h3 style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--text-main);margin-bottom:.6rem;transition:color .15s"
+                            onmouseenter="this.style.color='${c.color.text}'" onmouseleave="this.style.color='var(--text-main)'">${m.title}</h3>
+                        <p style="font-size:.82rem;color:var(--text-dim);line-height:1.72;margin-bottom:.9rem;flex:1">${m.desc}</p>
 
-                        <!-- Header -->
-                        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem">
-                            <div>
-                                <h3 style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">${m.title}</h3>
-                                <p style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text-dim);margin-top:.2rem">
-                                    <i class="fa-regular fa-calendar" style="margin-right:.3rem"></i>${m.date}
-                                </p>
-                            </div>
-                            ${m.pdf ? `<a href="${m.pdf}" download style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:${c.hex};text-decoration:none;display:flex;align-items:center;gap:.3rem;padding:4px 10px;border-radius:6px;background:${c.bghex};border:1px solid ${c.hex}30;white-space:nowrap" onmouseenter="this.style.opacity='.75'" onmouseleave="this.style.opacity='1'">
-                                <i class="fa-solid fa-file-arrow-down"></i> PDF
-                            </a>` : ''}
-                        </div>
-
-                        <!-- Grille contexte / actions / résultat -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-                            <!-- Contexte -->
-                            <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:12px;padding:1rem">
-                                <p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.6rem">
-                                    <i class="fa-solid fa-circle-question" style="margin-right:.3rem"></i>Contexte
-                                </p>
-                                <p style="font-size:.82rem;color:var(--text-dim);line-height:1.72">${m.context}</p>
-                            </div>
-
-                            <!-- Actions -->
-                            <div style="background:var(--bg-color);border:1px solid var(--border-color);border-radius:12px;padding:1rem">
-                                <p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.6rem">
-                                    <i class="fa-solid fa-list-check" style="margin-right:.3rem"></i>Actions
-                                </p>
-                                <ul style="display:flex;flex-direction:column;gap:.4rem">
-                                    ${m.actions.map(a => `
-                                    <li style="display:flex;align-items:flex-start;gap:.4rem;font-size:.8rem;color:var(--text-dim);line-height:1.5">
-                                        <span style="color:${c.hex};margin-top:.15rem;flex-shrink:0">›</span>${a}
-                                    </li>`).join('')}
-                                </ul>
-                            </div>
-
-                            <!-- Résultat -->
-                            <div style="background:${c.bghex};border:1px solid ${c.hex}25;border-radius:12px;padding:1rem">
-                                <p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:${c.hex};margin-bottom:.6rem">
-                                    <i class="fa-solid fa-chart-line" style="margin-right:.3rem"></i>Résultat
-                                </p>
-                                <p style="font-size:.82rem;color:var(--text-main);line-height:1.72;font-weight:500">${m.result}</p>
-                            </div>
-                        </div>
-
-                        <!-- Tags + Blocs BTS -->
-                        <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;padding-top:.875rem;border-top:1px solid var(--border-color)">
+                        <!-- Tags -->
+                        <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:${m.pdf ? '.9rem' : '0'}">
                             ${m.tags.map(t => `
-                            <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 9px;border-radius:6px;background:${c.bghex};color:${c.hex};border:1px solid ${c.hex}25">${t}</span>`).join('')}
-                            ${m.blocs.map(b => `
-                            <span title="${BTS_LABELS[b]}" style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 9px;border-radius:6px;background:rgba(var(--accent-rgb),.08);color:var(--accent);border:1px solid rgba(var(--accent-rgb),.18);cursor:help">
-                                <i class="fa-solid fa-graduation-cap" style="font-size:.55rem;margin-right:.2rem"></i>${b}
-                            </span>`).join('')}
+                            <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 8px;border-radius:6px;color:${c.color.text};background:${c.color.bg};border:1px solid ${c.color.border}">${t}</span>
+                            `).join('')}
                         </div>
+
+                        <!-- Lien PDF si disponible -->
+                        ${m.pdf ? `
+                        <a href="${m.pdf}" target="_blank"
+                           style="display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:${c.color.text};text-decoration:none;padding-top:.75rem;border-top:1px solid var(--border-color);transition:opacity .15s"
+                           onmouseenter="this.style.opacity='.7'" onmouseleave="this.style.opacity='1'">
+                            <i class="fa-solid fa-file-pdf"></i> Voir la fiche PDF
+                        </a>` : ''}
                     </div>
                 </div>`).join('')}
             </div>
-
-            <!-- Retour -->
-            <div class="mt-4 text-center">
-                <a href="projects.html" class="btn-ghost" style="text-decoration:none">
-                    <i class="fa-solid fa-arrow-left"></i> Retour aux projets
-                </a>
-            </div>
         </div>
     </section>`;
-
-    // Lancer les reveals
-    setTimeout(() => {
-        if (typeof initReveal === 'function') initReveal();
-    }, 50);
 });
-
-@keyframes spin { to { transform: rotate(360deg); } }
 </script>
 
 <style>
