@@ -3,6 +3,21 @@
    Stack : Syne (titres) · DM Sans (corps) · JetBrains Mono
    ════════════════════════════════════════════════════════════ */
 
+@import "tailwindcss";
+
+@theme {
+  --color-tech-bg: var(--bg-color);
+  --color-tech-card: var(--card-color);
+  --color-tech-text: var(--text-main);
+  --color-tech-dim: var(--text-dim);
+  --color-tech-accent: var(--accent);
+  --color-tech-border: var(--border-color);
+
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
 /* ── 1. VARIABLES DARK (défaut) ─────────────────────────── */
 :root {
     --bg-color:     #08080f;

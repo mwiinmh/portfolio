@@ -10,48 +10,54 @@ const SITE = {
     year:     new Date().getFullYear(),
 };
 
-/* ── Détection page active ── */
 const currentPage = location.pathname.split('/').pop() || 'index.html';
-
-function isActive(page) {
-    return currentPage === page ? 'nav-item nav-item--active' : 'nav-item nav-item--idle';
-}
-function isMobileActive(page) {
-    return currentPage === page ? 'mobile-item mobile-item--active' : 'mobile-item';
-}
 
 /* ══════════════════════════════════════════════
    NAV
 ══════════════════════════════════════════════ */
 function renderNav() {
     const nav = [
-        { label: 'Accueil',     href: 'index.html',    anchor: '#home',    page: 'index.html'    },
-        { label: 'À propos',    href: 'index.html#about',  anchor: '#about',   page: 'index.html'    },
-        { label: 'Compétences', href: 'index.html#skills', anchor: '#skills',  page: 'index.html'    },
-        { label: 'Projets',     href: 'projects.html',  anchor: '',         page: 'projects.html' },
-        { label: 'Veille',      href: 'veille.html',    anchor: '',         page: 'veille.html'   },
-        { label: 'Contact',     href: 'index.html#contact', anchor: '#contact', page: 'index.html' },
+        { label: 'Accueil',  href: 'index.html#home',       anchor: true,  page: 'index.html'    },
+        { label: 'À propos', href: 'index.html#about',       anchor: true,  page: 'index.html'    },
+        { label: 'Parcours', href: 'index.html#experience',  anchor: true,  page: 'index.html'    },
+        { label: 'Projets',  href: 'projects.html',          anchor: false, page: 'projects.html' },
+        { label: 'Veille',   href: 'veille.html',            anchor: false, page: 'veille.html'   },
+        { label: 'Contact',  href: 'index.html#contact',     anchor: true,  page: 'index.html'    },
     ];
 
-    const mobileIcons = ['fa-house','fa-user','fa-microchip','fa-folder-open','fa-rss','fa-envelope'];
+    const mobileIcons = ['fa-house','fa-user','fa-briefcase','fa-folder-open','fa-rss','fa-envelope'];
 
-    const desktopLinks = nav.map(n =>
-        `<a href="${n.href}" class="${isActive(n.page)}">${n.label}</a>`
-    ).join('');
+    // Les liens avec ancre démarrent toujours en idle — le scroll gère l'activation
+    // Les liens sans ancre (Projets, Veille) utilisent la détection de page classique
+    const desktopLinks = nav.map(n => {
+        let cls;
+        if (n.anchor) {
+            cls = 'nav-item nav-item--idle';
+        } else {
+            cls = currentPage === n.page ? 'nav-item nav-item--active' : 'nav-item nav-item--idle';
+        }
+        return `<a href="${n.href}" class="${cls}">${n.label}</a>`;
+    }).join('');
 
-    const mobileLinks = nav.map((n, i) =>
-        `<a href="${n.href}" class="${isMobileActive(n.page)}">
+    const mobileLinks = nav.map((n, i) => {
+        let cls;
+        if (n.anchor) {
+            cls = 'mobile-item';
+        } else {
+            cls = currentPage === n.page ? 'mobile-item mobile-item--active' : 'mobile-item';
+        }
+        return `<a href="${n.href}" class="${cls}">
             <i class="fa-solid ${mobileIcons[i]} w-4 text-center" style="color:var(--accent)"></i>
             ${n.label}
-        </a>`
-    ).join('');
+        </a>`;
+    }).join('');
 
     document.getElementById('nav-placeholder').innerHTML = `
     <nav class="glass-nav fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-14">
             <div class="flex items-center justify-between" style="height:62px">
 
-                <a href="index.html" class="nav-logo">${SITE.name}</a>
+                <a href="index.html#home" class="nav-logo">${SITE.name}</a>
 
                 <div class="hidden md:flex items-center gap-0.5">
                     ${desktopLinks}
@@ -120,32 +126,46 @@ function initNav() {
         xIcon.classList.add('hidden');
     }));
 
-    /* Highlight nav au scroll sur index.html uniquement */
+    /* ── Highlight nav au scroll — index.html uniquement ──
+       On cherche la section dont le centre est le plus proche
+       du milieu de l'écran → une seule active à la fois.
+    ──────────────────────────────────────────────────────── */
     if (currentPage === 'index.html' || currentPage === '') {
-        const sections = document.querySelectorAll('section[id]');
-        const links    = [...document.querySelectorAll('a.nav-item')];
 
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (!e.isIntersecting) return;
-                links.forEach(l => {
-                    const href = l.getAttribute('href') || '';
-                    if (!href.includes('#')) return;
-                    const hit = href.includes('#' + e.target.id);
-                    l.classList.toggle('nav-item--active', hit);
-                    l.classList.toggle('nav-item--idle',  !hit);
-                });
+        function updateActiveNav() {
+            const sections = [...document.querySelectorAll('section[id]')];
+            const mid      = window.innerHeight / 2;
+            let   closest  = null;
+            let   minDist  = Infinity;
+
+            sections.forEach(s => {
+                const rect   = s.getBoundingClientRect();
+                const center = rect.top + rect.height / 2;
+                const dist   = Math.abs(center - mid);
+                if (dist < minDist) { minDist = dist; closest = s; }
             });
-        }, { rootMargin: '-35% 0px -60% 0px', threshold: 0 });
 
-        sections.forEach(s => io.observe(s));
-        setActiveLink('home');
+            if (closest) setActiveLink(closest.id);
+        }
+
+        // Au chargement de la page
+        updateActiveNav();
+
+        // Au scroll (throttlé via requestAnimationFrame)
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => { updateActiveNav(); ticking = false; });
+                ticking = true;
+            }
+        }, { passive: true });
     }
 }
 
 function setActiveLink(id) {
     document.querySelectorAll('a.nav-item').forEach(l => {
         const href = l.getAttribute('href') || '';
+        // Ne toucher que les liens avec ancre
         if (!href.includes('#')) return;
         const hit = href.includes('#' + id);
         l.classList.toggle('nav-item--active', hit);
@@ -162,9 +182,8 @@ function renderFooter() {
         <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10" style="border-bottom:1px solid var(--border-color)">
 
-                <!-- Col 1 -->
                 <div>
-                    <a href="index.html" class="nav-logo block mb-4">${SITE.name}</a>
+                    <a href="index.html#home" class="nav-logo block mb-4">${SITE.name}</a>
                     <p style="font-size:.85rem;color:var(--text-dim);line-height:1.75;max-width:260px">
                         Étudiant BTS SIO SISR, alternant chez REDVISE. Passionné par l'infrastructure et la cybersécurité.
                     </p>
@@ -181,19 +200,18 @@ function renderFooter() {
                     </div>
                 </div>
 
-                <!-- Col 2 -->
                 <div>
                     <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Navigation</p>
                     <div class="flex flex-col gap-2">
-                        <a href="index.html"          style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Accueil</a>
-                        <a href="index.html#about"    style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">À propos</a>
-                        <a href="projects.html"       style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Projets</a>
-                        <a href="veille.html"         style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Veille</a>
-                        <a href="index.html#contact"  style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Contact</a>
+                        <a href="index.html#home"        style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Accueil</a>
+                        <a href="index.html#about"       style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">À propos</a>
+                        <a href="index.html#experience"  style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Parcours</a>
+                        <a href="projects.html"          style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Projets</a>
+                        <a href="veille.html"            style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Veille</a>
+                        <a href="index.html#contact"     style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Contact</a>
                     </div>
                 </div>
 
-                <!-- Col 3 -->
                 <div>
                     <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Contact</p>
                     <div class="flex flex-col gap-3">

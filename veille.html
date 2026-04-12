@@ -5,33 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veille Technologique | Mwindjou</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            darkMode: ['class','[data-theme="dark"]'],
-            theme: {
-                extend: {
-                    colors: {
-                        'tech-bg':     'var(--bg-color)',
-                        'tech-card':   'var(--card-color)',
-                        'tech-text':   'var(--text-main)',
-                        'tech-dim':    'var(--text-dim)',
-                        'tech-accent': 'var(--accent)',
-                        'tech-border': 'var(--border-color)',
-                    },
-                    fontFamily: {
-                        sans:    ['DM Sans','system-ui','sans-serif'],
-                        display: ['Syne','sans-serif'],
-                        mono:    ['JetBrains Mono','monospace'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Veille technologique de Mwindjou: Actualités IT, Cybersécurité et Infrastructure (Windows Server, Linux, Mikrotik...).">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Veille Technologique | Mwindjou">
+    <meta property="og:description" content="Veille technologique de Mwindjou en administration systèmes et réseaux.">
+    <meta property="og:type" content="website">
 </head>
 <body class="bg-tech-bg text-tech-text font-sans antialiased">
 
@@ -73,16 +56,6 @@
     <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
         <div class="flex flex-wrap items-center gap-3">
             <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0">Sources :</span>
-            <?php
-            $sources = [
-                ['name'=>'The Hacker News',  'icon'=>'fa-solid fa-newspaper',      'url'=>'https://thehackernews.com'],
-                ['name'=>'Bleeping Computer','icon'=>'fa-solid fa-shield-halved',   'url'=>'https://www.bleepingcomputer.com'],
-                ['name'=>'Reddit r/sysadmin','icon'=>'fa-brands fa-reddit',         'url'=>'https://reddit.com/r/sysadmin'],
-                ['name'=>'Netgate Docs',     'icon'=>'fa-solid fa-book',            'url'=>'https://docs.netgate.com'],
-                ['name'=>'Microsoft Learn',  'icon'=>'fa-brands fa-microsoft',      'url'=>'https://learn.microsoft.com'],
-                ['name'=>'Linux Foundation', 'icon'=>'fa-brands fa-linux',          'url'=>'https://www.linuxfoundation.org'],
-            ];
-            ?>
             <div id="sources-list" class="flex flex-wrap gap-2"></div>
         </div>
     </div>
@@ -130,7 +103,7 @@
 
 <div id="footer-placeholder"></div>
 
-<script src="components.js"></script>
+<script type="module" src="components.js"></script>
 <script>
 /* ════════════════════════════════════════════════════════════
    DONNÉES ARTICLES
