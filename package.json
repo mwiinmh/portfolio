@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/mwiinmh/portfolio#readme",
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.2",
     "autoprefixer": "^10.4.27",
     "postcss": "^8.5.9",
     "tailwindcss": "^4.2.2",

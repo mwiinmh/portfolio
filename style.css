@@ -4,6 +4,11 @@
    ════════════════════════════════════════════════════════════ */
 
 @import "tailwindcss";
+@source "index.html";
+@source "projects.html";
+@source "veille.html";
+@source "details.html";
+@source "components.js";
 
 @theme {
   --color-tech-bg: var(--bg-color);
