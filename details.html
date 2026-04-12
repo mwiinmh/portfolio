@@ -18,14 +18,12 @@
 <body class="bg-tech-bg text-tech-text font-sans antialiased">
 
 <div id="nav-placeholder"></div>
-
 <div id="page-content">
-    <div style="min-height:80vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">
-        <div style="width:32px;height:32px;border-radius:50%;border:2px solid var(--border-color);border-top-color:var(--accent);animation:spin .7s linear infinite"></div>
-        <p style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text-dim)">Chargement...</p>
+    <div class="loader-screen">
+        <div class="loader-spinner"></div>
+        <p class="loader-text">Chargement...</p>
     </div>
 </div>
-
 <div id="footer-placeholder"></div>
 
 <script type="module" src="components.js"></script>
@@ -35,171 +33,80 @@ const DATA = {
     redvise: {
         title:    'Alternance chez REDVISE',
         subtitle: 'Administrateur Système & Réseau',
-        color:    { text:'#c084fc', bg:'rgba(192,132,252,.1)', border:'rgba(192,132,252,.2)', glow:'rgba(192,132,252,.12)' },
+        color:    { text:'#c084fc', bg:'rgba(192,132,252,.1)', border:'rgba(192,132,252,.2)' },
         website:  'https://www.redvi.se',
         desc:     "REDVISE est une société de conseil et services IT. Durant mon alternance, j'ai eu la charge de maintenir l'infrastructure interne et celle de plusieurs clients PME.",
         missions: [
-            {
-                title: 'Sécurisation Firewall Fortinet',
-                icon:  'fa-solid fa-shield-halved',
-                desc:  "Mise en place de règles de filtrage strictes et configuration d'un VPN SSL pour les télétravailleurs.",
-                tags:  ['Fortinet','VPN SSL','Sécurité'],
-                pdf:   null
-            },
-            {
-                title: 'Migration AD Windows 2019',
-                icon:  'fa-brands fa-windows',
-                desc:  "Migration d'un contrôleur de domaine 2012 R2 vers 2019. Transfert des rôles FSMO sans interruption.",
-                tags:  ['Windows Server','Active Directory','Migration'],
-                pdf:   null
-            },
-            {
-                title: 'Supervision Centreon',
-                icon:  'fa-solid fa-chart-line',
-                desc:  "Déploiement de sondes pour surveiller l'état des serveurs critiques et alerter en cas de panne.",
-                tags:  ['Monitoring','Centreon','Linux'],
-                pdf:   null
-            },
+            { title:'Sécurisation Firewall Fortinet', icon:'fa-solid fa-shield-halved', desc:"Mise en place de règles de filtrage strictes et configuration d'un VPN SSL pour les télétravailleurs.", tags:['Fortinet','VPN SSL','Sécurité'], pdf:null },
+            { title:'Migration AD Windows 2019',      icon:'fa-brands fa-windows',      desc:"Migration d'un contrôleur de domaine 2012 R2 vers 2019. Transfert des rôles FSMO sans interruption.",   tags:['Windows Server','Active Directory','Migration'], pdf:null },
+            { title:'Supervision Centreon',            icon:'fa-solid fa-chart-line',    desc:"Déploiement de sondes pour surveiller l'état des serveurs critiques et alerter en cas de panne.",         tags:['Monitoring','Centreon','Linux'], pdf:null },
         ],
     },
 
     itic: {
         title:    'Stage chez ITIC Paris',
         subtitle: 'Technicien Support & Réseau',
-        color:    { text:'#4ade80', bg:'rgba(74,222,128,.1)', border:'rgba(74,222,128,.2)', glow:'rgba(74,222,128,.12)' },
+        color:    { text:'#4ade80', bg:'rgba(74,222,128,.1)', border:'rgba(74,222,128,.2)' },
         website:  'https://www.iticparis.com',
         desc:     "L'ITIC Paris est un établissement d'enseignement supérieur. Le service informatique gère un parc de plus de 200 machines pour la pédagogie et l'administration.",
         missions: [
-            {
-                title: 'Support Utilisateur N1',
-                icon:  'fa-solid fa-headset',
-                desc:  "Assistance aux étudiants et professeurs. Résolution des problèmes de connexion et d'impression via système de ticketing.",
-                tags:  ['Ticketing','Hardware','Support'],
-                pdf:   null
-            },
-            {
-                title: 'Gestion Parc Imprimantes',
-                icon:  'fa-solid fa-print',
-                desc:  "Configuration du serveur d'impression et déploiement des pilotes via GPO sur le parc pédagogique.",
-                tags:  ['Print Server','GPO','Windows'],
-                pdf:   null
-            },
+            { title:'Support Utilisateur N1',    icon:'fa-solid fa-headset', desc:"Assistance aux étudiants et professeurs. Résolution des problèmes de connexion et d'impression via système de ticketing.", tags:['Ticketing','Hardware','Support'], pdf:null },
+            { title:'Gestion Parc Imprimantes',  icon:'fa-solid fa-print',   desc:"Configuration du serveur d'impression et déploiement des pilotes via GPO sur le parc pédagogique.",                        tags:['Print Server','GPO','Windows'],  pdf:null },
         ],
     },
 
     sio_sys: {
         title:    'Ateliers Systèmes',
         subtitle: 'Administration Windows Server & Linux',
-        color:    { text:'#60a5fa', bg:'rgba(96,165,250,.1)', border:'rgba(96,165,250,.2)', glow:'rgba(96,165,250,.12)' },
+        color:    { text:'#60a5fa', bg:'rgba(96,165,250,.1)', border:'rgba(96,165,250,.2)' },
         website:  null,
         desc:     "Ateliers de professionnalisation portant sur l'administration système : Windows Server, Linux Debian/Ubuntu, scripting et services associés.",
         missions: [
-            {
-                title: 'Active Directory & GPO',
-                icon:  'fa-brands fa-windows',
-                desc:  "Mise en place d'un domaine Windows Server 2019, création d'UO, comptes utilisateurs et déploiement de GPO de sécurité.",
-                tags:  ['Windows Server','Active Directory','GPO'],
-                pdf:   null
-            },
-            {
-                title: 'Serveur DHCP/DNS sous Debian',
-                icon:  'fa-solid fa-server',
-                desc:  "Installation et configuration des services DHCP (isc-dhcp-server) et DNS (BIND9) sur Debian 12.",
-                tags:  ['Linux','DHCP','DNS'],
-                pdf:   null
-            },
-            {
-                title: 'Scripting Bash',
-                icon:  'fa-solid fa-terminal',
-                desc:  "Automatisation de tâches d'administration : sauvegarde, création de comptes utilisateurs en masse, monitoring basique.",
-                tags:  ['Bash','Automatisation','Linux'],
-                pdf:   null
-            },
-            {
-                title: 'Solution GLPI',
-                icon:  'fa-solid fa-ticket',
-                desc:  "Déploiement complet d'une solution ITSM/ticketing et d'inventaire sur serveur Debian avec intégration LDAP.",
-                tags:  ['GLPI','ITIL','Linux'],
-                pdf:   null
-            },
+            { title:'Active Directory & GPO',         icon:'fa-brands fa-windows',   desc:"Mise en place d'un domaine Windows Server 2019, création d'UO, comptes utilisateurs et déploiement de GPO de sécurité.",         tags:['Windows Server','Active Directory','GPO'], pdf:null },
+            { title:'Serveur DHCP/DNS sous Debian',   icon:'fa-solid fa-server',     desc:"Installation et configuration des services DHCP (isc-dhcp-server) et DNS (BIND9) sur Debian 12.",                                  tags:['Linux','DHCP','DNS'],               pdf:null },
+            { title:'Scripting Bash',                  icon:'fa-solid fa-terminal',   desc:"Automatisation de tâches d'administration : sauvegarde, création de comptes utilisateurs en masse, monitoring basique.",           tags:['Bash','Automatisation','Linux'],    pdf:null },
+            { title:'Solution GLPI',                   icon:'fa-solid fa-ticket',     desc:"Déploiement complet d'une solution ITSM/ticketing et d'inventaire sur serveur Debian avec intégration LDAP.",                      tags:['GLPI','ITIL','Linux'],              pdf:null },
         ],
     },
 
     sio_net: {
         title:    'Ateliers Réseaux',
         subtitle: 'Architecture Mikrotik, VLANs & Firewalling',
-        color:    { text:'#fb923c', bg:'rgba(251,146,60,.1)', border:'rgba(251,146,60,.2)', glow:'rgba(251,146,60,.12)' },
+        color:    { text:'#fb923c', bg:'rgba(251,146,60,.1)', border:'rgba(251,146,60,.2)' },
         website:  null,
         desc:     "Ateliers de professionnalisation portant sur la conception et l'administration d'architectures réseau : switching, routing, VLANs et sécurité périmétrique.",
         missions: [
-            {
-                title: 'Segmentation VLAN Mikrotik',
-                icon:  'fa-solid fa-network-wired',
-                desc:  "Création d'une architecture segmentée (Admin, Guest, VoIP) avec routage inter-VLAN sur switch Mikrotik CSS.",
-                tags:  ['Mikrotik','VLAN','Switching'],
-                pdf:   null
-            },
-            {
-                title: 'Firewall & Filtrage',
-                icon:  'fa-solid fa-shield-halved',
-                desc:  "Configuration de règles de pare-feu (iptables / Mikrotik Filter Rules) pour sécuriser les flux entre VLANs.",
-                tags:  ['Firewall','Sécurité','Mikrotik'],
-                pdf:   null
-            },
-            {
-                title: 'VPN Site-à-Site',
-                icon:  'fa-solid fa-lock',
-                desc:  "Mise en place d'un tunnel VPN IPsec entre deux sites simulés sous GNS3.",
-                tags:  ['VPN','IPsec','GNS3'],
-                pdf:   null
-            },
-            {
-                title: 'Routage Dynamique OSPF',
-                icon:  'fa-solid fa-route',
-                desc:  "Configuration du protocole OSPF sur topologie multi-routeurs pour assurer la convergence automatique des routes.",
-                tags:  ['OSPF','Routage','GNS3'],
-                pdf:   null
-            },
+            { title:'Segmentation VLAN Mikrotik', icon:'fa-solid fa-network-wired', desc:"Création d'une architecture segmentée (Admin, Guest, VoIP) avec routage inter-VLAN sur switch Mikrotik CSS.", tags:['Mikrotik','VLAN','Switching'], pdf:null },
+            { title:'Firewall & Filtrage',         icon:'fa-solid fa-shield-halved', desc:"Configuration de règles de pare-feu (iptables / Mikrotik Filter Rules) pour sécuriser les flux entre VLANs.",  tags:['Firewall','Sécurité','Mikrotik'], pdf:null },
+            { title:'VPN Site-à-Site',             icon:'fa-solid fa-lock',          desc:"Mise en place d'un tunnel VPN IPsec entre deux sites simulés sous GNS3.",                                         tags:['VPN','IPsec','GNS3'],            pdf:null },
+            { title:'Routage Dynamique OSPF',      icon:'fa-solid fa-route',         desc:"Configuration du protocole OSPF sur topologie multi-routeurs pour assurer la convergence automatique des routes.", tags:['OSPF','Routage','GNS3'],         pdf:null },
         ],
     },
 
     bts_exam: {
         title:    "Projets d'Examen (E4 / E6)",
         subtitle: 'Dossiers techniques officiels BTS SIO SISR',
-        color:    { text:'#facc15', bg:'rgba(250,204,21,.1)', border:'rgba(250,204,21,.2)', glow:'rgba(250,204,21,.12)' },
+        color:    { text:'#facc15', bg:'rgba(250,204,21,.1)', border:'rgba(250,204,21,.2)' },
         website:  null,
-        desc:     "Dossiers techniques présentés au jury lors des épreuves E4 (support et mise à disposition de services) et E6 (cybersécurité des services informatiques) du BTS SIO SISR.",
+        desc:     "Dossiers techniques présentés au jury lors des épreuves E4 et E6 du BTS SIO SISR.",
         missions: [
-            {
-                title: 'E6 — RADIUS & Portail Captif',
-                icon:  'fa-solid fa-wifi',
-                desc:  "Mise en place d'une solution d'authentification réseau RADIUS couplée à un portail captif pour la Maison des Ligues de Lorraine. Différenciation des accès collaborateurs / visiteurs, journalisation des connexions.",
-                tags:  ['RADIUS','Portail Captif','pfSense','Active Directory','E6'],
-                pdf:   'pdf/fiche_e6_radius.pdf'
-            },
-            {
-                title: 'E6 — Serveur iVentoy',
-                icon:  'fa-solid fa-server',
-                desc:  "Déploiement automatisé de Windows 10 sur les postes clients via un serveur iVentoy sous Proxmox, pour standardiser et accélérer les installations du parc informatique de la M2L.",
-                tags:  ['iVentoy','Proxmox','pfSense','Déploiement','E6'],
-                pdf:   'pdf/fiche_e6_iventoy.pdf'
-            },
+            { title:'E6 — RADIUS & Portail Captif', icon:'fa-solid fa-wifi',   desc:"Mise en place d'une solution d'authentification réseau RADIUS couplée à un portail captif pour la Maison des Ligues de Lorraine. Différenciation des accès collaborateurs / visiteurs, journalisation des connexions.", tags:['RADIUS','Portail Captif','pfSense','Active Directory','E6'], pdf:'pdf/fiche_e6_radius.pdf' },
+            { title:'E6 — Serveur iVentoy',         icon:'fa-solid fa-server', desc:"Déploiement automatisé de Windows 10 sur les postes clients via un serveur iVentoy sous Proxmox, pour standardiser et accélérer les installations du parc informatique de la M2L.",                                     tags:['iVentoy','Proxmox','pfSense','Déploiement','E6'],            pdf:'pdf/fiche_e6_iventoy.pdf' },
         ],
     },
 
 };
 
-/* ── RENDU ─────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     const id = new URLSearchParams(location.search).get('id');
     const c  = DATA[id];
 
     if (!c) {
         document.getElementById('page-content').innerHTML = `
-        <div style="min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;text-align:center;padding:2rem">
-            <i class="fa-solid fa-triangle-exclamation" style="font-size:2rem;color:var(--accent)"></i>
-            <p style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text-main)">Expérience introuvable.</p>
-            <a href="projects.html" class="btn-ghost" style="text-decoration:none"><i class="fa-solid fa-arrow-left"></i> Retour aux projets</a>
+        <div class="detail-error">
+            <i class="fa-solid fa-triangle-exclamation detail-error__icon"></i>
+            <p class="detail-error__title">Expérience introuvable.</p>
+            <a href="projects.html" class="btn-ghost"><i class="fa-solid fa-arrow-left"></i> Retour aux projets</a>
         </div>`;
         return;
     }
@@ -207,77 +114,37 @@ document.addEventListener('DOMContentLoaded', () => {
     document.title = `${c.title} | Mwindjou`;
 
     document.getElementById('page-content').innerHTML = `
-
-    <!-- EN-TÊTE -->
-    <section class="pt-32 pb-12 relative">
+    <section class="detail-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <a href="projects.html"
-               style="display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--text-dim);text-decoration:none;margin-bottom:2rem;transition:color .15s"
-               onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text-dim)'">
+            <a href="projects.html" class="detail-back">
                 <i class="fa-solid fa-arrow-left"></i> Retour aux projets
             </a>
-
-            <h1 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,5vw,2.75rem);font-weight:800;letter-spacing:-.03em;color:var(--text-main);margin-bottom:.4rem">
-                ${c.title}
-            </h1>
-            <p style="font-family:'JetBrains Mono',monospace;font-size:.82rem;color:${c.color.text};margin-bottom:1.25rem">
-                ${c.subtitle}
-            </p>
-            <p style="font-size:.95rem;color:var(--text-dim);line-height:1.78;max-width:640px;margin-bottom:1.75rem">
-                ${c.desc}
-            </p>
-
-            ${c.website ? `
-            <a href="${c.website}" target="_blank" class="btn-ghost" style="text-decoration:none">
-                <i class="fa-solid fa-globe"></i> Visiter le site officiel
-            </a>` : ''}
+            <h1 class="detail-title">${c.title}</h1>
+            <p class="detail-subtitle" style="color:${c.color.text}">${c.subtitle}</p>
+            <p class="detail-desc">${c.desc}</p>
+            ${c.website ? `<a href="${c.website}" target="_blank" class="btn-ghost"><i class="fa-solid fa-globe"></i> Visiter le site officiel</a>` : ''}
         </div>
     </section>
 
-    <!-- GRILLE MISSIONS -->
-    <section class="py-16 border-t" style="background:rgba(255,255,255,.012);border-color:var(--border-color)">
+    <section class="detail-missions">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin-bottom:2rem;padding-left:1rem;border-left:3px solid var(--accent)">
+            <h2 class="detail-missions__heading">
+                <span class="detail-missions__bar" style="background:${c.color.text}"></span>
                 Détail des Missions Réalisées
             </h2>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 ${c.missions.map(m => `
-                <div class="glass rounded-xl overflow-hidden group"
-                     style="transition:box-shadow .3s;display:flex;flex-direction:column"
-                     onmouseenter="this.style.boxShadow='0 16px 48px ${c.color.glow}'"
-                     onmouseleave="this.style.boxShadow=''">
-
-                    <!-- Bandeau icône -->
-                    <div style="height:140px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                        <i class="${m.icon}"
-                           style="font-size:2.8rem;color:var(--border-color);transition:all .35s"
-                           onmouseenter="this.style.transform='scale(1.12)';this.style.color='${c.color.text}'"
-                           onmouseleave="this.style.transform='';this.style.color='var(--border-color)'"></i>
+                <div class="mission-card">
+                    <div class="mission-card__icon-wrap">
+                        <i class="${m.icon} mission-card__icon" style="--mc:${c.color.text}"></i>
                     </div>
-
-                    <!-- Contenu -->
-                    <div style="padding:1.25rem;display:flex;flex-direction:column;flex:1">
-                        <h3 style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--text-main);margin-bottom:.6rem;transition:color .15s"
-                            onmouseenter="this.style.color='${c.color.text}'" onmouseleave="this.style.color='var(--text-main)'">${m.title}</h3>
-                        <p style="font-size:.82rem;color:var(--text-dim);line-height:1.72;margin-bottom:.9rem;flex:1">${m.desc}</p>
-
-                        <!-- Tags -->
-                        <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:${m.pdf ? '.9rem' : '0'}">
-                            ${m.tags.map(t => `
-                            <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 8px;border-radius:6px;color:${c.color.text};background:${c.color.bg};border:1px solid ${c.color.border}">${t}</span>
-                            `).join('')}
+                    <div class="mission-card__body">
+                        <h3 class="mission-card__title">${m.title}</h3>
+                        <p class="mission-card__desc">${m.desc}</p>
+                        <div class="mission-card__tags">
+                            ${m.tags.map(t => `<span class="mission-tag" style="color:${c.color.text};background:${c.color.bg};border-color:${c.color.border}">${t}</span>`).join('')}
                         </div>
-
-                        <!-- Lien PDF si disponible -->
-                        ${m.pdf ? `
-                        <a href="${m.pdf}" target="_blank"
-                           style="display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;color:${c.color.text};text-decoration:none;padding-top:.75rem;border-top:1px solid var(--border-color);transition:opacity .15s"
-                           onmouseenter="this.style.opacity='.7'" onmouseleave="this.style.opacity='1'">
-                            <i class="fa-solid fa-file-pdf"></i> Voir la fiche PDF
-                        </a>` : ''}
+                        ${m.pdf ? `<a href="${m.pdf}" target="_blank" class="mission-card__pdf" style="color:${c.color.text}"><i class="fa-solid fa-file-pdf"></i> Voir la fiche PDF</a>` : ''}
                     </div>
                 </div>`).join('')}
             </div>
@@ -287,7 +154,40 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <style>
-@keyframes spin { to { transform: rotate(360deg); } }
+.loader-screen { min-height:80vh; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
+.loader-spinner { width:32px; height:32px; border-radius:50%; border:2px solid var(--border-color); border-top-color:var(--accent); animation:spin .7s linear infinite; }
+.loader-text { font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--text-dim); }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.detail-error { min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.25rem; text-align:center; padding:2rem; }
+.detail-error__icon { font-size:2rem; color:var(--accent); }
+.detail-error__title { font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:700; color:var(--text-main); }
+
+.detail-header { padding-top:8rem; padding-bottom:3rem; }
+.detail-back { display:inline-flex; align-items:center; gap:.5rem; font-size:.875rem; color:var(--text-dim); text-decoration:none; margin-bottom:2rem; transition:color .15s; }
+.detail-back:hover { color:var(--accent); }
+.detail-title { font-family:'Outfit',sans-serif; font-size:clamp(1.8rem,5vw,2.75rem); font-weight:800; letter-spacing:-.03em; color:var(--text-main); margin-bottom:.4rem; }
+.detail-subtitle { font-family:'JetBrains Mono',monospace; font-size:.82rem; margin-bottom:1.25rem; display:block; }
+.detail-desc { font-size:.95rem; color:var(--text-dim); line-height:1.78; max-width:640px; margin-bottom:1.75rem; }
+
+.detail-missions { padding-block:4rem; border-top:1px solid var(--border-color); background:rgba(255,255,255,.012); }
+[data-theme="light"] .detail-missions { background:rgba(0,0,0,.015); }
+.detail-missions__heading { display:flex; align-items:center; gap:.75rem; font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:2rem; }
+.detail-missions__bar { display:block; width:3px; height:1.2em; border-radius:2px; flex-shrink:0; }
+
+.mission-card { background:var(--card-color); border:1px solid var(--border-color); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .25s, box-shadow .25s, transform .25s; }
+.mission-card:hover { border-color:rgba(var(--accent-rgb),.25); transform:translateY(-3px); box-shadow:0 16px 40px rgba(0,0,0,.25); }
+[data-theme="light"] .mission-card:hover { box-shadow:0 8px 24px rgba(0,0,0,.08); }
+.mission-card__icon-wrap { height:120px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.02); border-bottom:1px solid var(--border-color); flex-shrink:0; }
+.mission-card__icon { font-size:2.4rem; color:var(--border-color); transition:color .3s, transform .3s; }
+.mission-card:hover .mission-card__icon { color:var(--mc, var(--accent)); transform:scale(1.1); }
+.mission-card__body { padding:1.25rem; display:flex; flex-direction:column; flex:1; }
+.mission-card__title { font-family:'Outfit',sans-serif; font-size:.95rem; font-weight:700; color:var(--text-main); margin-bottom:.6rem; }
+.mission-card__desc { font-size:.82rem; color:var(--text-dim); line-height:1.72; margin-bottom:.9rem; flex:1; }
+.mission-card__tags { display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:.5rem; }
+.mission-tag { font-family:'JetBrains Mono',monospace; font-size:.65rem; padding:2px 8px; border-radius:6px; border:1px solid; }
+.mission-card__pdf { display:inline-flex; align-items:center; gap:.4rem; font-family:'JetBrains Mono',monospace; font-size:.7rem; text-decoration:none; padding-top:.75rem; border-top:1px solid var(--border-color); opacity:.8; transition:opacity .15s; margin-top:.5rem; }
+.mission-card__pdf:hover { opacity:1; }
 </style>
 
 </body>
