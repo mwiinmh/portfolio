@@ -91,9 +91,9 @@ function initNav() {
         html.setAttribute('data-theme', t);
         localStorage.setItem('theme', t);
         const isDark = t === 'dark';
-        // Floating button icons
-        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', isDark);
-        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', !isDark);
+        // Dark mode → show sun (to switch to light) ; Light mode → show moon (to switch to dark)
+        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', !isDark);
+        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', isDark);
     }
     applyTheme(saved ?? (sysDark ? 'dark' : 'light'));
 
@@ -178,17 +178,19 @@ function renderFooter() {
     document.body.appendChild(fab);
 
     // Re-sync icons after injection
+    // Dark mode → show sun ; Light mode → show moon
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    document.getElementById('fab-icon-sun')?.classList.toggle('hidden', currentTheme === 'dark');
-    document.getElementById('fab-icon-moon')?.classList.toggle('hidden', currentTheme === 'light');
+    document.getElementById('fab-icon-sun')?.classList.toggle('hidden', currentTheme === 'light');
+    document.getElementById('fab-icon-moon')?.classList.toggle('hidden', currentTheme === 'dark');
 
     document.getElementById('theme-fab')?.addEventListener('click', () => {
         const html = document.documentElement;
         const t = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         html.setAttribute('data-theme', t);
         localStorage.setItem('theme', t);
-        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', t === 'dark');
-        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', t === 'light');
+        // After switching: dark → show sun ; light → show moon
+        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', t === 'light');
+        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', t === 'dark');
     });
 
     document.getElementById('footer-placeholder').innerHTML = `
