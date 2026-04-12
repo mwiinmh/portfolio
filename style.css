@@ -85,11 +85,46 @@ body {
     font-weight: 800;
     font-size: 1.18rem;
     letter-spacing: -0.04em;
-    color: var(--text-main);
     text-decoration: none;
-    transition: color .2s;
+    /* Shimmer effect : éclat lumineux violet → rose → blanc en boucle */
+    background: linear-gradient(
+        90deg,
+        var(--text-main)  0%,
+        var(--text-main)  30%,
+        #a855f7           42%,
+        #f0abfc           50%,
+        #a855f7           58%,
+        var(--text-main)  70%,
+        var(--text-main) 100%
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: logo-shimmer 3.5s linear infinite;
 }
-.nav-logo:hover { color: var(--accent); }
+/* En mode clair, le texte de base passe au sombre */
+[data-theme="light"] .nav-logo {
+    background: linear-gradient(
+        90deg,
+        var(--text-main)  0%,
+        var(--text-main)  30%,
+        #7e22ce           42%,
+        #c084fc           50%,
+        #7e22ce           58%,
+        var(--text-main)  70%,
+        var(--text-main) 100%
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: logo-shimmer 3.5s linear infinite;
+}
+@keyframes logo-shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -60% center; }
+}
 
 .nav-item {
     font-family: 'Inter', sans-serif;
