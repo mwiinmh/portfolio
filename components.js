@@ -90,10 +90,7 @@ function initNav() {
     function applyTheme(t) {
         html.setAttribute('data-theme', t);
         localStorage.setItem('theme', t);
-        const isDark = t === 'dark';
-        // Dark mode → show sun (to switch to light) ; Light mode → show moon (to switch to dark)
-        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', !isDark);
-        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', isDark);
+        updateFabIcon(t);
     }
     applyTheme(saved ?? (sysDark ? 'dark' : 'light'));
 
@@ -164,33 +161,43 @@ function setActiveLink(id) {
 }
 
 /* ══════════════════════════════════════════════
+   Mise à jour de l'icône du FAB selon le thème
+══════════════════════════════════════════════ */
+function updateFabIcon(theme) {
+    const icon = document.getElementById('fab-icon');
+    if (!icon) return;
+    if (theme === 'dark') {
+        // Mode sombre actif → afficher soleil (pour passer au clair)
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        // Mode clair actif → afficher lune (pour passer au sombre)
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+}
+
+/* ══════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════ */
 function renderFooter() {
-    /* ── Floating Theme Button ─────────────────────────────────── */
+    /* ── Bouton flottant de thème (FAB) ───────────────────────────── */
     const fab = document.createElement('button');
     fab.id = 'theme-fab';
     fab.setAttribute('aria-label', 'Changer de thème');
-    fab.innerHTML = `
-        <i class="fa-solid fa-sun" id="fab-icon-sun"></i>
-        <i class="fa-solid fa-moon hidden" id="fab-icon-moon"></i>
-    `;
+    // Une seule icône, sa classe (fa-sun ou fa-moon) est changée dynamiquement
+    fab.innerHTML = `<i class="fa-solid fa-sun" id="fab-icon"></i>`;
     document.body.appendChild(fab);
 
-    // Re-sync icons after injection
-    // Dark mode → show sun ; Light mode → show moon
+    // Synchroniser l'icône avec le thème actuel
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    document.getElementById('fab-icon-sun')?.classList.toggle('hidden', currentTheme === 'light');
-    document.getElementById('fab-icon-moon')?.classList.toggle('hidden', currentTheme === 'dark');
+    updateFabIcon(currentTheme);
 
-    document.getElementById('theme-fab')?.addEventListener('click', () => {
-        const html = document.documentElement;
-        const t = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', t);
-        localStorage.setItem('theme', t);
-        // After switching: dark → show sun ; light → show moon
-        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', t === 'light');
-        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', t === 'dark');
+    fab.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', current);
+        localStorage.setItem('theme', current);
+        updateFabIcon(current);
     });
 
     document.getElementById('footer-placeholder').innerHTML = `
