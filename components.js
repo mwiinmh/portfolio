@@ -61,18 +61,9 @@ function renderNav() {
 
                 <div class="hidden md:flex items-center gap-0.5">
                     ${desktopLinks}
-                    <div class="nav-sep"></div>
-                    <button id="theme-toggle" class="nav-icon-btn" aria-label="Thème">
-                        <i class="fa-solid fa-sun hidden" id="icon-light"></i>
-                        <i class="fa-solid fa-moon" id="icon-dark"></i>
-                    </button>
                 </div>
 
                 <div class="md:hidden flex items-center gap-2">
-                    <button id="theme-toggle-mobile" class="nav-icon-btn" aria-label="Thème">
-                        <i class="fa-solid fa-sun hidden" id="icon-light-mobile"></i>
-                        <i class="fa-solid fa-moon" id="icon-dark-mobile"></i>
-                    </button>
                     <button id="mobile-menu-btn" class="nav-icon-btn" aria-label="Menu">
                         <i class="fa-solid fa-bars text-base" id="hamburger-icon"></i>
                         <i class="fa-solid fa-xmark text-base hidden" id="close-icon"></i>
@@ -99,15 +90,14 @@ function initNav() {
     function applyTheme(t) {
         html.setAttribute('data-theme', t);
         localStorage.setItem('theme', t);
-        const d = t === 'dark';
-        ['icon-light','icon-light-mobile'].forEach(id => document.getElementById(id)?.classList.toggle('hidden', d));
-        ['icon-dark', 'icon-dark-mobile' ].forEach(id => document.getElementById(id)?.classList.toggle('hidden', !d));
+        const isDark = t === 'dark';
+        // Floating button icons
+        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', isDark);
+        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', !isDark);
     }
     applyTheme(saved ?? (sysDark ? 'dark' : 'light'));
 
-    document.getElementById('theme-toggle')?.addEventListener('click',
-        () => applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
-    document.getElementById('theme-toggle-mobile')?.addEventListener('click',
+    document.getElementById('theme-fab')?.addEventListener('click',
         () => applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
 
     const menu    = document.getElementById('mobile-menu');
@@ -177,6 +167,30 @@ function setActiveLink(id) {
    FOOTER
 ══════════════════════════════════════════════ */
 function renderFooter() {
+    /* ── Floating Theme Button ─────────────────────────────────── */
+    const fab = document.createElement('button');
+    fab.id = 'theme-fab';
+    fab.setAttribute('aria-label', 'Changer de thème');
+    fab.innerHTML = `
+        <i class="fa-solid fa-sun" id="fab-icon-sun"></i>
+        <i class="fa-solid fa-moon hidden" id="fab-icon-moon"></i>
+    `;
+    document.body.appendChild(fab);
+
+    // Re-sync icons after injection
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    document.getElementById('fab-icon-sun')?.classList.toggle('hidden', currentTheme === 'dark');
+    document.getElementById('fab-icon-moon')?.classList.toggle('hidden', currentTheme === 'light');
+
+    document.getElementById('theme-fab')?.addEventListener('click', () => {
+        const html = document.documentElement;
+        const t = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', t);
+        localStorage.setItem('theme', t);
+        document.getElementById('fab-icon-sun')?.classList.toggle('hidden', t === 'dark');
+        document.getElementById('fab-icon-moon')?.classList.toggle('hidden', t === 'light');
+    });
+
     document.getElementById('footer-placeholder').innerHTML = `
     <footer class="py-14" style="background:var(--bg-color)">
         <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
