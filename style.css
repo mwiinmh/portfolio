@@ -344,6 +344,154 @@ body {
 }
 
 /* ════════════════════════════════════════════════════════════
+   9B. TECHNOLOGIES MARQUEE
+   ════════════════════════════════════════════════════════════ */
+.tech-showcase {
+    position: relative;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 0 0;
+}
+
+.tech-showcase__intro {
+    display: grid;
+    gap: .8rem;
+    margin-bottom: 2rem;
+    max-width: 760px;
+}
+
+.tech-showcase__text {
+    color: var(--text-dim);
+    line-height: 1.85;
+    font-size: .94rem;
+    max-width: 620px;
+}
+
+.tech-showcase__meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+.tech-showcase__rail {
+    display: grid;
+    gap: .9rem;
+    padding-bottom: .15rem;
+}
+
+.tech-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: .1rem 0;
+}
+
+.tech-marquee__track {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    width: max-content;
+    will-change: transform;
+    animation: tech-marquee-scroll 26s linear infinite;
+}
+
+.tech-marquee:hover .tech-marquee__track {
+    animation-play-state: paused;
+}
+
+.tech-marquee--reverse .tech-marquee__track {
+    animation-direction: reverse;
+    animation-duration: 30s;
+}
+
+.tech-marquee__fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 72px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.tech-marquee__fade--left {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-color) 12%, transparent);
+}
+
+.tech-marquee__fade--right {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-color) 12%, transparent);
+}
+
+.tech-logo-card {
+    min-width: 170px;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .8rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: color-mix(in srgb, var(--card-color) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.tech-logo-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--tech-logo) 36%, var(--border-color));
+    background: color-mix(in srgb, var(--card-color) 92%, var(--tech-logo-soft));
+}
+
+.tech-logo-card__badge {
+    width: 54px;
+    height: 40px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .45rem;
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(255,255,255,.32);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+
+[data-theme="light"] .tech-logo-card__badge {
+    background: rgba(255,255,255,.82);
+    border-color: rgba(15,23,42,.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
+}
+
+.tech-logo-card--wide .tech-logo-card__badge {
+    width: 66px;
+    padding: .42rem .5rem;
+}
+
+.tech-logo-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.tech-logo-card__title {
+    font-family: 'Inter', sans-serif;
+    font-size: .84rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+@keyframes tech-marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ════════════════════════════════════════════════════════════
    10. FILTER PILLS
    ════════════════════════════════════════════════════════════ */
 .filter-pill {
@@ -460,13 +608,41 @@ footer::before {
     .orb-2 { width:200px; height:200px; }
     .orb-3 { display:none; }
     #particle-canvas { opacity:.18; }
+    .tech-showcase { padding-top: 1.15rem; }
+    .tech-showcase__intro { margin-bottom: 1.5rem; }
+    .tech-showcase__text { font-size: .9rem; }
+    .tech-showcase__meta { font-size: .62rem; line-height: 1.7; }
+    .tech-marquee__track { gap: .7rem; animation-duration: 22s; }
+    .tech-marquee--reverse .tech-marquee__track { animation-duration: 25s; }
+    .tech-logo-card {
+        min-width: 154px;
+        padding: .72rem .9rem;
+        gap: .65rem;
+    }
+    .tech-logo-card__badge {
+        width: 48px;
+        height: 36px;
+        padding: .38rem;
+    }
+    .tech-logo-card--wide .tech-logo-card__badge { width: 60px; }
+    .tech-logo-card__title { font-size: .79rem; }
+    .tech-marquee__fade { width: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tech-marquee__track {
+        width: auto;
+        flex-wrap: wrap;
+        animation: none;
+    }
+    .tech-marquee__fade { display: none; }
 }
 
 /* ════════════════════════════════════════════════════════════
    20. TRANSITIONS GLOBALES THÈME
    ════════════════════════════════════════════════════════════ */
 body, nav, .glass, footer,
-.modal-glass, .skill-card-glass,
+.modal-glass, .skill-card-glass, .tech-logo-card,
 .input-glass, .filter-pill,
 .nav-item, .nav-icon-btn, .mobile-item {
     transition:
