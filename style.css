@@ -83,47 +83,48 @@ body {
 .nav-logo {
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
-    font-size: 1.18rem;
-    letter-spacing: -0.04em;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     text-decoration: none;
-    /* Shimmer effect : éclat lumineux violet → rose → blanc en boucle */
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    
+    /* Elegant Shimmer */
     background: linear-gradient(
         90deg,
-        var(--text-main)  0%,
-        var(--text-main)  30%,
-        #a855f7           42%,
-        #f0abfc           50%,
-        #a855f7           58%,
-        var(--text-main)  70%,
+        var(--text-main) 0%,
+        var(--accent) 50%,
         var(--text-main) 100%
     );
-    background-size: 250% auto;
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: logo-shimmer 3.5s linear infinite;
+    animation: logo-shimmer 4s ease infinite;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-/* En mode clair, le texte de base passe au sombre */
-[data-theme="light"] .nav-logo {
-    background: linear-gradient(
-        90deg,
-        var(--text-main)  0%,
-        var(--text-main)  30%,
-        #7e22ce           42%,
-        #c084fc           50%,
-        #7e22ce           58%,
-        var(--text-main)  70%,
-        var(--text-main) 100%
-    );
-    background-size: 250% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: logo-shimmer 3.5s linear infinite;
+
+.nav-logo::after {
+    content: '.';
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+    margin-left: 0.1em;
+    font-size: 1.6rem;
+    line-height: 0;
 }
+
+.nav-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(var(--accent-rgb), 0.3));
+}
+
+/* En mode clair, les variables CSS gèrent déjà l'harmonie du logo */
+
 @keyframes logo-shimmer {
-    0%   { background-position: 200% center; }
-    100% { background-position: -60% center; }
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
 }
 
 .nav-item {
@@ -947,3 +948,7 @@ body, nav, .glass, footer,
     box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.3);
 }
 
+@keyframes logo-shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
