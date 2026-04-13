@@ -6,7 +6,7 @@ const SITE = {
     name:     'Mwindjou',
     github:   'https://github.com/mwiinmh',
     linkedin: 'https://linkedin.com/in/mwindjou-mhoumadi-08a2141b5/',
-    email:    'contact@mwindjou.fr',
+    email:    'mwindjoumhoumadi78@hotmail.com',
     year:     new Date().getFullYear(),
 };
 
