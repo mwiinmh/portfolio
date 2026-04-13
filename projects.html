@@ -24,7 +24,7 @@
 <section class="pt-32 pb-12 relative overflow-hidden">
     <div class="absolute inset-0 opacity-[.03]" style="background-image:radial-gradient(var(--text-dim) 1px,transparent 1px);background-size:24px 24px"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <h1 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--text-main);margin-bottom:1rem">
+        <h1 style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--text-main);margin-bottom:1rem">
             Projets &amp; <span style="color:var(--accent)">Missions</span>
         </h1>
         <p style="font-size:1rem;color:var(--text-dim);max-width:480px;margin:0 auto;line-height:1.75">
@@ -35,179 +35,187 @@
 
 <!-- ── FILTRES ────────────────────────────────────────────── -->
 <div class="sticky top-[62px] z-40 border-b border-tech-border py-4 bg-tech-bg/90 backdrop-blur-xl">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 flex-wrap">
-        <span class="hidden sm:block font-mono text-xs text-tech-dim uppercase tracking-wider mr-2">Filtrer :</span>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center sm:justify-start gap-2.5 flex-wrap">
         <button data-filter="all" onclick="filterSection('all')" class="filter-pill active">
-            <i class="fa-solid fa-layer-group text-xs opacity-70"></i> Tout voir
+            <i class="fa-solid fa-layer-group"></i> Tout
         </button>
         <button data-filter="alternance" onclick="filterSection('alternance')" class="filter-pill">
-            <i class="fa-solid fa-briefcase text-xs opacity-70"></i> Alternance
+            <i class="fa-solid fa-briefcase"></i> Alternance
         </button>
         <button data-filter="stage" onclick="filterSection('stage')" class="filter-pill">
-            <i class="fa-solid fa-graduation-cap text-xs opacity-70"></i> Stage
+            <i class="fa-solid fa-graduation-cap"></i> Stages
         </button>
         <button data-filter="formation" onclick="filterSection('formation')" class="filter-pill">
-            <i class="fa-solid fa-school text-xs opacity-70"></i> Formation
+            <i class="fa-solid fa-school"></i> Formation
         </button>
     </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════
      BLOC 1 — ALTERNANCE · REDVISE
-════════════════════════════════════════════════════════ -->
-<section id="alternance" data-cat="alternance" class="project-section py-16 md:py-24 border-b border-tech-border">
+     ════════════════════════════════════════════════════════ -->
+<section id="alternance" data-cat="alternance" class="project-section py-20 border-b border-tech-border">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- En-tête minimalist -->
-        <div class="flex items-center gap-4 mb-12">
-            <div class="p-3 bg-purple-500/10 border border-purple-500/20 rounded-xl">
-                <i class="fa-solid fa-briefcase text-purple-400 text-xl"></i>
-            </div>
-            <div>
-                <h2 class="font-sans text-2xl md:text-3xl font-bold text-tech-text mb-2 flex items-end gap-3">
-                    Alternance chez REDVISE
-                    <span class="inline-block bg-white p-1 rounded-sm shadow-sm border border-gray-100 flex-shrink-0 relative top-[-2px]">
-                        <img src="img/logo_redvise.png" alt="Logo REDVISE" onerror="this.style.display='none'" class="h-4 w-auto object-contain">
+        <div class="glass rounded-2xl p-8 md:p-12">
+            <!-- En-tête -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 bg-purple-500/10 border border-purple-500/20 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-briefcase text-purple-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 style="font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:700;color:var(--text-main)" class="flex items-center gap-3">
+                            REDVISE
+                            <span class="inline-block bg-white p-1 rounded shadow-sm border border-gray-100 flex-shrink-0">
+                                <img src="img/logo_redvise.png" alt="Logo REDVISE" onerror="this.style.display='none'" class="h-4 w-auto object-contain">
+                            </span>
+                        </h2>
+                        <p class="font-mono text-xs text-tech-dim tracking-wide uppercase">D'octobre 2024 à Aujourd'hui · Alternance</p>
+                    </div>
+                </div>
+                <div class="flex-shrink-0">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-full text-xs font-semibold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span> Poste Actuel
                     </span>
-                </h2>
-                <p class="font-mono text-xs md:text-sm text-tech-dim tracking-wide">Administrateur Système &amp; Réseau Junior</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Colonne Gauche -->
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="text-tech-dim uppercase tracking-widest text-[0.65rem] font-bold mb-3">L'Équipe IT</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-[0.85rem] text-tech-text/80">
+                                <span class="w-1 h-1 rounded-full bg-purple-400/50"></span> DSI & Admin Réseaux
+                            </div>
+                            <div class="flex items-center gap-3 text-[0.85rem] text-tech-text/80">
+                                <span class="w-1 h-1 rounded-full bg-purple-400/50"></span> Lead Dev & Tech Support
+                            </div>
+                            <div class="p-3 bg-white/5 border border-white/5 rounded-xl">
+                                <p class="text-[0.8rem] font-bold text-purple-400 mb-1">Moi (Alternant)</p>
+                                <p class="text-[0.75rem] text-tech-dim leading-snug">Admin Sys & Réseau Junior</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-tech-dim uppercase tracking-widest text-[0.65rem] font-bold mb-3">Contexte</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-white/5 border border-white/5 rounded-lg text-[0.7rem] text-tech-dim">PME Services IT</span>
+                            <span class="px-2.5 py-1 bg-white/5 border border-white/5 rounded-lg text-[0.7rem] text-tech-dim">Multi-clients</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne Droite -->
+                <div class="lg:col-span-2 space-y-10">
+                    <div>
+                        <h3 style="font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text-main);margin-bottom:1rem">L'Entreprise & Missions</h3>
+                        <p class="text-tech-dim leading-relaxed text-[0.95rem] mb-6">
+                            REDVISE est un intégrateur de solutions numériques. Mon rôle est d'assurer le <strong>Maintien en Condition Opérationnelle (MCO)</strong> des infrastructures serveurs et réseaux des clients, tout en participant aux projets de migration.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500/40 flex-shrink-0"></div>
+                                <p class="text-[0.9rem] text-tech-text/90">Administration sous <strong>Windows Server</strong> & environnements <strong>Virtualisés</strong>.</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500/40 flex-shrink-0"></div>
+                                <p class="text-[0.9rem] text-tech-text/90">Configuration d'équipements réseaux sécurisés (Mikrotik, Firewalling).</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-500/40 flex-shrink-0"></div>
+                                <p class="text-[0.9rem] text-tech-text/90">Support technique avancé et gestion des incidents critiques.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="details.html?id=redvise" class="btn-primary">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            Découvrir les missions en détail
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Contenu -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <!-- Colonne infos pures -->
-            <div class="lg:col-span-1 space-y-8 text-sm">
-                <div>
-                    <h4 class="text-tech-dim uppercase tracking-widest text-[0.7rem] font-semibold mb-2">Secteur</h4>
-                    <p class="text-tech-text font-medium">Conseil &amp; Services IT</p>
-                </div>
-                <div>
-                    <h4 class="text-tech-dim uppercase tracking-widest text-[0.7rem] font-semibold mb-2">Effectif</h4>
-                    <p class="text-tech-text font-medium">~50 collaborateurs</p>
-                </div>
-                <div>
-                    <h4 class="text-tech-dim uppercase tracking-widest text-[0.7rem] font-semibold mb-4">L'Équipe IT</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-2.5 text-tech-text opacity-80">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400/40"></span> Directeur Technique (DSI)
-                        </li>
-                        <li class="flex items-center gap-2.5 text-tech-text opacity-80">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400/40"></span> Responsable Support
-                        </li>
-                        <li class="flex items-center gap-3 text-tech-text font-medium bg-tech-card p-2 px-3 rounded-lg border border-tech-border w-max">
-                           <span class="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]"></span> Admin Sys &amp; Réseaux <span class="text-xs text-tech-dim font-normal italic">(Tuteur)</span>
-                        </li>
-                        <li class="flex items-center gap-2 text-purple-500 font-semibold pl-5 border-l-2 border-purple-500/20 ml-[7px] py-1">
-                            <span class="w-1 h-1 rounded-full bg-purple-500 mr-2"></span> Moi (Alternant)
-                        </li>
-                        <li class="flex items-center gap-2.5 text-tech-text opacity-80 pt-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400/40"></span> Lead Développeur
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Colonne description -->
-            <div class="lg:col-span-2 space-y-10">
-                <div>
-                    <h3 class="text-lg font-bold text-tech-text mb-3">L'Entreprise</h3>
-                    <p class="text-tech-dim leading-relaxed text-[0.95rem]">
-                        REDVISE est une entreprise spécialisée dans l'accompagnement numérique des PME. Elle propose des solutions d'infogérance, de cybersécurité et de déploiement d'infrastructures cloud avec une vraie valeur ajoutée de proximité et d'écoute.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-tech-text mb-3">Mon Rôle</h3>
-                    <p class="text-tech-dim leading-relaxed text-[0.95rem]">
-                        Intégré de façon opérationnelle au pôle "Infra &amp; Sécurité", j'assure quotidiennement le maintien en condition opérationnelle (MCO) des serveurs virtualisés des clients. Je suis par ailleurs activement mobilisé sur des projets de migration technique de grande ampleur et d'évolution d'architectures réseaux sécurisées.
-                    </p>
-                </div>
-
-                <div class="pt-4">
-                    <a href="details.html?id=redvise" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-purple-500/10 text-purple-500 border border-purple-500/20 hover:bg-purple-500 hover:text-white font-medium rounded-xl transition-colors duration-300">
-                        <i class="fa-solid fa-folder-open"></i> Voir les missions détaillées
-                    </a>
-                </div>
-            </div>
-        </div>
-
     </div>
 </section>
 
 <!-- ════════════════════════════════════════════════════════
      BLOC 2 — STAGE · ITIC PARIS
-════════════════════════════════════════════════════════ -->
-<section id="stage" data-cat="stage" class="project-section py-16 md:py-24 border-b border-tech-border">
+     ════════════════════════════════════════════════════════ -->
+<section id="stage" data-cat="stage" class="project-section py-20 border-b border-tech-border">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="flex items-center gap-4 mb-12">
-            <div class="p-3 bg-green-500/10 border border-green-500/20 rounded-xl">
-                <i class="fa-solid fa-graduation-cap text-green-500 text-xl"></i>
+        <div class="glass rounded-2xl p-8 md:p-12">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 bg-green-500/10 border border-green-500/20 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-graduation-cap text-green-500 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 style="font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:700;color:var(--text-main)" class="flex items-center gap-3">
+                            ITIC Paris
+                            <span class="inline-block bg-white p-1 rounded shadow-sm border border-gray-100 flex-shrink-0">
+                                <img src="img/logo_itic.png" alt="Logo ITIC Paris" onerror="this.style.display='none'" class="h-4 w-auto object-contain">
+                            </span>
+                        </h2>
+                        <p class="font-mono text-xs text-tech-dim tracking-wide uppercase">Avril 2024 · Stage (6 semaines)</p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h2 class="font-sans text-2xl md:text-3xl font-bold text-tech-text mb-2 flex items-end gap-3">
-                    Stage chez ITIC Paris
-                    <span class="inline-block bg-white p-1 rounded-sm shadow-sm border border-gray-100 flex-shrink-0 relative top-[-2px]">
-                        <img src="img/logo_itic.png" alt="Logo ITIC Paris" onerror="this.style.display='none'" class="h-4 w-auto object-contain">
-                    </span>
-                </h2>
-                <p class="font-mono text-xs md:text-sm text-tech-dim tracking-wide">Technicien Support &amp; Réseau</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="text-tech-dim uppercase tracking-widest text-[0.65rem] font-bold mb-3">Le Parc</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-[0.85rem] text-tech-text/80">
+                                <span class="w-1 h-1 rounded-full bg-green-400/50"></span> +200 Postes de TP
+                            </div>
+                            <div class="flex items-center gap-3 text-[0.85rem] text-tech-text/80">
+                                <span class="w-1 h-1 rounded-full bg-green-400/50"></span> Serveurs Pédagogiques
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-tech-dim uppercase tracking-widest text-[0.65rem] font-bold mb-3">L'Équipe</h4>
+                        <div class="p-3 bg-white/5 border border-white/5 rounded-xl">
+                            <p class="text-[0.8rem] font-bold text-green-500 mb-1">Moi (Stagiaire)</p>
+                            <p class="text-[0.75rem] text-tech-dim leading-snug">Support de Proximité</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 space-y-10">
+                    <div>
+                        <h3 style="font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text-main);margin-bottom:1rem">Missions Techniques</h3>
+                        <p class="text-tech-dim leading-relaxed text-[0.95rem] mb-6">
+                            Immersion au sein du service informatique d'un établissement d'enseignement supérieur. Focus sur la maintenance curative et l'amélioration de l'infrastructure réseau de l'école.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                                <p class="text-[0.7rem] font-bold text-green-500 uppercase mb-2">Support</p>
+                                <p class="text-[0.85rem] text-tech-text/80">Assistance utilisateurs et dépannage matériel de premier niveau.</p>
+                            </div>
+                            <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                                <p class="text-[0.7rem] font-bold text-green-500 uppercase mb-2">Réseau</p>
+                                <p class="text-[0.85rem] text-tech-text/80">Réfection du brassage et fiabilisation des accès en salle de cours.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="details.html?id=itic" class="btn-ghost">
+                            <i class="fa-solid fa-list-check text-xs"></i>
+                            Voir le compte rendu de stage
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <!-- Colonne infos pures -->
-            <div class="lg:col-span-1 space-y-8 text-sm">
-                <div>
-                    <h4 class="text-tech-dim uppercase tracking-widest text-[0.7rem] font-semibold mb-2">Secteur</h4>
-                    <p class="text-tech-text font-medium">Établissement Pédagogique</p>
-                </div>
-                <div>
-                    <h4 class="text-tech-dim uppercase tracking-widest text-[0.7rem] font-semibold mb-2">Parc Informatique</h4>
-                    <p class="text-tech-text font-medium">+200 postes utilisateurs</p>
-                </div>
-                <div>
-                    <h4 class="text-tech-dim uppercase tracking-widest text-[0.7rem] font-semibold mb-4">L'Équipe IT</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-2.5 text-tech-text opacity-80">
-                            <span class="w-1.5 h-1.5 rounded-full bg-green-400/40"></span> Responsable Pédagogique
-                        </li>
-                        <li class="flex items-center gap-3 text-tech-text font-medium bg-tech-card p-2 px-3 rounded-lg border border-tech-border w-max">
-                           <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span> Resp. Parc Informatique 
-                        </li>
-                        <li class="flex items-center gap-2 text-green-500 font-semibold pl-5 border-l-2 border-green-500/20 ml-[7px] py-1">
-                            <span class="w-1 h-1 rounded-full bg-green-500 mr-2"></span> Moi (Stagiaire)
-                        </li>
-                        <li class="flex items-center gap-2.5 text-tech-dim pl-5 border-l-2 border-transparent ml-[7px] pt-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-green-400/20 mr-1.5"></span> Autres stagiaires
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Colonne description -->
-            <div class="lg:col-span-2 space-y-10">
-                <div>
-                    <h3 class="text-lg font-bold text-tech-text mb-3">L'Organisation</h3>
-                    <p class="text-tech-dim leading-relaxed text-[0.95rem]">
-                        L'ITIC Paris est une école supérieure d'informatique, de commerce et de marketing. Le service informatique interne a la lourde tâche de garantir la fluidité matérielle et réseau pour le parc pédagogique (salles de TP, labos de certification), le parc administratif, et de stabiliser l'infrastructure d'accès du campus face aux flux étudiants.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-tech-text mb-3">Mon Rôle</h3>
-                    <p class="text-tech-dim leading-relaxed text-[0.95rem]">
-                        En première ligne, mon rôle s'est articulé autour du support niveau 1 face à des urgences pratiques impactant directement la scolarité. Durant les inter-semestres, l'attention s'est portée sur la rénovation, le re-brassage du réseau et la maintenance préventive du parc matériel pour préparer l'année suivante.
-                    </p>
-                </div>
-
-                <div class="pt-4">
-                    <a href="details.html?id=itic" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500/10 text-green-500 border border-green-500/20 hover:bg-green-500 hover:text-white font-medium rounded-xl transition-colors duration-300">
-                        <i class="fa-solid fa-folder-open"></i> Voir les missions détaillées
-                    </a>
-                </div>
-            </div>
-        </div>
-
     </div>
 </section>
 
@@ -218,14 +226,14 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="flex items-center gap-4 mb-16">
-            <div class="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
-                <i class="fa-solid fa-school text-blue-500 text-xl"></i>
+            <div class="w-14 h-14 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-center">
+                <i class="fa-solid fa-school text-blue-500 text-2xl"></i>
             </div>
             <div>
-                <h2 class="font-sans text-2xl md:text-3xl font-bold text-tech-text mb-2">
+                <h2 style="font-family:'Outfit',sans-serif;font-size:1.75rem;font-weight:700;color:var(--text-main)">
                     Travaux de Formation
                 </h2>
-                <p class="font-mono text-xs md:text-sm text-tech-dim tracking-wide">Travaux pratiques du cursus BTS SIO</p>
+                <p class="font-mono text-xs text-tech-dim tracking-wide uppercase">Parcours BTS SIO SISR</p>
             </div>
         </div>
 

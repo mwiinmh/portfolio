@@ -118,7 +118,7 @@ const ARTICLES = [
         tags: ["Zero Trust", "ZTNA", "IAM", "Sécurité réseau"],
         excerpt: "Le modèle Zero Trust remet en cause la notion de périmètre de sécurité traditionnel. Dans un contexte de télétravail généralisé, comprendre ses fondamentaux devient indispensable.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Zero Trust : ne jamais faire confiance, toujours vérifier</h3>
+            <h3 class="article-card__title">Zero Trust : ne jamais faire confiance, toujours vérifier</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 Le modèle Zero Trust repose sur un principe fondamental : aucun utilisateur, appareil ou flux réseau ne doit être considéré comme fiable par défaut, qu'il soit à l'intérieur ou à l'extérieur du réseau.
             </p>
@@ -145,7 +145,7 @@ const ARTICLES = [
         tags: ["Ransomware", "Backup", "EDR", "Incident Response"],
         excerpt: "Les groupes ransomware évoluent vers la double et triple extorsion. Analyse des vecteurs d'attaque actuels et des contre-mesures recommandées pour les PME.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">L'évolution des attaques ransomware</h3>
+            <h3 class="article-card__title">L'évolution des attaques ransomware</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 Les attaques ransomware ne se limitent plus au simple chiffrement des données. La double extorsion (chiffrement + menace de publication des données) est désormais la norme, et certains groupes ajoutent une troisième couche en ciblant les clients de la victime.
             </p>
@@ -174,7 +174,7 @@ const ARTICLES = [
         tags: ["Windows Server 2025", "Active Directory", "SMB", "Hyper-V"],
         excerpt: "Windows Server 2025 apporte des améliorations significatives pour la sécurité AD, les performances SMB et la gestion des conteneurs. Tour d'horizon des changements concrets.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Ce qui change avec Windows Server 2025</h3>
+            <h3 class="article-card__title">Ce qui change avec Windows Server 2025</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 Microsoft a publié Windows Server 2025 avec des améliorations notables dans trois domaines principaux : la sécurité Active Directory, les protocoles réseau, et la conteneurisation.
             </p>
@@ -200,7 +200,7 @@ const ARTICLES = [
         tags: ["Mikrotik", "RouterOS 7", "VLAN", "Firewall"],
         excerpt: "RouterOS 7 introduit une refonte complète de la gestion des VLANs et du firewall. Ce qu'il faut savoir avant de migrer depuis la version 6.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">RouterOS 7 : les changements importants</h3>
+            <h3 class="article-card__title">RouterOS 7 : les changements importants</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 La migration de RouterOS 6 vers 7 n'est pas transparente. Plusieurs concepts clés ont été refondus, notamment la gestion des bridges et des VLANs.
             </p>
@@ -227,7 +227,7 @@ const ARTICLES = [
         tags: ["Docker", "Conteneurs", "Sécurité", "DevSecOps"],
         excerpt: "Utiliser Docker sans précautions expose à des risques importants. Revue des erreurs courantes et des configurations à adopter avant tout déploiement en production.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Sécuriser ses conteneurs Docker</h3>
+            <h3 class="article-card__title">Sécuriser ses conteneurs Docker</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 Docker est devenu incontournable, mais beaucoup de déploiements sont faits sans considérations de sécurité. Voici les points critiques à adresser.
             </p>
@@ -257,7 +257,7 @@ const ARTICLES = [
         tags: ["OSPF", "BGP", "Routage dynamique", "IGP", "EGP"],
         excerpt: "OSPF et BGP sont les deux protocoles de routage dynamique les plus répandus. Comprendre leurs cas d'usage distincts est essentiel pour concevoir une infrastructure réseau correcte.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">OSPF et BGP : deux outils différents</h3>
+            <h3 class="article-card__title">OSPF et BGP : deux outils différents</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 OSPF est un IGP (Interior Gateway Protocol) conçu pour les réseaux internes d'une organisation. BGP est un EGP (Exterior Gateway Protocol) utilisé pour le routage entre systèmes autonomes (AS) sur Internet.
             </p>
@@ -285,7 +285,7 @@ const ARTICLES = [
         tags: ["Centreon", "Zabbix", "Monitoring", "SNMP", "NMS"],
         excerpt: "Deux solutions de supervision open-source majeures face à face. Comparatif des fonctionnalités, de la complexité d'installation et de la pertinence selon la taille de l'infrastructure.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">Centreon vs Zabbix : mon retour d'expérience</h3>
+            <h3 class="article-card__title">Centreon vs Zabbix : mon retour d'expérience</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 J'ai eu l'occasion de déployer Centreon en alternance chez REDVISE. Voici une comparaison honnête des deux outils.
             </p>
@@ -315,7 +315,7 @@ const ARTICLES = [
         tags: ["IA", "SOC", "SIEM", "Threat Intelligence", "Automatisation"],
         excerpt: "Les outils IA s'intègrent progressivement dans les Security Operations Centers. Analyse de leur impact réel sur le travail des analystes et les limites actuelles.",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">L'IA au service des équipes sécurité</h3>
+            <h3 class="article-card__title">L'IA au service des équipes sécurité</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 L'intégration de l'IA dans les SOC ne remplace pas les analystes — elle les augmente. Les cas d'usage concrets se concentrent sur la réduction du bruit et la priorisation des alertes.
             </p>
@@ -342,7 +342,7 @@ const ARTICLES = [
         tags: ["pfSense", "OPNsense", "Firewall", "BSD", "Open Source"],
         excerpt: "Après la controverse autour de pfSense CE et la montée en puissance d'OPNsense, quel outil choisir pour son lab ou son infrastructure d'entreprise ?",
         content: `
-            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main);margin-bottom:.5rem">pfSense vs OPNsense en 2026</h3>
+            <h3 class="article-card__title">pfSense vs OPNsense en 2026</h3>
             <p style="font-size:.875rem;color:var(--text-dim);line-height:1.78;margin-bottom:1rem">
                 La guerre froide entre pfSense CE et OPNsense a évolué. OPNsense a considérablement rattrapé son retard fonctionnel et propose aujourd'hui une alternative crédible.
             </p>

@@ -61,28 +61,16 @@
             <!-- Métriques avec compteurs animés -->
             <div class="flex flex-wrap gap-10 mt-16 pt-10" style="border-top:1px solid var(--border-color)">
                 <div>
-                    <p id="counter-alternance" data-target="1" data-suffix=" an"
-                        style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.04em;color:var(--text-main);line-height:1">
-                        0</p>
-                    <p
-                        style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--text-dim);margin-top:.35rem">
-                        D'ALTERNANCE</p>
+                    <p id="counter-alternance" data-target="1" data-suffix=" an" class="counter-value">0</p>
+                    <p class="counter-label">D'ALTERNANCE</p>
                 </div>
                 <div>
-                    <p id="counter-missions" data-target="9" data-suffix="+"
-                        style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.04em;color:var(--text-main);line-height:1">
-                        0</p>
-                    <p
-                        style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--text-dim);margin-top:.35rem">
-                        MISSIONS</p>
+                    <p id="counter-missions" data-target="9" data-suffix="+" class="counter-value">0</p>
+                    <p class="counter-label">MISSIONS</p>
                 </div>
                 <div>
-                    <p id="counter-diplome" data-target="2026" data-suffix=""
-                        style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.04em;color:var(--text-main);line-height:1">
-                        2020</p>
-                    <p
-                        style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--text-dim);margin-top:.35rem">
-                        DIPLÔME BTS SIO (en cours)</p>
+                    <p id="counter-diplome" data-target="2026" data-suffix="" class="counter-value">2020</p>
+                    <p class="counter-label">DIPLÔME BTS SIO (en cours)</p>
                 </div>
             </div>
         </div>
@@ -110,39 +98,28 @@
                 <div class="lg:col-span-2 space-y-7">
                     <div class="flex flex-col items-center text-center">
                         <div class="relative mb-5">
-                            <div class="w-24 h-24 rounded-2xl flex items-center justify-center text-white text-3xl font-bold"
-                                style="font-family:'Syne',sans-serif;background:linear-gradient(135deg,var(--accent),rgba(139,92,246,.8));box-shadow:0 0 40px rgba(var(--accent-rgb),.22)">
-                                M
-                            </div>
-                            <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2"
-                                style="border-color:var(--bg-color)"></span>
+                            <div class="profile-avatar-wrap">M</div>
+                            <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2" style="border-color:var(--bg-color)"></span>
                         </div>
-                        <h3
-                            style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
-                            Mwindjou Mhoumadi</h3>
-                        <p
-                            style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-top:.3rem">
-                            Étudiant BTS SIO SISR</p>
-                        <p
-                            style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-top:.15rem">
-                            Alternant @ REDVISE · Paris</p>
+                        <h3 class="profile-name">Mwindjou Mhoumadi</h3>
+                        <p class="profile-tag">Étudiant BTS SIO SISR</p>
+                        <p class="profile-sub">Alternant @ REDVISE · Paris</p>
                     </div>
 
                     <p style="color:var(--text-dim);line-height:1.78;font-size:.9rem">
-                        Passionné par les systèmes d'information, je prépare un <span
-                            style="color:var(--text-main);font-weight:600">BTS SIO option SISR</span> à l'ITIC Paris en
-                        alternance. Cette double casquette me permet de confronter chaque jour la théorie aux réalités
-                        du terrain.
+                        Je suis actuellement étudiant en deuxième année de <span style="color:var(--text-main);font-weight:600">BTS Services Informatiques aux Organisations (option SISR)</span> à l’ITIC Paris, en alternance.
                     </p>
                     <p style="color:var(--text-dim);line-height:1.78;font-size:.9rem">
-                        Chez <span style="color:var(--text-main);font-weight:600">REDVISE</span>, j'interviens sur le
-                        MCO de serveurs clients, la sécurisation d'infrastructures réseau (Fortinet) et la supervision
-                        via Centreon.
+                        Depuis toujours, je suis attiré par l’informatique et les nouvelles technologies, avec une préférence pour les systèmes et les réseaux.
                     </p>
                     <p style="color:var(--text-dim);line-height:1.78;font-size:.9rem">
-                        Mon objectif : me spécialiser en <span
-                            style="color:var(--text-main);font-weight:600">cybersécurité et architecture réseau</span>.
-                        En dehors du travail, j'explore le scripting Bash et les usages de l'IA dans l'IT.
+                        Aujourd’hui, j’ai la chance de mettre en pratique ce que j’apprends en entreprise, chez <span style="color:var(--text-main);font-weight:600">REDVISE</span>, où j’interviens, chez nos clients, sur la maintenance de serveurs, la sécurisation d’infrastructures réseau et la supervision.
+                    </p>
+                    <p style="color:var(--text-dim);line-height:1.78;font-size:.9rem">
+                        Je m’intéresse particulièrement à la <span style="color:var(--text-main);font-weight:600">cybersécurité et à l’architecture réseau</span>, domaines dans lesquels je souhaite évoluer.
+                    </p>
+                    <p style="color:var(--text-dim);line-height:1.78;font-size:.9rem">
+                        En dehors de mon parcours professionnel, j’aime continuer à apprendre par moi-même, notamment à travers l’<span style="color:var(--text-main);font-weight:600">Automatisation</span> avec n8n et l’exploration des usages de l’intelligence artificielle dans l’IT.
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-3 pt-1">
@@ -155,18 +132,14 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-2 pt-1">
-                        <div class="glass rounded-xl px-3 py-2.5 flex items-center gap-2"
-                            style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim)">
-                            <i class="fa-solid fa-location-dot" style="color:var(--accent)"></i> Paris, France
+                        <div class="info-badge">
+                            <i class="fa-solid fa-location-dot"></i> Paris, France
                         </div>
-                        <div class="glass rounded-xl px-3 py-2.5 flex items-center gap-2"
-                            style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim)">
-                            <i class="fa-solid fa-language" style="color:var(--accent)"></i> FR · EN · AR
+                        <div class="info-badge">
+                            <i class="fa-solid fa-language"></i> FR · EN · AR
                         </div>
-                        <div class="glass rounded-xl px-3 py-2.5 flex items-center gap-2 col-span-2"
-                            style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim)">
-                            <span class="w-2 h-2 rounded-full bg-green-400 flex-shrink-0"
-                                style="box-shadow:0 0 6px #4ade80"></span>
+                        <div class="info-badge col-span-2">
+                            <span class="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" style="box-shadow:0 0 6px #4ade80"></span>
                             Disponible en alternance jusqu'en 2026
                         </div>
                     </div>
@@ -203,12 +176,8 @@
                     <i id="modal-icon-i"></i>
                 </div>
                 <div>
-                    <h3 id="modal-title"
-                        style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main)">
-                    </h3>
-                    <p
-                        style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);margin-top:.2rem">
-                        Compétence technique</p>
+                    <h3 id="modal-title" style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-main)"></h3>
+                    <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent);margin-top:.2rem">Compétence technique</p>
                 </div>
             </div>
             <p id="modal-desc" style="color:var(--text-dim);line-height:1.75;font-size:.875rem;margin-bottom:1.25rem">
@@ -277,8 +246,7 @@
                         style="min-height:140px">
                         <div class="relative px-6 py-5 transition-transform duration-500 group-hover:-translate-y-1.5">
                             <div class="flex justify-between items-start mb-2">
-                                <h3
-                                    style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
+                                <h3 style="font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
                                     REDVISE</h3>
                                 <span
                                     style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:3px 10px;border-radius:100px;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(var(--accent-rgb),.2)">Alternance</span>
@@ -314,8 +282,7 @@
                         style="min-height:140px">
                         <div class="relative px-6 py-5 transition-transform duration-500 group-hover:-translate-y-1.5">
                             <div class="flex justify-between items-start mb-2">
-                                <h3
-                                    style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
+                                <h3 style="font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
                                     ITIC Paris</h3>
                                 <span
                                     style="font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,.05);color:var(--text-dim);border:1px solid var(--border-color)">Stage</span>
@@ -345,11 +312,11 @@
      04. PARCOURS SCOLAIRE
 ════════════════════════════════════════════ -->
     <section id="education" class="py-28 overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 sm:px-10 lg:px-20">
+        <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-20">
 
-            <div class="mb-16 text-center">
-                <span class="section-label" style="display:block;text-align:center">04. Formation</span>
-                <h2 class="section-title" style="text-align:center">Parcours Scolaire</h2>
+            <div class="mb-16">
+                <span class="section-label">04. Formation</span>
+                <h2 class="section-title">Parcours Scolaire</h2>
             </div>
 
             <div class="relative" style="padding-left:2rem;border-left:1px solid var(--border-color)">
@@ -358,8 +325,7 @@
                     <span class="absolute"
                         style="left:-2.6rem;top:2px;width:18px;height:18px;border-radius:50%;background:var(--bg-color);border:2px solid var(--accent);box-shadow:0 0 10px rgba(var(--accent-rgb),.3)"></span>
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                        <h3
-                            style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
+                        <h3 style="font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
                             BTS SIO option SISR</h3>
                         <span
                             style="font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:3px 12px;border-radius:100px;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(var(--accent-rgb),.2);white-space:nowrap">2024
@@ -376,8 +342,7 @@
                     <span class="absolute"
                         style="left:-2.6rem;top:2px;width:18px;height:18px;border-radius:50%;background:var(--bg-color);border:2px solid var(--border-color)"></span>
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                        <h3
-                            style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
+                        <h3 style="font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
                             Bachelor Génie Électrique &amp; Électronique</h3>
                         <span
                             style="font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:3px 12px;border-radius:100px;background:var(--card-color);color:var(--text-dim);border:1px solid var(--border-color);white-space:nowrap">2022</span>
@@ -392,8 +357,7 @@
                     <span class="absolute"
                         style="left:-2.6rem;top:2px;width:18px;height:18px;border-radius:50%;background:var(--bg-color);border:2px solid var(--border-color)"></span>
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                        <h3
-                            style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
+                        <h3 style="font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text-main)">
                             Bac Scientifique (Série D)</h3>
                         <span
                             style="font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:3px 12px;border-radius:100px;background:var(--card-color);color:var(--text-dim);border:1px solid var(--border-color);white-space:nowrap">2019</span>
@@ -411,11 +375,11 @@
      05. TEASER PROJETS
 ════════════════════════════════════════════ -->
     <section id="projects-teaser" class="py-28" style="background:rgba(255,255,255,0.015)">
-        <div class="max-w-3xl mx-auto px-6 text-center reveal">
-            <span class="section-label" style="display:block;text-align:center">05. Portfolio</span>
+        <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-20 reveal">
+            <span class="section-label">05. Portfolio</span>
             <h2 class="section-title" style="margin-bottom:1.25rem">Projets &amp; Missions</h2>
             <p
-                style="font-size:1rem;color:var(--text-dim);line-height:1.75;margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto">
+                style="font-size:1rem;color:var(--text-dim);line-height:1.75;margin-bottom:2.5rem;max-width:480px">
                 Toutes mes documentations techniques, projets d'école et missions d'entreprise sont regroupés sur une
                 page dédiée.
             </p>
@@ -445,82 +409,54 @@
                         directement par l'un des canaux ci-dessous.
                     </p>
 
-                    <a href="mailto:contact@mwindjou.fr" class="glass rounded-xl flex items-center gap-4 p-4 group"
-                        style="display:flex;text-decoration:none;transition:transform .2s,border-color .2s"
-                        onmouseenter="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(var(--accent-rgb),.35)'"
-                        onmouseleave="this.style.transform='';this.style.borderColor=''">
-                        <div
-                            style="width:42px;height:42px;border-radius:10px;background:var(--accent-soft);border:1px solid rgba(var(--accent-rgb),.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <a href="mailto:contact@mwindjou.fr" class="contact-card email">
+                        <div class="contact-card__icon" style="background:var(--accent-soft);border-color:rgba(var(--accent-rgb),.25)">
                             <i class="fa-solid fa-envelope" style="color:var(--accent)"></i>
                         </div>
                         <div>
-                            <p
-                                style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-bottom:.15rem">
-                                Email</p>
-                            <p style="font-size:.875rem;font-weight:600;color:var(--text-main)">contact@mwindjou.fr</p>
+                            <p class="contact-card__label">Email</p>
+                            <p class="contact-card__value">contact@mwindjou.fr</p>
                         </div>
                     </a>
 
-                    <a href="https://linkedin.com/in/mwindjou-mhoumadi-08a2141b5/" target="_blank"
-                        class="glass rounded-xl flex items-center gap-4 p-4"
-                        style="display:flex;text-decoration:none;transition:transform .2s,border-color .2s"
-                        onmouseenter="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(96,165,250,.35)'"
-                        onmouseleave="this.style.transform='';this.style.borderColor=''">
-                        <div
-                            style="width:42px;height:42px;border-radius:10px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <a href="https://linkedin.com/in/mwindjou-mhoumadi-08a2141b5/" target="_blank" class="contact-card linkedin">
+                        <div class="contact-card__icon" style="background:rgba(96,165,250,.1);border-color:rgba(96,165,250,.25)">
                             <i class="fa-brands fa-linkedin" style="color:#60a5fa"></i>
                         </div>
                         <div>
-                            <p
-                                style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-bottom:.15rem">
-                                LinkedIn</p>
-                            <p style="font-size:.875rem;font-weight:600;color:var(--text-main)">linkedin.com/in/mwindjou
-                            </p>
+                            <p class="contact-card__label">LinkedIn</p>
+                            <p class="contact-card__value">linkedin.com/in/mwindjou</p>
                         </div>
                     </a>
 
-                    <a href="https://github.com/mwiinmh" target="_blank"
-                        class="glass rounded-xl flex items-center gap-4 p-4"
-                        style="display:flex;text-decoration:none;transition:transform .2s,border-color .2s"
-                        onmouseenter="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(192,132,252,.35)'"
-                        onmouseleave="this.style.transform='';this.style.borderColor=''">
-                        <div
-                            style="width:42px;height:42px;border-radius:10px;background:rgba(192,132,252,.1);border:1px solid rgba(192,132,252,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <a href="https://github.com/mwiinmh" target="_blank" class="contact-card github">
+                        <div class="contact-card__icon" style="background:rgba(192,132,252,.1);border-color:rgba(192,132,252,.25)">
                             <i class="fa-brands fa-github" style="color:#c084fc"></i>
                         </div>
                         <div>
-                            <p
-                                style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-bottom:.15rem">
-                                GitHub</p>
-                            <p style="font-size:.875rem;font-weight:600;color:var(--text-main)">github.com/mwiinmh</p>
+                            <p class="contact-card__label">GitHub</p>
+                            <p class="contact-card__value">github.com/mwiinmh</p>
                         </div>
                     </a>
 
-                    <div class="glass rounded-xl flex items-center gap-4 p-4">
-                        <div
-                            style="width:42px;height:42px;border-radius:10px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                    <div class="contact-card">
+                        <div class="contact-card__icon" style="background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.25)">
                             <i class="fa-solid fa-location-dot" style="color:#4ade80"></i>
                         </div>
                         <div>
-                            <p
-                                style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim);margin-bottom:.15rem">
-                                Localisation</p>
-                            <p style="font-size:.875rem;font-weight:600;color:var(--text-main)">Paris, France</p>
+                            <p class="contact-card__label">Localisation</p>
+                            <p class="contact-card__value">Paris, France</p>
                         </div>
                     </div>
 
                     <div class="glass rounded-xl p-4 flex items-center gap-3">
                         <div class="relative flex-shrink-0">
                             <div style="width:10px;height:10px;border-radius:50%;background:#4ade80"></div>
-                            <div
-                                style="position:absolute;inset:0;width:10px;height:10px;border-radius:50%;background:#4ade80;animation:ping 1s cubic-bezier(0,0,.2,1) infinite;opacity:.4">
-                            </div>
+                            <div style="position:absolute;inset:0;width:10px;height:10px;border-radius:50%;background:#4ade80;animation:ping 1s cubic-bezier(0,0,.2,1) infinite;opacity:.4"></div>
                         </div>
                         <div>
-                            <p style="font-size:.875rem;font-weight:600;color:var(--text-main)">Disponible en alternance
-                            </p>
-                            <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim)">
-                                Jusqu'en juin 2026 · Île-de-France</p>
+                            <p style="font-size:.875rem;font-weight:600;color:var(--text-main)">Disponible en alternance</p>
+                            <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim)">Jusqu'en juin 2026 · Île-de-France</p>
                         </div>
                     </div>
                 </div>
@@ -534,10 +470,8 @@
                                 <i class="fa-solid fa-paper-plane" style="color:var(--accent)"></i>
                             </div>
                             <div>
-                                <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--text-main)">Envoyer
-                                    un message</h3>
-                                <p
-                                    style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim)">
+                                <h3 class="form-header-title">Envoyer un message</h3>
+                                <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim)">
                                     Je réponds sous 24–48h</p>
                             </div>
                         </div>

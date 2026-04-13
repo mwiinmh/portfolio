@@ -201,63 +201,73 @@ function renderFooter() {
     });
 
     document.getElementById('footer-placeholder').innerHTML = `
-    <footer class="py-14" style="background:var(--bg-color)">
+    <footer class="py-20 mt-10" style="background:var(--bg-color); border-top: 1px solid var(--border-color)">
         <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10" style="border-bottom:1px solid var(--border-color)">
-
-                <div>
-                    <a href="index.html#home" class="nav-logo block mb-4">${SITE.name}</a>
-                    <p style="font-size:.85rem;color:var(--text-dim);line-height:1.75;max-width:260px">
-                        Étudiant BTS SIO SISR, alternant chez REDVISE. Passionné par l'infrastructure et la cybersécurité.
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16">
+                
+                <!-- Brand & Bio -->
+                <div class="lg:col-span-2">
+                    <a href="index.html#home" class="nav-logo block mb-6" style="font-size: 1.4rem">${SITE.name}</a>
+                    <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.8; max-width: 380px; margin-bottom: 2rem">
+                        Étudiant passionné par l'infrastructure et la cybersécurité, j'accompagne les entreprises dans la sécurisation et l'optimisation de leurs systèmes d'information.
                     </p>
-                    <div class="flex gap-3 mt-5">
-                        <a href="${SITE.github}" target="_blank" class="nav-icon-btn" aria-label="GitHub">
+                    <div class="flex gap-4">
+                        <a href="${SITE.github}" target="_blank" class="footer-social-btn" aria-label="GitHub">
                             <i class="fa-brands fa-github"></i>
                         </a>
-                        <a href="${SITE.linkedin}" target="_blank" class="nav-icon-btn" aria-label="LinkedIn">
+                        <a href="${SITE.linkedin}" target="_blank" class="footer-social-btn" aria-label="LinkedIn">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
-                        <a href="assets/cv/CV_Mwindjou.pdf" download class="nav-icon-btn" aria-label="CV">
+                        <a href="assets/cv/CV_Mwindjou.pdf" download class="footer-social-btn" aria-label="Télécharger CV">
                             <i class="fa-solid fa-file-arrow-down"></i>
                         </a>
                     </div>
                 </div>
 
+                <!-- Fast Links -->
                 <div>
-                    <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Navigation</p>
-                    <div class="flex flex-col gap-2">
-                        <a href="index.html#home"        style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Accueil</a>
-                        <a href="index.html#about"       style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">À propos</a>
-                        <a href="index.html#experience"  style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Parcours</a>
-                        <a href="projects.html"          style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Projets</a>
-                        <a href="veille.html"            style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Veille</a>
-                        <a href="index.html#contact"     style="font-size:.875rem;color:var(--text-dim);text-decoration:none;transition:color .15s" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">Contact</a>
+                    <h4 style="font-family:'Outfit',sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 1.5rem">Navigation</h4>
+                    <nav class="flex flex-col gap-4">
+                        <a href="index.html#home" class="footer-nav-link">Accueil</a>
+                        <a href="index.html#about" class="footer-nav-link">À propos</a>
+                        <a href="index.html#experience" class="footer-nav-link">Parcours</a>
+                        <a href="projects.html" class="footer-nav-link">Projets</a>
+                        <a href="veille.html" class="footer-nav-link">Veille</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 style="font-family:'Outfit',sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 1.5rem">Contact</h4>
+                    <div class="flex flex-col gap-5">
+                        <a href="mailto:${SITE.email}" class="footer-contact-item">
+                            <i class="fa-solid fa-envelope" style="color:var(--accent)"></i> 
+                            <div>
+                                <p style="font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.1rem">Email</p>
+                                <p style="font-size: 0.85rem">${SITE.email}</p>
+                            </div>
+                        </a>
+                        <div class="footer-contact-item">
+                            <i class="fa-solid fa-location-dot" style="color:#4ade80"></i>
+                            <div>
+                                <p style="font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.1rem">Localisation</p>
+                                <p style="font-size: 0.85rem">Paris, France</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem">Contact</p>
-                    <div class="flex flex-col gap-3">
-                        <a href="mailto:${SITE.email}" style="font-size:.875rem;color:var(--text-dim);text-decoration:none;display:flex;align-items:center;gap:.5rem" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">
-                            <i class="fa-solid fa-envelope" style="color:var(--accent);width:14px"></i> ${SITE.email}
-                        </a>
-                        <a href="${SITE.linkedin}" target="_blank" style="font-size:.875rem;color:var(--text-dim);text-decoration:none;display:flex;align-items:center;gap:.5rem" onmouseenter="this.style.color='var(--text-main)'" onmouseleave="this.style.color='var(--text-dim)'">
-                            <i class="fa-brands fa-linkedin" style="color:#60a5fa;width:14px"></i> linkedin.com/in/mwindjou
-                        </a>
-                        <span style="font-size:.875rem;color:var(--text-dim);display:flex;align-items:center;gap:.5rem">
-                            <i class="fa-solid fa-location-dot" style="color:#4ade80;width:14px"></i> Paris, France
-                        </span>
-                    </div>
-                </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pt-8">
-                <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim)">
+            <!-- Bottom Bar -->
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p style="font-family:'JetBrains Mono',monospace; font-size: 0.7rem; color: var(--text-dim)">
                     © ${SITE.year} ${SITE.name} Mhoumadi — Tous droits réservés
                 </p>
-                <p style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--text-dim)">
-                    HTML · CSS · JS · Tailwind
-                </p>
+                
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="scroll-top-btn" aria-label="Retour en haut">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
             </div>
         </div>
     </footer>`;
