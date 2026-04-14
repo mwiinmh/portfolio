@@ -84,15 +84,13 @@ function renderNav() {
 
 function initNav() {
     const html    = document.documentElement;
-    const saved   = localStorage.getItem('theme');
-    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
     function applyTheme(t) {
         html.setAttribute('data-theme', t);
         localStorage.setItem('theme', t);
         updateFabIcon(t);
     }
-    applyTheme(saved ?? (sysDark ? 'dark' : 'light'));
+    // Sync l'icône initiale sans re-déclencher l'attribut (déjà mis par le head)
+    updateFabIcon(html.getAttribute('data-theme'));
 
     document.getElementById('theme-fab')?.addEventListener('click',
         () => applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
