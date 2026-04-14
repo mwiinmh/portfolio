@@ -281,10 +281,22 @@ function initReveal() {
 }
 
 /* ══════════════════════════════════════════════
+   INTERACTION MARQUEE (PAUSE AU CLIC)
+══════════════════════════════════════════════ */
+function initMarquee() {
+    document.querySelectorAll('.tech-marquee').forEach(m => {
+        m.addEventListener('click', () => {
+            m.classList.toggle('is-paused');
+        });
+    });
+}
+
+/* ══════════════════════════════════════════════
    INIT
 ══════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
     renderNav();
     renderFooter();
     initReveal();
+    initMarquee();
 });

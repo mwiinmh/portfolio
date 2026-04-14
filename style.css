@@ -402,8 +402,14 @@ body {
     animation: tech-marquee-scroll 26s linear infinite;
 }
 
-.tech-marquee:hover .tech-marquee__track {
-    animation-play-state: paused;
+@media (hover: hover) {
+    .tech-marquee:hover .tech-marquee__track {
+        animation-play-state: paused;
+    }
+}
+
+.tech-marquee.is-paused .tech-marquee__track {
+    animation-play-state: paused !important;
 }
 
 .tech-marquee--reverse .tech-marquee__track {
