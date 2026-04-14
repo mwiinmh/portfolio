@@ -64,9 +64,9 @@ function renderNav() {
                 </div>
 
                 <div class="md:hidden flex items-center gap-2">
-                    <button id="mobile-menu-btn" class="nav-icon-btn" aria-label="Menu">
-                        <i class="fa-solid fa-bars text-base" id="hamburger-icon"></i>
-                        <i class="fa-solid fa-xmark text-base hidden" id="close-icon"></i>
+                    <button id="mobile-menu-btn" class="nav-icon-btn" aria-label="Menu" aria-expanded="false">
+                        <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+                        <i class="fa-solid fa-xmark" id="close-icon"></i>
                     </button>
                 </div>
             </div>
@@ -98,19 +98,16 @@ function initNav() {
         () => applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
 
     const menu    = document.getElementById('mobile-menu');
-    const hamIcon = document.getElementById('hamburger-icon');
-    const xIcon   = document.getElementById('close-icon');
-
-    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-        const open = !menu.classList.contains('hidden');
-        menu.classList.toggle('hidden', open);
-        hamIcon.classList.toggle('hidden', !open);
-        xIcon.classList.toggle('hidden', open);
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    menuBtn?.addEventListener('click', () => {
+        const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+        const nextState = !isOpen;
+        menuBtn.setAttribute('aria-expanded', nextState.toString());
+        menu?.classList.toggle('hidden', !nextState);
     });
     menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
         menu.classList.add('hidden');
-        hamIcon.classList.remove('hidden');
-        xIcon.classList.add('hidden');
+        menuBtn?.setAttribute('aria-expanded', 'false');
     }));
 
     /* ── Highlight nav au scroll — index.html uniquement ──

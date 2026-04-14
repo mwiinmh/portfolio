@@ -158,20 +158,25 @@ body {
 }
 
 .nav-icon-btn {
-    width: 34px; height: 34px;
-    border-radius: 8px;
+    width: 36px; height: 36px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
     background: transparent;
     color: var(--text-dim);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; text-decoration: none;
     transition: all .18s;
+    position: relative;
+    overflow: hidden;
 }
 .nav-icon-btn:hover {
     color: var(--accent);
     border-color: rgba(var(--accent-rgb), 0.3);
     background: var(--accent-soft);
 }
+.nav-icon-btn[aria-expanded="true"] #hamburger-icon { display: none !important; }
+.nav-icon-btn[aria-expanded="false"] #close-icon { display: none !important; }
+.nav-icon-btn i { font-size: 1.1rem; }
 
 .mobile-panel {
     border-top: 1px solid var(--border-color);
