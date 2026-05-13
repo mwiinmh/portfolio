@@ -2,6 +2,13 @@
 <html lang="fr" class="scroll-smooth">
 
 <head>
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            // On respecte le choix sauvegardé, sinon on force 'dark' par défaut
+            document.documentElement.setAttribute('data-theme', saved || 'dark');
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Mwindjou</title>
