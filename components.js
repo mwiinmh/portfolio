@@ -213,7 +213,7 @@ function renderFooter() {
                         <a href="${SITE.linkedin}" target="_blank" class="footer-social-btn" aria-label="LinkedIn">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
-                        <a href="assets/cv/CV_Mwindjou.pdf" download class="footer-social-btn" aria-label="Télécharger CV">
+                        <a href="pdf/cv_mwindjou.pdf" download class="footer-social-btn" aria-label="Télécharger CV">
                             <i class="fa-solid fa-file-arrow-down"></i>
                         </a>
                     </div>
