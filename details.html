@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
+
 <head>
     <script>
-        (function() {
+        (function () {
             const saved = localStorage.getItem('theme');
             const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             document.documentElement.setAttribute('data-theme', saved || (sysDark ? 'dark' : 'light'));
@@ -14,7 +15,9 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="Détail des missions et ateliers de professionnalisation de Mwindjou">
@@ -22,115 +25,116 @@
     <meta property="og:title" content="Détail mission | Mwindjou">
     <meta property="og:type" content="website">
 </head>
+
 <body class="bg-tech-bg text-tech-text font-sans antialiased">
 
-<div id="nav-placeholder"></div>
-<div id="page-content">
-    <div class="loader-screen">
-        <div class="loader-spinner"></div>
-        <p class="loader-text">Chargement...</p>
+    <div id="nav-placeholder"></div>
+    <div id="page-content">
+        <div class="loader-screen">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Chargement...</p>
+        </div>
     </div>
-</div>
-<div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
-<script type="module" src="components.js"></script>
-<script>
-const DATA = {
+    <script type="module" src="components.js"></script>
+    <script>
+        const DATA = {
 
-    redvise: {
-        title:    'Alternance chez REDVISE',
-        subtitle: 'Administrateur Système & Réseau',
-        color:    { text:'#c084fc', bg:'rgba(192,132,252,.1)', border:'rgba(192,132,252,.2)' },
-        website:  'https://www.redvi.se',
-        desc:     "REDVISE est un intégrateur de solutions numériques. Mon rôle est d'assurer le Maintien en Condition Opérationnelle (MCO) des infrastructures serveurs et réseaux des clients.",
-        missions: [
-            { title:'Support Technique Avancé', icon:'fa-solid fa-headset', img: '', desc:"Prise en charge des tickets incidents matériels et logiciels complexes pour un parc multi-clients.", tags:['Support','N2','MCO'], pdf:'pdf/support_redvise.pdf' },
-            { title:'Supervision des Infrastructures', icon:'fa-solid fa-chart-line', img: '', desc:"Monitoring en temps réel de la santé des serveurs et équipements réseaux (uptime, CPU, RAM).", tags:['Centreon','Monitoring','Supervision'], pdf:'pdf/supervision_redvise.pdf' },
-            { title:'Gestion de Parc (ICMD)', icon:'fa-solid fa-building', img: '', desc:"Administration déléguée du parc informatique de l'école partenaire ICMD : inventaire et maintenance.", tags:['Parc','Education','Maintenance'], pdf:'pdf/gestion_icmd.pdf' },
-            { title:'Planification WiFi (Netspot)', icon:'fa-solid fa-wifi', img: '', desc:"Étude de couverture et planification du déploiement de bornes WiFi optimales via l'outil Netspot.", tags:['WiFi','Audit','Netspot'], pdf:'pdf/wifi_netspot.pdf' },
-            { title:'Déploiement Routeurs & Switches', icon:'fa-solid fa-route', img: '', desc:"Installation physique et configuration initiale de routeurs chez de nouveaux clients.", tags:['Matériel','Réseau','Déploiement'], pdf:'pdf/pose_routeurs_redvise.pdf' },
-        ],
-    },
+            redvise: {
+                title: 'Alternance chez REDVISE',
+                subtitle: 'Administrateur Système & Réseau',
+                color: { text: '#c084fc', bg: 'rgba(192,132,252,.1)', border: 'rgba(192,132,252,.2)' },
+                website: 'https://www.redvi.se',
+                desc: "REDVISE est un intégrateur de solutions numériques. Mon rôle est d'assurer le Maintien en Condition Opérationnelle (MCO) des infrastructures serveurs et réseaux des clients.",
+                missions: [
+                    { title: 'Support Technique Avancé', icon: 'fa-solid fa-headset', img: '', desc: "Prise en charge des tickets incidents matériels et logiciels complexes pour un parc multi-clients.", tags: ['Support', 'N2', 'MCO'], pdf: 'pdf/support_redvise.pdf' },
+                    { title: 'Supervision des Infrastructures', icon: 'fa-solid fa-chart-line', img: '', desc: "Monitoring en temps réel de la santé des serveurs et équipements réseaux (uptime, CPU, RAM).", tags: ['Centreon', 'Monitoring', 'Supervision'], pdf: 'pdf/supervision_redvise.pdf' },
+                    { title: 'Gestion de Parc (ICMD)', icon: 'fa-solid fa-building', img: '', desc: "Administration déléguée du parc informatique de l'école partenaire ICMD : inventaire et maintenance.", tags: ['Parc', 'Education', 'Maintenance'], pdf: 'pdf/gestion_icmd.pdf' },
+                    { title: 'Planification WiFi (Netspot)', icon: 'fa-solid fa-wifi', img: '', desc: "Étude de couverture et planification du déploiement de bornes WiFi optimales via l'outil Netspot.", tags: ['WiFi', 'Audit', 'Netspot'], pdf: 'pdf/wifi_netspot.pdf' },
+                    { title: 'Déploiement Routeurs & Switches', icon: 'fa-solid fa-route', img: '', desc: "Installation physique et configuration initiale de routeurs chez de nouveaux clients.", tags: ['Matériel', 'Réseau', 'Déploiement'], pdf: 'pdf/pose_routeurs_redvise.pdf' },
+                ],
+            },
 
-    itic: {
-        title:    'Stage chez ITIC Paris',
-        subtitle: 'Technicien Support & Réseau',
-        color:    { text:'#4ade80', bg:'rgba(74,222,128,.1)', border:'rgba(74,222,128,.2)' },
-        website:  'https://www.iticparis.com',
-        desc:     "Immersion au sein du service informatique de l'ITIC Paris, gérant plus de 200 machines pour la pédagogie et l'administration.",
-        missions: [
-            { title:'Surveillance avec Zabbix', icon:'fa-solid fa-gauge-high', img: '', desc:"Installation et configuration du système de monitoring Zabbix pour le parc informatique global.", tags:['Zabbix','Monitoring','Linux'], pdf:'pdf/zabbix_itic.pdf' },
-            { title:'VPN L2TP/IPsec Mikrotik', icon:'fa-solid fa-lock', img: '', desc:"Mise en place d'un accès distant sécurisé via tunnel VPN L2TP/IPsec sur équipement Mikrotik.", tags:['VPN','Mikrotik','Sécurité'], pdf:'pdf/vpn_mikrotik.pdf' },
-            { title:'Masterisation ISO via NTLite', icon:'fa-solid fa-compact-disc', img: '', desc:"Création de masters Windows personnalisés pour automatiser le déploiement des postes pédagogiques.", tags:['Déploiement','NTLite','Windows'], pdf:'pdf/master_ntlite.pdf' },
-            { title:'Active Directory Samba AD', icon:'fa-brands fa-linux', img: '', desc:"Mise en place d'un contrôleur de domaine Samba AD sous environnement Linux pour la gestion centralisée.", tags:['Samba','Linux','AD'], pdf:'pdf/samba_ad.pdf' },
-            { title:'Support Technique Utilisateurs', icon:'fa-solid fa-headset', img: '', desc:"Assistance quotidienne aux étudiants et aux professeurs (connexion, impression, logiciels).", tags:['Support','Hardware','Windows'], pdf:'pdf/support_itic.pdf' },
-            { title:'Maintenance Réseau Physique', icon:'fa-solid fa-network-wired', img: '', desc:"Pose et brassage de commutateurs et routeurs pour étendre la connectivité dans les salles.", tags:['Brassage','Réseau','Infrastructure'], pdf:'pdf/infra_itic.pdf' },
-        ],
-    },
+            itic: {
+                title: 'Stage chez ITIC Paris',
+                subtitle: 'Technicien Support & Réseau',
+                color: { text: '#4ade80', bg: 'rgba(74,222,128,.1)', border: 'rgba(74,222,128,.2)' },
+                website: 'https://www.iticparis.com',
+                desc: "Immersion au sein du service informatique de l'ITIC Paris, gérant plus de 200 machines pour la pédagogie et l'administration.",
+                missions: [
+                    { title: 'Surveillance avec Zabbix', icon: 'fa-solid fa-gauge-high', img: '', desc: "Installation et configuration du système de monitoring Zabbix pour le parc informatique global.", tags: ['Zabbix', 'Monitoring', 'Linux'], pdf: 'pdf/zabbix_itic.pdf' },
+                    { title: 'VPN L2TP/IPsec Mikrotik', icon: 'fa-solid fa-lock', img: '', desc: "Mise en place d'un accès distant sécurisé via tunnel VPN L2TP/IPsec sur équipement Mikrotik.", tags: ['VPN', 'Mikrotik', 'Sécurité'], pdf: 'pdf/vpn_mikrotik.pdf' },
+                    { title: 'Masterisation ISO via NTLite', icon: 'fa-solid fa-compact-disc', img: '', desc: "Création de masters Windows personnalisés pour automatiser le déploiement des postes pédagogiques.", tags: ['Déploiement', 'NTLite', 'Windows'], pdf: 'pdf/master_ntlite.pdf' },
+                    { title: 'Active Directory Samba AD', icon: 'fa-brands fa-linux', img: '', desc: "Mise en place d'un contrôleur de domaine Samba AD sous environnement Linux pour la gestion centralisée.", tags: ['Samba', 'Linux', 'AD'], pdf: 'pdf/samba_ad.pdf' },
+                    { title: 'Support Technique Utilisateurs', icon: 'fa-solid fa-headset', img: '', desc: "Assistance quotidienne aux étudiants et aux professeurs (connexion, impression, logiciels).", tags: ['Support', 'Hardware', 'Windows'], pdf: 'pdf/support_itic.pdf' },
+                    { title: 'Maintenance Réseau Physique', icon: 'fa-solid fa-network-wired', img: '', desc: "Pose et brassage de commutateurs et routeurs pour étendre la connectivité dans les salles.", tags: ['Brassage', 'Réseau', 'Infrastructure'], pdf: 'pdf/infra_itic.pdf' },
+                ],
+            },
 
-    sio_sys: {
-        title:    'Ateliers Systèmes',
-        subtitle: 'Administration Windows & Linux',
-        color:    { text:'#60a5fa', bg:'rgba(96,165,250,.1)', border:'rgba(96,165,250,.2)' },
-        website:  null,
-        desc:     "Ateliers de professionnalisation portant sur l'administration système Windows Server et Linux Debian.",
-        missions: [
-            { title:'Contrôleur de Domaine & GPO', icon:'fa-brands fa-windows', img: '', desc:"Installation d'un AD et application de GPO complexes (scripts, sécurité, dossiers partagés).", tags:['Windows Server','AD','GPO'], pdf:'pdf/ad_gpo.pdf' },
-            { title:'Migration rôles FSMO', icon:'fa-solid fa-exchange-alt', img: '', desc:"Transfert complet des 5 rôles maîtres d'opérations FSMO entre deux contrôleurs de domaine.", tags:['AD','FSMO','Migration'], pdf:'assets/projects/migration_fsmo.pdf' },
-            { title:"Installation d'un serveur GLPI", icon:'fa-solid fa-ticket', img: '', desc:"Installation d'un serveur GLPI sous Debian avec collecteurs automatique pour la gestion de parc.", tags:['ITIL','GLPI','Debian'], pdf:'assets/projects/installation_glpi.pdf' },
-            { title:'DHCP & DNS sous Debian', icon:'fa-solid fa-server', img: '', desc:"Mise en place des services cruciaux DHCP et DNS (BIND9) sur un serveur Linux dédié.", tags:['DNS','DHCP','Linux'], pdf:'pdf/dhcp_dns_linux.pdf' },
-            { title:'Automatisation Scripting CSV', icon:'fa-solid fa-code', img: '', desc:"Script Bash pour automatiser la création d'AD DS, utilisateurs et groupes à partir d'un fichier CSV.", tags:['Bash','Automation','AD'], pdf:'pdf/script_csv_ad.pdf' },
-        ],
-    },
+            sio_sys: {
+                title: 'Ateliers Systèmes',
+                subtitle: 'Administration Windows & Linux',
+                color: { text: '#60a5fa', bg: 'rgba(96,165,250,.1)', border: 'rgba(96,165,250,.2)' },
+                website: null,
+                desc: "Ateliers de professionnalisation portant sur l'administration système Windows Server et Linux Debian.",
+                missions: [
+                    { title: 'Contrôleur de Domaine & GPO', icon: 'fa-brands fa-windows', img: '', desc: "Installation d'un AD et application de GPO complexes (scripts, sécurité, dossiers partagés).", tags: ['Windows Server', 'AD', 'GPO'], pdf: 'pdf/ad_gpo.pdf' },
+                    { title: 'Migration rôles FSMO', icon: 'fa-solid fa-exchange-alt', img: '', desc: "Transfert complet des 5 rôles maîtres d'opérations FSMO entre deux contrôleurs de domaine.", tags: ['AD', 'FSMO', 'Migration'], pdf: 'assets/projects/migration_fsmo.pdf' },
+                    { title: "Installation d'un serveur GLPI", icon: 'fa-solid fa-ticket', img: '', desc: "Installation d'un serveur GLPI sous Debian avec collecteurs automatique pour la gestion de parc.", tags: ['ITIL', 'GLPI', 'Debian'], pdf: 'assets/projects/installation_glpi.pdf' },
+                    { title: 'DHCP & DNS sous Debian', icon: 'fa-solid fa-server', img: '', desc: "Mise en place des services cruciaux DHCP et DNS (BIND9) sur un serveur Linux dédié.", tags: ['DNS', 'DHCP', 'Linux'], pdf: 'pdf/configuration_dhcp_dns_debian12.pdf' },
+                    { title: 'Automatisation Scripting CSV', icon: 'fa-solid fa-code', img: '', desc: "Script Bash pour automatiser la création d'AD DS, utilisateurs et groupes à partir d'un fichier CSV.", tags: ['Bash', 'Automation', 'AD'], pdf: 'pdf/script_csv_ad.pdf' },
+                ],
+            },
 
-    sio_net: {
-        title:    'Ateliers Réseaux',
-        subtitle: 'Routage, Sécurité & Sans-fil',
-        color:    { text:'#fb923c', bg:'rgba(251,146,60,.1)', border:'rgba(251,146,60,.2)' },
-        website:  null,
-        desc:     "Exploration avancée du routage statique/dynamique et de la sécurité périmétrique (Mikrotik, Cisco, pfSense).",
-        missions: [
-            { title:'Routage Dynamique RIP', icon:'fa-solid fa-route', img: '', desc:"Configuration du protocole RIP entre deux routeurs Mikrotik et entre Mikrotik et PfSense.", tags:['RIP','Routage','Mikrotik'], pdf:'pdf/rip_config.pdf' },
-            { title:'Liaison Sans-Fil Point-à-Point', icon:'fa-solid fa-wifi', img: '', desc:"Installation d'un pont WIFI : configuration d'un AP et d'une station cliente sur matériel Mikrotik.", tags:['WiFi','Wireless','Mikrotik'], pdf:'pdf/wireless_p2p.pdf' },
-            { title:'Haute Disponibilité PfSense', icon:'fa-solid fa-shield-halved', img: '', desc:"Configuration du protocole CARP pour assurer la continuité de service entre deux clusters PfSense.", tags:['HA','Failover','PfSense'], pdf:'pdf/pfsense_ha.pdf' },
-            { title:'Firewalling PfSense', icon:'fa-solid fa-fire-extinguisher', img: '', desc:"Mise en place de règles de filtrage (ACL) et de NAT avancés pour sécuriser le périmètre réseau.", tags:['Security','Firewall','PfSense'], pdf:'pdf/pfsense_firewall.pdf' },
-            { title:'Segmentation VLAN & Inter-VLAN', icon:'fa-solid fa-sitemap', img: '', desc:"Conception de VLANs sur Cisco & Mikrotik avec routage inter-VLAN (ROAS).", tags:['VLAN','Switching','Réseau'], pdf:'pdf/vlan_routing.pdf' },
-            { title:'Serveur DHCP Multi-Plateforme', icon:'fa-solid fa-gears', img: '', desc:"Déploiement de bassins d'adresses DHCP sophistiqués sur routeurs Mikrotik et firewalls PfSense.", tags:['DHCP','Mikrotik','PfSense'], pdf:'pdf/dhcp_multi.pdf' },
-        ],
-    },
+            sio_net: {
+                title: 'Ateliers Réseaux',
+                subtitle: 'Routage, Sécurité & Sans-fil',
+                color: { text: '#fb923c', bg: 'rgba(251,146,60,.1)', border: 'rgba(251,146,60,.2)' },
+                website: null,
+                desc: "Exploration avancée du routage statique/dynamique et de la sécurité périmétrique (Mikrotik, Cisco, pfSense).",
+                missions: [
+                    { title: 'Routage Dynamique RIP', icon: 'fa-solid fa-route', img: '', desc: "Configuration du protocole RIP entre deux routeurs Mikrotik et entre Mikrotik et PfSense.", tags: ['RIP', 'Routage', 'Mikrotik'], pdf: 'pdf/rip_config.pdf' },
+                    { title: 'Liaison Sans-Fil Point-à-Point', icon: 'fa-solid fa-wifi', img: '', desc: "Installation d'un pont WIFI : configuration d'un AP et d'une station cliente sur matériel Mikrotik.", tags: ['WiFi', 'Wireless', 'Mikrotik'], pdf: 'pdf/wireless_p2p.pdf' },
+                    { title: 'Haute Disponibilité PfSense', icon: 'fa-solid fa-shield-halved', img: '', desc: "Configuration du protocole CARP pour assurer la continuité de service entre deux clusters PfSense.", tags: ['HA', 'Failover', 'PfSense'], pdf: 'pdf/pfsense_ha.pdf' },
+                    { title: 'Firewalling PfSense', icon: 'fa-solid fa-fire-extinguisher', img: '', desc: "Mise en place de règles de filtrage (ACL) et de NAT avancés pour sécuriser le périmètre réseau.", tags: ['Security', 'Firewall', 'PfSense'], pdf: 'pdf/pfsense_firewall.pdf' },
+                    { title: 'Segmentation VLAN & Inter-VLAN', icon: 'fa-solid fa-sitemap', img: '', desc: "Conception de VLANs sur Cisco & Mikrotik avec routage inter-VLAN (ROAS).", tags: ['VLAN', 'Switching', 'Réseau'], pdf: 'pdf/vlan_routing.pdf' },
+                    { title: 'Serveur DHCP Multi-Plateforme', icon: 'fa-solid fa-gears', img: '', desc: "Déploiement de bassins d'adresses DHCP sophistiqués sur routeurs Mikrotik et firewalls PfSense.", tags: ['DHCP', 'Mikrotik', 'PfSense'], pdf: 'pdf/dhcp_multi.pdf' },
+                ],
+            },
 
-    bts_exam: {
-        title:    "Dossiers d'Examen (E4 / E6 - BTS SIO)",
-        subtitle: 'Diplôme Services Informatiques aux Organisations',
-        color:    { text:'#facc15', bg:'rgba(250,204,21,.1)', border:'rgba(250,204,21,.2)' },
-        website:  null,
-        desc:     "Le BTS SIO forme aux métiers de l'informatique à travers deux spécialités : <strong>SISR</strong> (Infrastructure, Systèmes et Réseaux) - option que j'ai choisie pour ma spécialisation - et <strong>SLAM</strong> (Solutions Logicielles et Applications Métier). Cette section regroupe mes dossiers officiels pour les épreuves certificatives.",
-        missions: [
-            { title:'Tableau de synthèse',          icon:'fa-solid fa-table', img: '', desc:"Document récapitulant l'ensemble des compétences techniques et professionnelles acquises durant mon parcours de formation et mes stages.", tags:['Compétences','Bilan','SISR'], pdf:'pdf/tableau_synthese.pdf' },
-            { title:'E6 — RADIUS & Portail Captif', icon:'fa-solid fa-wifi',  img: '', desc:"Mise en place d'une solution d'authentification réseau RADIUS couplée à un portail captif pour la Maison des Ligues de Lorraine. Différenciation des accès collaborateurs / visiteurs.", tags:['RADIUS','Portail Captif','pfSense','Active Directory','E6'], pdf:'pdf/fiche_e6_radius.pdf' },
-            { title:'E6 — Serveur iVentoy',         icon:'fa-solid fa-server',img: '', desc:"Déploiement automatisé de Windows 10 sur les postes clients via un serveur iVentoy sous Proxmox, pour standardiser les installations.", tags:['iVentoy','Proxmox','pfSense','Déploiement','E6'], pdf:'pdf/fiche_e6_iventoy.pdf' },
-        ],
-    },
+            bts_exam: {
+                title: "Dossiers d'Examen (E4 / E6 - BTS SIO)",
+                subtitle: 'Diplôme Services Informatiques aux Organisations',
+                color: { text: '#facc15', bg: 'rgba(250,204,21,.1)', border: 'rgba(250,204,21,.2)' },
+                website: null,
+                desc: "Le BTS SIO forme aux métiers de l'informatique à travers deux spécialités : <strong>SISR</strong> (Infrastructure, Systèmes et Réseaux) - option que j'ai choisie pour ma spécialisation - et <strong>SLAM</strong> (Solutions Logicielles et Applications Métier). Cette section regroupe mes dossiers officiels pour les épreuves certificatives.",
+                missions: [
+                    { title: 'Tableau de synthèse', icon: 'fa-solid fa-table', img: '', desc: "Document récapitulant l'ensemble des compétences techniques et professionnelles acquises durant mon parcours de formation et mes stages.", tags: ['Compétences', 'Bilan', 'SISR'], pdf: 'pdf/tableau_synthese.pdf' },
+                    { title: 'E6 — RADIUS & Portail Captif', icon: 'fa-solid fa-wifi', img: '', desc: "Mise en place d'une solution d'authentification réseau RADIUS couplée à un portail captif pour la Maison des Ligues de Lorraine. Différenciation des accès collaborateurs / visiteurs.", tags: ['RADIUS', 'Portail Captif', 'pfSense', 'Active Directory', 'E6'], pdf: 'pdf/fiche_e6_radius.pdf' },
+                    { title: 'E6 — Serveur iVentoy', icon: 'fa-solid fa-server', img: '', desc: "Déploiement automatisé de Windows 10 sur les postes clients via un serveur iVentoy sous Proxmox, pour standardiser les installations.", tags: ['iVentoy', 'Proxmox', 'pfSense', 'Déploiement', 'E6'], pdf: 'pdf/fiche_e6_iventoy.pdf' },
+                ],
+            },
 
-};
+        };
 
-document.addEventListener('DOMContentLoaded', () => {
-    const id = new URLSearchParams(location.search).get('id');
-    const c  = DATA[id];
+        document.addEventListener('DOMContentLoaded', () => {
+            const id = new URLSearchParams(location.search).get('id');
+            const c = DATA[id];
 
-    if (!c) {
-        document.getElementById('page-content').innerHTML = `
+            if (!c) {
+                document.getElementById('page-content').innerHTML = `
         <div class="detail-error">
             <i class="fa-solid fa-triangle-exclamation detail-error__icon"></i>
             <p class="detail-error__title">Expérience introuvable.</p>
             <a href="projects.html" class="btn-ghost"><i class="fa-solid fa-arrow-left"></i> Retour aux projets</a>
         </div>`;
-        return;
-    }
+                return;
+            }
 
-    document.title = `${c.title} | Mwindjou`;
+            document.title = `${c.title} | Mwindjou`;
 
-    document.getElementById('page-content').innerHTML = `
+            document.getElementById('page-content').innerHTML = `
     <section class="detail-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <a href="projects.html" class="detail-back">
@@ -170,52 +174,266 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </section>`;
-});
-</script>
+        });
+    </script>
 
-<style>
-.loader-screen { min-height:80vh; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
-.loader-spinner { width:32px; height:32px; border-radius:50%; border:2px solid var(--border-color); border-top-color:var(--accent); animation:spin .7s linear infinite; }
-.loader-text { font-family:'JetBrains Mono',monospace; font-size:.7rem; color:var(--text-dim); }
-@keyframes spin { to { transform:rotate(360deg); } }
+    <style>
+        .loader-screen {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
-.detail-error { min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.25rem; text-align:center; padding:2rem; }
-.detail-error__icon { font-size:2rem; color:var(--accent); }
-.detail-error__title { font-family:'Outfit',sans-serif; font-size:1.3rem; font-weight:700; color:var(--text-main); }
+        .loader-spinner {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            border-top-color: var(--accent);
+            animation: spin .7s linear infinite;
+        }
 
-.detail-header { padding-top:8rem; padding-bottom:3rem; }
-.detail-back { display:inline-flex; align-items:center; gap:.5rem; font-size:.875rem; color:var(--text-dim); text-decoration:none; margin-bottom:2rem; transition:color .15s; }
-.detail-back:hover { color:var(--accent); }
-.detail-title { font-family:'Outfit',sans-serif; font-size:clamp(1.8rem,5vw,2.75rem); font-weight:800; letter-spacing:-.03em; color:var(--text-main); margin-bottom:.4rem; }
-.detail-subtitle { font-family:'JetBrains Mono',monospace; font-size:.82rem; margin-bottom:1.25rem; display:block; }
-.detail-desc { font-size:.95rem; color:var(--text-dim); line-height:1.78; max-width:640px; margin-bottom:1.75rem; }
+        .loader-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .7rem;
+            color: var(--text-dim);
+        }
 
-.detail-missions { padding-block:4rem; border-top:1px solid var(--border-color); background:rgba(255,255,255,.012); }
-[data-theme="light"] .detail-missions { background:rgba(0,0,0,.015); }
-.detail-missions__heading { display:flex; align-items:center; gap:.75rem; font-size:1.1rem; font-weight:700; color:var(--text-main); margin-bottom:2rem; }
-.detail-missions__bar { display:block; width:3px; height:1.2em; border-radius:2px; flex-shrink:0; }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-.mission-card { background:var(--card-color); border:1px solid var(--border-color); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; transition:all .3s cubic-bezier(.4,0,.2,1); }
-.mission-card:hover { border-color:rgba(var(--accent-rgb),.3); transform:translateY(-6px); box-shadow:0 22px 45px rgba(0,0,0,.35); }
-[data-theme="light"] .mission-card:hover { box-shadow:0 12px 28px rgba(0,0,0,.12); }
+        .detail-error {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            text-align: center;
+            padding: 2rem;
+        }
 
-.mission-card__header { position:relative; height:164px; overflow:hidden; }
-.mission-card__img { width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.4,0,.2,1); }
-.mission-card:hover .mission-card__img { transform:scale(1.1); }
-.mission-card__overlay { position:absolute; inset:0; background:linear-gradient(to bottom, transparent 20%, rgba(0,0,0,.7)); opacity:.6; }
+        .detail-error__icon {
+            font-size: 2rem;
+            color: var(--accent);
+        }
 
-.mission-card__icon-wrap { position:absolute; bottom:1rem; right:1rem; width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.1); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.15); border-radius:12px; z-index:5; }
-.mission-card__icon { font-size:1.25rem; color:#fff; transition:transform .3s; }
-.mission-card:hover .mission-card__icon { transform:scale(1.15); }
+        .detail-error__title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
 
-.mission-card__body { padding:1.5rem; display:flex; flex-direction:column; flex:1; }
-.mission-card__title { font-family:'Outfit',sans-serif; font-size:1.05rem; font-weight:700; color:var(--text-main); margin-bottom:.75rem; line-height:1.4; }
-.mission-card__desc { font-size:.875rem; color:var(--text-dim); line-height:1.75; margin-bottom:1.25rem; flex:1; }
-.mission-card__tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.75rem; }
-.mission-tag { font-family:'JetBrains Mono',monospace; font-size:.65rem; padding:3px 10px; border-radius:6px; border:1px solid; font-weight:500; }
-.mission-card__pdf { display:inline-flex; align-items:center; gap:.5rem; font-family:'JetBrains Mono',monospace; font-size:.72rem; text-decoration:none; padding:10px 0; border-top:1px solid var(--border-color); opacity:.75; transition:all .2s; margin-top:.75rem; font-weight:500; }
-.mission-card__pdf:hover { opacity:1; padding-left:4px; }
-</style>
+        .detail-header {
+            padding-top: 8rem;
+            padding-bottom: 3rem;
+        }
+
+        .detail-back {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .875rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color .15s;
+        }
+
+        .detail-back:hover {
+            color: var(--accent);
+        }
+
+        .detail-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: -.03em;
+            color: var(--text-main);
+            margin-bottom: .4rem;
+        }
+
+        .detail-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .82rem;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .detail-desc {
+            font-size: .95rem;
+            color: var(--text-dim);
+            line-height: 1.78;
+            max-width: 640px;
+            margin-bottom: 1.75rem;
+        }
+
+        .detail-missions {
+            padding-block: 4rem;
+            border-top: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, .012);
+        }
+
+        [data-theme="light"] .detail-missions {
+            background: rgba(0, 0, 0, .015);
+        }
+
+        .detail-missions__heading {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+        }
+
+        .detail-missions__bar {
+            display: block;
+            width: 3px;
+            height: 1.2em;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .mission-card {
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all .3s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .mission-card:hover {
+            border-color: rgba(var(--accent-rgb), .3);
+            transform: translateY(-6px);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, .35);
+        }
+
+        [data-theme="light"] .mission-card:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+        }
+
+        .mission-card__header {
+            position: relative;
+            height: 164px;
+            overflow: hidden;
+        }
+
+        .mission-card__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .mission-card:hover .mission-card__img {
+            transform: scale(1.1);
+        }
+
+        .mission-card__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 20%, rgba(0, 0, 0, .7));
+            opacity: .6;
+        }
+
+        .mission-card__icon-wrap {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, .1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 12px;
+            z-index: 5;
+        }
+
+        .mission-card__icon {
+            font-size: 1.25rem;
+            color: #fff;
+            transition: transform .3s;
+        }
+
+        .mission-card:hover .mission-card__icon {
+            transform: scale(1.15);
+        }
+
+        .mission-card__body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .mission-card__title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: .75rem;
+            line-height: 1.4;
+        }
+
+        .mission-card__desc {
+            font-size: .875rem;
+            color: var(--text-dim);
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .mission-card__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-bottom: .75rem;
+        }
+
+        .mission-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .65rem;
+            padding: 3px 10px;
+            border-radius: 6px;
+            border: 1px solid;
+            font-weight: 500;
+        }
+
+        .mission-card__pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .72rem;
+            text-decoration: none;
+            padding: 10px 0;
+            border-top: 1px solid var(--border-color);
+            opacity: .75;
+            transition: all .2s;
+            margin-top: .75rem;
+            font-weight: 500;
+        }
+
+        .mission-card__pdf:hover {
+            opacity: 1;
+            padding-left: 4px;
+        }
+    </style>
 
 </body>
+
 </html>
